@@ -28,8 +28,8 @@
     "name": "Prompt Engineering & Structured Output",
     "weight": 20,
     "description": "Task statements: 4.1 Design prompts with explicit criteria to improve precision and reduce false positives; 4.2 Apply few-shot prompting to improve output consistency and quality; 4.3 Enforce structured output using tool use and JSON schemas; 4.4 Implement validation, retry, and feedback loops for extraction quality; 4.5 Design efficient batch processing strategies; 4.6 Design multi-instance and multi-pass review architectures.",
-    "walkthroughId": null,
-    "labId": null
+    "walkthroughId": "d4",
+    "labId": "d4-extraction-loop"
   },
   {
     "id": "d5",

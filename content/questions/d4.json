@@ -1,0 +1,1443 @@
+[
+  {
+    "id": "d4-001",
+    "domain": "d4",
+    "difficulty": "easy",
+    "type": "single",
+    "scenario": "A support-triage assistant is told \"Mark tickets as urgent when they are important.\" It marks about 40% of tickets urgent, including password-reset requests, and agents have started ignoring the label.",
+    "question": "What change most improves the precision of the urgent label?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Tell the assistant to mark a ticket urgent only when it is very confident."
+      },
+      {
+        "key": "B",
+        "text": "Tell the assistant to be much more conservative with the urgent label."
+      },
+      {
+        "key": "C",
+        "text": "Define urgent: a multi-user outage, data loss, or a security incident."
+      },
+      {
+        "key": "D",
+        "text": "Add a reminder at the end of the prompt that urgent means truly important."
+      }
+    ],
+    "answer": [
+      "C"
+    ],
+    "explanation": {
+      "correct": "Explicit, categorical criteria tell Claude exactly which tickets qualify. Vague words such as \"important\" or \"conservative\" leave the boundary to interpretation, so precision barely moves.",
+      "distractors": {
+        "A": "Confidence wording does not define what counts as urgent, so the same tickets keep qualifying.",
+        "B": "\"Be conservative\" is a general instruction that fails to improve precision compared with specific criteria.",
+        "D": "Restating \"important\" repeats the same vague criterion that caused the problem."
+      }
+    },
+    "concepts": [
+      "explicit-criteria",
+      "precision"
+    ],
+    "source": "original",
+    "sources": [
+      "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (checked 2026-11-07)"
+    ],
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "id": "d4-002",
+    "domain": "d4",
+    "difficulty": "medium",
+    "type": "single",
+    "scenario": "A code-scanning assistant reports eight categories of issues. Logs show its \"unused variable\" category is wrong about 70% of the time, while its injection and authentication findings are almost always right. Developers have started dismissing every finding without reading it.",
+    "question": "What should the team do first?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Pause the noisy category while fixing its prompt; keep the accurate ones."
+      },
+      {
+        "key": "B",
+        "text": "Keep all eight categories and add \"only report findings you are sure about\"."
+      },
+      {
+        "key": "C",
+        "text": "Turn off the assistant entirely until every category reaches high precision."
+      },
+      {
+        "key": "D",
+        "text": "Show a model-reported confidence score next to every finding in the report."
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "correct": "A high false-positive category undermines trust in the accurate ones. Temporarily disabling it restores trust in the injection and authentication findings while its criteria are rewritten.",
+      "distractors": {
+        "B": "A general \"be sure\" instruction does not fix vague criteria, and the noisy category keeps eroding trust meanwhile.",
+        "C": "Switching everything off throws away the accurate security findings developers need.",
+        "D": "An uncalibrated confidence score adds a number without removing the noise developers are reacting to."
+      }
+    },
+    "concepts": [
+      "false-positive-management",
+      "developer-trust"
+    ],
+    "source": "original",
+    "sources": [
+      "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (checked 2026-11-07)"
+    ],
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "id": "d4-003",
+    "domain": "d4",
+    "difficulty": "medium",
+    "type": "single",
+    "scenario": "A review assistant labels findings as high, medium, or low severity. The same kind of issue, such as a missing input check on an internal endpoint, is rated high one day and low the next, which makes the severity column useless for triage.",
+    "question": "What change best makes the severity ratings consistent?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Ask the assistant to be consistent with its earlier ratings in each review."
+      },
+      {
+        "key": "B",
+        "text": "Run every finding through the assistant twice and keep the lower rating."
+      },
+      {
+        "key": "C",
+        "text": "Let developers override the severity rating whenever they disagree with it."
+      },
+      {
+        "key": "D",
+        "text": "Define each severity level explicitly, with concrete code examples of each."
+      }
+    ],
+    "answer": [
+      "D"
+    ],
+    "explanation": {
+      "correct": "Explicit severity definitions, each illustrated with concrete code examples, give Claude a fixed reference point, so the same pattern gets the same rating.",
+      "distractors": {
+        "A": "Without stable definitions, there is nothing for \"consistent\" to anchor to.",
+        "B": "Running twice and keeping the lower rating biases results downward without defining the levels.",
+        "C": "Manual overrides fix individual cases after the fact but leave the ratings inconsistent."
+      }
+    },
+    "concepts": [
+      "severity-criteria",
+      "explicit-criteria"
+    ],
+    "source": "original",
+    "sources": [
+      "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (checked 2026-11-07)"
+    ],
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "id": "d4-004",
+    "domain": "d4",
+    "difficulty": "medium",
+    "type": "single",
+    "scenario": "A notification service sends Claude-written messages as SMS. The system prompt says \"NEVER use markdown.\" Messages still sometimes contain asterisks and pound signs, and occasionally numbered lists that look broken on phones.",
+    "question": "Which prompt change is most likely to fix this?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Repeat \"NEVER use markdown\" three times, in capital letters, in the prompt."
+      },
+      {
+        "key": "B",
+        "text": "Explain that replies go out as SMS, which shows markup symbols as raw text."
+      },
+      {
+        "key": "C",
+        "text": "List every markdown symbol that must not appear anywhere in the replies."
+      },
+      {
+        "key": "D",
+        "text": "Remove the instruction and rely on the phone to strip any formatting symbols."
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "correct": "Giving the reason behind an instruction helps Claude generalize. Knowing the output is plain-text SMS, it avoids every kind of formatting that would look broken, including cases a symbol list would miss.",
+      "distractors": {
+        "A": "Emphasis alone does not tell Claude why, so edge cases such as numbered lists persist.",
+        "C": "A symbol list covers only what you thought of, while the reason covers the whole category.",
+        "D": "Phones show markdown as raw characters. Nothing strips it."
+      }
+    },
+    "concepts": [
+      "instruction-context",
+      "explicit-criteria"
+    ],
+    "source": "original",
+    "sources": [
+      "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (checked 2026-11-07)"
+    ],
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "id": "d4-005",
+    "domain": "d4",
+    "difficulty": "hard",
+    "type": "single",
+    "scenario": "A pull-request reviewer prompt already says \"Only report high-confidence findings,\" yet precision has not improved. An engineer proposes adding \"Be extremely conservative\" and filtering out findings whose self-reported confidence is below 0.8.",
+    "question": "What is the most effective change?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Add \"be extremely conservative\" on top of the existing high-confidence instruction."
+      },
+      {
+        "key": "B",
+        "text": "Filter out findings below 0.8 on the model's self-reported confidence score."
+      },
+      {
+        "key": "C",
+        "text": "Name the categories to report (bugs, security) and to skip (style)."
+      },
+      {
+        "key": "D",
+        "text": "Add few-shot examples that show only findings the model was highly confident in."
+      }
+    ],
+    "answer": [
+      "C"
+    ],
+    "explanation": {
+      "correct": "General caution instructions do not improve precision as well as specific categorical criteria. Defining what to report and what to skip removes whole classes of noise at the source.",
+      "distractors": {
+        "A": "Stacking more caution wording is the same approach that already failed.",
+        "B": "Confidence filtering sounds rigorous, but uncalibrated self-reported confidence is a weak signal, and it leaves the criteria vague.",
+        "D": "Examples of confident findings do not tell Claude which categories are out of scope."
+      }
+    },
+    "concepts": [
+      "explicit-criteria",
+      "confidence-filtering"
+    ],
+    "source": "original",
+    "sources": [
+      "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (checked 2026-11-07)"
+    ],
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "id": "d4-006",
+    "domain": "d4",
+    "difficulty": "easy",
+    "type": "single",
+    "scenario": "A release-notes generator receives detailed formatting instructions. Even so, its bullets vary: some start with a verb and some with the component name, and some include ticket numbers while others do not.",
+    "question": "What is the most effective way to make the format consistent?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Add a few correctly formatted examples in <example> tags."
+      },
+      {
+        "key": "B",
+        "text": "Make the format description longer, covering every possible variation."
+      },
+      {
+        "key": "C",
+        "text": "Ask Claude to be more consistent with the format of its bullet points."
+      },
+      {
+        "key": "D",
+        "text": "Put the most important formatting rules in bold within the instructions."
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "correct": "Few-shot examples are one of the most reliable ways to steer format and structure when instructions alone produce inconsistent results. Wrapping them in tags separates them from the instructions.",
+      "distractors": {
+        "B": "More description leaves more room for interpretation, which is the problem.",
+        "C": "Asking for consistency gives Claude nothing concrete to be consistent with.",
+        "D": "Bold text adds emphasis, not a concrete target format."
+      }
+    },
+    "concepts": [
+      "few-shot-examples",
+      "output-consistency"
+    ],
+    "source": "original",
+    "sources": [
+      "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (checked 2026-11-07)"
+    ],
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "id": "d4-007",
+    "domain": "d4",
+    "difficulty": "medium",
+    "type": "single",
+    "scenario": "A bug-summary prompt includes four examples, all about payment-processing bugs. Summaries of unrelated bugs, such as a broken image upload, now often mention payments or use payment terminology.",
+    "question": "How should the team fix the examples?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Remove the examples and go back to instructions only."
+      },
+      {
+        "key": "B",
+        "text": "Add ten more payment examples to strengthen the pattern."
+      },
+      {
+        "key": "C",
+        "text": "Note that the examples are illustrative and not literal."
+      },
+      {
+        "key": "D",
+        "text": "Use varied examples across areas, including edge cases."
+      }
+    ],
+    "answer": [
+      "D"
+    ],
+    "explanation": {
+      "correct": "Examples should be relevant and diverse. Four examples from one domain teach an unintended pattern, so varying them across areas and edge cases teaches the format without the payment bias.",
+      "distractors": {
+        "A": "Dropping the examples loses their benefit for format and consistency.",
+        "B": "More of the same examples strengthens the unwanted payment bias.",
+        "C": "A disclaimer is weak compared with the pattern the examples themselves set."
+      }
+    },
+    "concepts": [
+      "few-shot-diversity",
+      "few-shot-examples"
+    ],
+    "source": "original",
+    "sources": [
+      "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (checked 2026-11-07)"
+    ],
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "id": "d4-008",
+    "domain": "d4",
+    "difficulty": "medium",
+    "type": "single",
+    "scenario": "A support-routing agent handles clear requests well but is inconsistent on ambiguous ones, such as \"I want a refund for a gift I received\", which could go to returns or to billing depending on details.",
+    "question": "What change best improves its handling of ambiguous requests?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Write every routing rule out in prose, and add more rules for the edge cases."
+      },
+      {
+        "key": "B",
+        "text": "Add ambiguous examples that explain why one route beat the other."
+      },
+      {
+        "key": "C",
+        "text": "Give the agent more routing tools so each ambiguous case has its own option."
+      },
+      {
+        "key": "D",
+        "text": "Send every request that looks ambiguous straight to a human agent instead."
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "correct": "Few-shot examples that show the reasoning for ambiguous cases (why returns rather than billing, given the details) let Claude generalize that judgment to new ambiguous requests.",
+      "distractors": {
+        "A": "More prose rules rarely cover the next ambiguous case and tend to conflict with each other.",
+        "C": "More tools add choices without teaching the judgment.",
+        "D": "Escalating every ambiguous request sends routine work to humans."
+      }
+    },
+    "concepts": [
+      "few-shot-ambiguity",
+      "reasoning-examples"
+    ],
+    "source": "original",
+    "sources": [
+      "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (checked 2026-11-07)"
+    ],
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "id": "d4-009",
+    "domain": "d4",
+    "difficulty": "medium",
+    "type": "single",
+    "scenario": "A recipe-extraction pipeline fills a numeric quantity field. Sources often use informal amounts such as \"a pinch\", \"a couple of cups\", or \"a splash\", and Claude invents precise numbers for them, such as 0.31 cups.",
+    "question": "What change best reduces the invented values?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Tell Claude to be precise when it extracts quantities from recipes."
+      },
+      {
+        "key": "B",
+        "text": "Make the numeric quantity field required for every ingredient."
+      },
+      {
+        "key": "C",
+        "text": "Add examples that keep informal amounts as text with quantity null."
+      },
+      {
+        "key": "D",
+        "text": "Replace the extraction with regular expressions over the recipe text."
+      }
+    ],
+    "answer": [
+      "C"
+    ],
+    "explanation": {
+      "correct": "Few-shot examples that show informal amounts handled correctly (the original phrase kept as text and the numeric field left empty) reduce made-up precision and generalize to phrasings the examples do not list.",
+      "distractors": {
+        "A": "\"Be precise\" pushes toward exact numbers, which is the fabrication being fixed.",
+        "B": "A required numeric field forces Claude to produce a number even when none exists.",
+        "D": "Regular expressions cannot handle the variety of informal phrasings."
+      }
+    },
+    "concepts": [
+      "few-shot-extraction",
+      "hallucination-reduction"
+    ],
+    "source": "original",
+    "sources": [
+      "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (checked 2026-11-07)"
+    ],
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "id": "d4-010",
+    "domain": "d4",
+    "difficulty": "hard",
+    "type": "single",
+    "scenario": "A research pipeline extracts citations from papers. It works on papers with inline citations but misses most citations in papers that use a bibliography section with numbered references. An engineer proposes classifying each paper's format first and maintaining a separate prompt for each format.",
+    "question": "What is the most effective first change?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Add examples of both inline citations and numbered bibliographies."
+      },
+      {
+        "key": "B",
+        "text": "Build the format classifier and keep a separate prompt for each format."
+      },
+      {
+        "key": "C",
+        "text": "Tell Claude that citations can appear anywhere in a paper."
+      },
+      {
+        "key": "D",
+        "text": "Raise max_tokens so Claude has room to list more citations."
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "correct": "Few-shot examples that show correct extraction from both structures teach Claude to handle structural variety in one prompt, which is the cheapest and most general fix.",
+      "distractors": {
+        "B": "A classifier with per-format prompts can work, but it adds a component to maintain and a new failure point, and every new format needs another prompt.",
+        "C": "A general hint does not show how numbered references map to the text.",
+        "D": "The extraction is not running out of space. It does not recognize the bibliography format."
+      }
+    },
+    "concepts": [
+      "few-shot-structure-variety",
+      "few-shot-extraction"
+    ],
+    "source": "original",
+    "sources": [
+      "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (checked 2026-11-07)"
+    ],
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "id": "d4-011",
+    "domain": "d4",
+    "difficulty": "easy",
+    "type": "single",
+    "scenario": "An extraction service asks Claude to \"respond only with JSON\" and parses the reply. About 2% of replies fail to parse, because of a trailing comment or a missing brace.",
+    "question": "What is the most reliable fix?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Repeat the \"respond only with JSON\" instruction more strongly."
+      },
+      {
+        "key": "B",
+        "text": "Use structured outputs: a JSON schema in output_config.format."
+      },
+      {
+        "key": "C",
+        "text": "Extract the text between the first and last brace before parsing."
+      },
+      {
+        "key": "D",
+        "text": "Retry any reply that fails to parse until a valid one comes back."
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "correct": "Structured outputs use constrained decoding to keep the response valid against the schema, which eliminates JSON syntax errors.",
+      "distractors": {
+        "A": "Stronger wording lowers the error rate but cannot guarantee valid JSON.",
+        "C": "Trimming to the braces still fails when the JSON inside is malformed.",
+        "D": "Retries cost extra calls and still have no guarantee of success."
+      }
+    },
+    "concepts": [
+      "structured-outputs",
+      "json-schema"
+    ],
+    "source": "original",
+    "sources": [
+      "https://platform.claude.com/docs/en/build-with-claude/structured-outputs (checked 2026-11-07)"
+    ],
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "id": "d4-012",
+    "domain": "d4",
+    "difficulty": "medium",
+    "type": "single",
+    "scenario": "An invoice extractor uses structured outputs with a strict schema, so every response is valid JSON with the right fields. Audits still find invoices where the line items do not add up to the extracted total.",
+    "question": "What should the team add?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Switch from JSON outputs to strict tool use, which validates inputs more strictly."
+      },
+      {
+        "key": "B",
+        "text": "Add minimum and maximum constraints on the amounts in the JSON schema."
+      },
+      {
+        "key": "C",
+        "text": "Add a prompt line insisting that all of the extracted amounts must add up."
+      },
+      {
+        "key": "D",
+        "text": "Check the sums in code, and flag or retry the invoices that do not add up."
+      }
+    ],
+    "answer": [
+      "D"
+    ],
+    "explanation": {
+      "correct": "Structured outputs guarantee the shape, not semantic correctness. Checking that line items add up has to happen in code, which can then retry with the specific error or send the invoice for review.",
+      "distractors": {
+        "A": "Strict tool use also guarantees shape, not arithmetic.",
+        "B": "Numeric constraints such as minimum and maximum are not supported in structured-output schemas and return a 400, and they could not express \"these add up\" anyway.",
+        "C": "A prompt line helps a little but guarantees nothing, and the audit gap remains."
+      }
+    },
+    "concepts": [
+      "semantic-validation",
+      "structured-outputs"
+    ],
+    "source": "original",
+    "sources": [
+      "https://platform.claude.com/docs/en/build-with-claude/structured-outputs (checked 2026-11-07)"
+    ],
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "id": "d4-013",
+    "domain": "d4",
+    "difficulty": "medium",
+    "type": "single",
+    "scenario": "A purchase-order extractor's schema makes po_number a required string. Many scanned documents have no PO number at all, and for those, Claude produces plausible-looking but invented numbers.",
+    "question": "What is the best fix?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Make po_number nullable, and tell Claude to use null when it is absent."
+      },
+      {
+        "key": "B",
+        "text": "Keep po_number required and add a prompt line: \"do not invent values\"."
+      },
+      {
+        "key": "C",
+        "text": "Keep it required and tell Claude to write \"N/A\" whenever it is missing."
+      },
+      {
+        "key": "D",
+        "text": "Remove po_number from the extraction, since it is too unreliable to keep."
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "correct": "A required field forces a value even when the source has none, which invites fabrication. Making the field nullable, with an explicit rule to use null when the information is absent, lets the output be honest.",
+      "distractors": {
+        "B": "The schema still demands a value, so the instruction and the schema pull in opposite directions.",
+        "C": "A sentinel string mixes \"missing\" into a real value field and breaks downstream type checks.",
+        "D": "Removing the field loses the PO numbers that do exist."
+      }
+    },
+    "concepts": [
+      "nullable-fields",
+      "schema-design"
+    ],
+    "source": "original",
+    "sources": [
+      "https://platform.claude.com/docs/en/build-with-claude/structured-outputs (checked 2026-11-07)"
+    ],
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "id": "d4-014",
+    "domain": "d4",
+    "difficulty": "medium",
+    "type": "single",
+    "scenario": "A document classifier uses an enum category of invoice, receipt, or contract. Bank statements and tax forms, which fit none of these, are being classified as invoices.",
+    "question": "How should the schema change?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Expand the enum to list every document type the team can think of."
+      },
+      {
+        "key": "B",
+        "text": "Replace the enum with a free-text category field filled by the model."
+      },
+      {
+        "key": "C",
+        "text": "Add \"other\" with a detail field, and \"unclear\" for ambiguous documents."
+      },
+      {
+        "key": "D",
+        "text": "Drop the category and let downstream systems work out the document type."
+      }
+    ],
+    "answer": [
+      "C"
+    ],
+    "explanation": {
+      "correct": "An \"other\" value plus a detail string gives documents outside the list somewhere honest to go, and \"unclear\" handles genuinely ambiguous inputs. The known categories stay clean enums.",
+      "distractors": {
+        "A": "A huge enum is never complete, and the next unexpected type gets forced into the nearest bucket.",
+        "B": "Free text loses the consistent labels downstream systems rely on.",
+        "D": "Dropping the category pushes the problem downstream instead of solving it."
+      }
+    },
+    "concepts": [
+      "enum-other-pattern",
+      "schema-design"
+    ],
+    "source": "original",
+    "sources": [
+      "https://platform.claude.com/docs/en/build-with-claude/structured-outputs (checked 2026-11-07)"
+    ],
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "id": "d4-015",
+    "domain": "d4",
+    "difficulty": "hard",
+    "type": "single",
+    "scenario": "A travel assistant chats with users and calls a book_flight tool. About one call in fifty has a missing required field or a malformed date, and the booking API rejects it. An engineer proposes putting a JSON schema on output_config.format so every response is validated.",
+    "question": "What is the better fix?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Do it: put a JSON schema on output_config.format for every response."
+      },
+      {
+        "key": "B",
+        "text": "Set strict: true on book_flight so its inputs always match its schema."
+      },
+      {
+        "key": "C",
+        "text": "Tell Claude in the system prompt to always include every booking field."
+      },
+      {
+        "key": "D",
+        "text": "Ask the user to confirm and re-enter each field whenever a call fails."
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "correct": "Strict tool use guarantees that tool inputs match the tool's schema, which is exactly where the errors occur. JSON outputs (output_config.format) shape Claude's whole response, which would break the conversational replies.",
+      "distractors": {
+        "A": "Forcing the entire response into one JSON schema suits pure extraction, not an assistant that also chats.",
+        "C": "A prompt rule lowers the error rate but cannot guarantee valid tool inputs.",
+        "D": "Pushing validation onto the user adds friction for a problem the schema can prevent."
+      }
+    },
+    "concepts": [
+      "strict-tool-use",
+      "structured-outputs"
+    ],
+    "source": "original",
+    "sources": [
+      "https://platform.claude.com/docs/en/build-with-claude/structured-outputs (checked 2026-11-07)",
+      "https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools (checked 2026-11-07)"
+    ],
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "id": "d4-016",
+    "domain": "d4",
+    "difficulty": "medium",
+    "type": "single",
+    "scenario": "A pipeline parses every structured-output response straight into its database. A few times a week it crashes on output that does not match the schema. Logs show those responses ended with stop_reason \"max_tokens\" on very long documents.",
+    "question": "What should the pipeline do?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Check stop_reason first; retry max_tokens cases with a higher limit."
+      },
+      {
+        "key": "B",
+        "text": "Wrap the parsing in a try/catch block and skip any document that fails."
+      },
+      {
+        "key": "C",
+        "text": "Remove the schema, since structured outputs evidently are not reliable."
+      },
+      {
+        "key": "D",
+        "text": "Lower max_tokens so that the responses are shorter and finish in time."
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "correct": "Structured outputs can fail to match the schema when the response is cut off by max_tokens, or when Claude refuses. Checking stop_reason before parsing, and retrying truncated responses with a higher max_tokens, handles both safely.",
+      "distractors": {
+        "B": "Skipping documents silently loses data.",
+        "C": "The schema works. The cut-off responses are a separate, documented case to handle.",
+        "D": "A lower limit makes truncation more frequent, not less."
+      }
+    },
+    "concepts": [
+      "stop-reason-handling",
+      "structured-outputs"
+    ],
+    "source": "original",
+    "sources": [
+      "https://platform.claude.com/docs/en/build-with-claude/structured-outputs (checked 2026-11-07)"
+    ],
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "id": "d4-017",
+    "domain": "d4",
+    "difficulty": "easy",
+    "type": "single",
+    "scenario": "An extraction fails validation because the total field is missing, even though the document clearly shows a total on page 2. The pipeline retries by sending the identical request again, and gets the same result.",
+    "question": "How should the retry be built?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Resend the identical request a few more times until it eventually passes."
+      },
+      {
+        "key": "B",
+        "text": "Resend the request with \"try again and be careful\" added to the prompt."
+      },
+      {
+        "key": "C",
+        "text": "Resend the request to a different model each time until one passes."
+      },
+      {
+        "key": "D",
+        "text": "Send the document, the failed extraction, and the specific error back."
+      }
+    ],
+    "answer": [
+      "D"
+    ],
+    "explanation": {
+      "correct": "Retry with error feedback works because Claude sees the original document, its previous answer, and exactly what failed (\"total is missing; the document shows one on page 2\"), so it can correct the specific problem.",
+      "distractors": {
+        "A": "An identical request tends to reproduce the identical mistake.",
+        "B": "\"Be careful\" gives no information about what went wrong.",
+        "C": "Switching models adds cost and still gives no feedback about the error."
+      }
+    },
+    "concepts": [
+      "retry-with-feedback",
+      "validation-loop"
+    ],
+    "source": "original",
+    "sources": [
+      "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (checked 2026-11-07)"
+    ],
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "id": "d4-018",
+    "domain": "d4",
+    "difficulty": "medium",
+    "type": "single",
+    "scenario": "A contract pipeline retries five times whenever the contract end date is missing. For one vendor, every retry fails: the end date is defined only in a separate amendment that is never sent to Claude.",
+    "question": "What should the pipeline do?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Raise the retry limit to ten so the extraction has more chances to succeed."
+      },
+      {
+        "key": "B",
+        "text": "Stop retrying, return null, and flag that the amendment is needed."
+      },
+      {
+        "key": "C",
+        "text": "Tell Claude to infer a likely end date from the contract's other terms."
+      },
+      {
+        "key": "D",
+        "text": "Switch to a larger model for documents that still fail after five retries."
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "correct": "Retries fix format and structural errors, but they cannot produce information that is not in the input. When the data lives in a document that was not provided, the right result is an honest null plus a flag saying what is missing.",
+      "distractors": {
+        "A": "More retries cost more and still cannot find information that is not there.",
+        "C": "Inferring the date creates a fabricated value in a contract system.",
+        "D": "No model can read an amendment it was never given."
+      }
+    },
+    "concepts": [
+      "retry-limits",
+      "missing-information"
+    ],
+    "source": "original",
+    "sources": [
+      "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (checked 2026-11-07)"
+    ],
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "id": "d4-019",
+    "domain": "d4",
+    "difficulty": "medium",
+    "type": "single",
+    "scenario": "Developers dismiss about a third of an automated reviewer's findings. The team wants to reduce false positives but cannot tell which kinds of code produce the dismissed findings.",
+    "question": "What change helps most?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Add a detected_pattern field to each finding, and analyze dismissals by pattern."
+      },
+      {
+        "key": "B",
+        "text": "Ask developers to write a free-text explanation every time they dismiss a finding."
+      },
+      {
+        "key": "C",
+        "text": "Cap the reviewer at five findings per pull request to reduce the overall noise."
+      },
+      {
+        "key": "D",
+        "text": "Add a confidence score to each finding and hide the low-confidence findings."
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "correct": "Recording which code construct triggered each finding turns dismissals into data: the team can see which patterns are dismissed most and fix the criteria or examples for exactly those.",
+      "distractors": {
+        "B": "Free-text notes are slow to write and hard to aggregate across many reviews.",
+        "C": "A cap hides findings, true and false alike, without showing what causes the noise.",
+        "D": "Uncalibrated confidence scores do not reveal which patterns go wrong."
+      }
+    },
+    "concepts": [
+      "feedback-loops",
+      "detected-pattern"
+    ],
+    "source": "original",
+    "sources": [
+      "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (checked 2026-11-07)"
+    ],
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "id": "d4-020",
+    "domain": "d4",
+    "difficulty": "medium",
+    "type": "single",
+    "scenario": "Some supplier invoices contain arithmetic errors in the source: the printed total does not equal the sum of the line items. The finance team wants these flagged, not silently corrected and not dropped.",
+    "question": "How should the extraction schema handle this?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Ask Claude to correct the total so that it always matches the line items."
+      },
+      {
+        "key": "B",
+        "text": "Extract only the printed total and trust it, since it is what the supplier billed."
+      },
+      {
+        "key": "C",
+        "text": "Extract the printed total and a calculated total, plus a conflict_detected flag."
+      },
+      {
+        "key": "D",
+        "text": "Discard any invoice whose numbers do not add up, and log it for later."
+      }
+    ],
+    "answer": [
+      "C"
+    ],
+    "explanation": {
+      "correct": "Capturing both the stated and the calculated totals, with a boolean flag for disagreement, preserves what the document says and exposes the conflict for review.",
+      "distractors": {
+        "A": "Silent correction hides a real billing discrepancy the finance team needs to see.",
+        "B": "Trusting only the printed total misses the error entirely.",
+        "D": "Discarding loses legitimate invoices that just need review."
+      }
+    },
+    "concepts": [
+      "self-correction",
+      "conflict-detection"
+    ],
+    "source": "original",
+    "sources": [
+      "https://platform.claude.com/docs/en/build-with-claude/structured-outputs (checked 2026-11-07)"
+    ],
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "id": "d4-021",
+    "domain": "d4",
+    "difficulty": "hard",
+    "type": "single",
+    "scenario": "Two extraction failures come back from validation. In the first, a date is written \"3rd of May 2026\" but the schema requires ISO 8601. In the second, the supplier's tax ID is empty, and the document contains no tax ID anywhere.",
+    "question": "How should the pipeline handle them?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Retry both with the original request until each extraction passes validation."
+      },
+      {
+        "key": "B",
+        "text": "Retry neither, and send both straight to human review without any retry."
+      },
+      {
+        "key": "C",
+        "text": "Retry the tax ID with feedback, and accept the date in its original format."
+      },
+      {
+        "key": "D",
+        "text": "Retry the date with feedback; record the tax ID as missing in the source."
+      }
+    ],
+    "answer": [
+      "D"
+    ],
+    "explanation": {
+      "correct": "Format errors respond well to retry-with-feedback, because the information is there and only its form is wrong. An absent value cannot be produced by retrying; it should be recorded as missing.",
+      "distractors": {
+        "A": "Retrying the tax ID wastes calls, or invites a made-up value.",
+        "B": "Sending a fixable format error to humans spends reviewer time a retry would save.",
+        "C": "This reverses the two: the date is fixable and the tax ID is not."
+      }
+    },
+    "concepts": [
+      "retry-limits",
+      "retry-with-feedback"
+    ],
+    "source": "original",
+    "sources": [
+      "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (checked 2026-11-07)"
+    ],
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "id": "d4-022",
+    "domain": "d4",
+    "difficulty": "easy",
+    "type": "single",
+    "scenario": "Every Sunday night, a team classifies about 40,000 support tickets for a Monday-morning report. Nobody waits on individual results, and the team wants to cut the cost.",
+    "question": "Which approach fits best?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Keep the synchronous API, but run many requests in parallel to finish sooner."
+      },
+      {
+        "key": "B",
+        "text": "Submit the tickets through the Message Batches API."
+      },
+      {
+        "key": "C",
+        "text": "Stream each response, so the report can start building as results arrive."
+      },
+      {
+        "key": "D",
+        "text": "Use fast mode on the synchronous API so the job finishes overnight."
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "correct": "The Message Batches API costs 50% less and suits work nobody is waiting on. Most batches finish within an hour, and results are available within 24 hours, well before Monday morning.",
+      "distractors": {
+        "A": "Parallel synchronous calls finish sooner but pay full price for work that has no latency need.",
+        "C": "Streaming helps interactive latency, not cost, and batches do not support it.",
+        "D": "Fast mode costs more, not less, and is not available in batches."
+      }
+    },
+    "concepts": [
+      "message-batches",
+      "cost-optimization"
+    ],
+    "source": "original",
+    "sources": [
+      "https://platform.claude.com/docs/en/build-with-claude/batch-processing (checked 2026-11-07)"
+    ],
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "id": "d4-023",
+    "domain": "d4",
+    "difficulty": "medium",
+    "type": "single",
+    "scenario": "A script submits 5,000 documents as one batch and then pairs results with inputs by position: the first result goes with the first document, and so on. Spot checks show many labels attached to the wrong documents.",
+    "question": "What is the fix?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Sort the results by creation time before pairing them with the inputs."
+      },
+      {
+        "key": "B",
+        "text": "Submit each document as its own batch so that ordering cannot matter."
+      },
+      {
+        "key": "C",
+        "text": "Give each request a custom_id, and match results by that ID."
+      },
+      {
+        "key": "D",
+        "text": "Use smaller batches of 100, which keep results in the original order."
+      }
+    ],
+    "answer": [
+      "C"
+    ],
+    "explanation": {
+      "correct": "Batch results can come back in any order. Each request carries a custom_id, and the result for it carries the same ID, which is the only reliable way to pair them.",
+      "distractors": {
+        "A": "Results have no ordering guarantee to restore, so sorting does not recover the pairing.",
+        "B": "One batch per document throws away the batching benefits and adds overhead.",
+        "D": "Order is not guaranteed at any batch size."
+      }
+    },
+    "concepts": [
+      "batch-custom-id",
+      "message-batches"
+    ],
+    "source": "original",
+    "sources": [
+      "https://platform.claude.com/docs/en/build-with-claude/batch-processing (checked 2026-11-07)"
+    ],
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "id": "d4-024",
+    "domain": "d4",
+    "difficulty": "medium",
+    "type": "single",
+    "scenario": "Documents arrive continuously and must be processed within 36 hours of arrival. The team wants the 50% batch discount, and plans for the worst case of a batch taking the full 24 hours to finish.",
+    "question": "How often should the team submit batches?",
+    "options": [
+      {
+        "key": "A",
+        "text": "At least every 8 hours, leaving room under 36."
+      },
+      {
+        "key": "B",
+        "text": "Once a day, at a fixed time every night."
+      },
+      {
+        "key": "C",
+        "text": "Every 16 hours, to keep the number of batches low."
+      },
+      {
+        "key": "D",
+        "text": "Every 36 hours, matching the SLA window."
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "correct": "A document can wait up to one submission interval before it is batched, then up to 24 hours more. An 8-hour interval gives a worst case of 32 hours, inside the 36-hour SLA with margin.",
+      "distractors": {
+        "B": "Up to 24 hours of waiting plus 24 hours of processing is 48, past the SLA.",
+        "C": "16 plus 24 is 40 hours, past the SLA.",
+        "D": "36 plus 24 is 60 hours, far past the SLA."
+      }
+    },
+    "concepts": [
+      "batch-sla-planning",
+      "message-batches"
+    ],
+    "source": "original",
+    "sources": [
+      "https://platform.claude.com/docs/en/build-with-claude/batch-processing (checked 2026-11-07)"
+    ],
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "id": "d4-025",
+    "domain": "d4",
+    "difficulty": "medium",
+    "type": "single",
+    "scenario": "A batch of 20,000 document summaries finishes with 600 errored results. The logs show most of those documents exceeded the context limit.",
+    "question": "What should the team do next?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Resubmit the whole batch of 20,000 so that every result comes from the same run."
+      },
+      {
+        "key": "B",
+        "text": "Drop the 600 errored documents, since 97% of the work did succeed."
+      },
+      {
+        "key": "C",
+        "text": "Resubmit the 600 failed requests unchanged in a new batch of their own."
+      },
+      {
+        "key": "D",
+        "text": "Resubmit only the failed custom_ids, splitting oversized documents into chunks."
+      }
+    ],
+    "answer": [
+      "D"
+    ],
+    "explanation": {
+      "correct": "Errored results can be identified by custom_id and resubmitted on their own. Because they failed for being too long, they need a change, such as chunking, before resubmission.",
+      "distractors": {
+        "A": "Reprocessing 19,400 successes wastes money and time.",
+        "B": "Silently dropping 3% of documents leaves gaps in the output.",
+        "C": "Resubmitting unchanged repeats the same context-limit failure."
+      }
+    },
+    "concepts": [
+      "batch-failure-handling",
+      "message-batches"
+    ],
+    "source": "original",
+    "sources": [
+      "https://platform.claude.com/docs/en/build-with-claude/batch-processing (checked 2026-11-07)"
+    ],
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "id": "d4-026",
+    "domain": "d4",
+    "difficulty": "hard",
+    "type": "single",
+    "scenario": "A team wants to move a nightly enrichment job to the Message Batches API. Today, Claude calls the team's own lookup_account tool in the middle of each request and uses the result to write a summary.",
+    "question": "How should they design the batch job?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Keep the tool. The Batches API calls the team's tool endpoint mid-request."
+      },
+      {
+        "key": "B",
+        "text": "Fetch each account's data beforehand and include it in that request's prompt."
+      },
+      {
+        "key": "C",
+        "text": "Stay on the synchronous API, since batches cannot handle anything with tools."
+      },
+      {
+        "key": "D",
+        "text": "Add server-side fallbacks so that requests needing the tool can still finish."
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "correct": "Each batch request runs independently, and nothing executes your own tools for you mid-request. A request that stops on a tool_use block would need another round. Fetching the data up front makes each request self-contained, so it works in one pass.",
+      "distractors": {
+        "A": "The API never calls your endpoints. Client tools are executed by your code, which is not in the loop during a batch.",
+        "C": "Batches do accept tool definitions and server tools. Staying synchronous gives up the discount when prefetching solves the problem.",
+        "D": "Fallbacks are not supported in batches, and they handle refusals, not tool calls."
+      }
+    },
+    "concepts": [
+      "batch-limitations",
+      "client-tools"
+    ],
+    "source": "original",
+    "sources": [
+      "https://platform.claude.com/docs/en/build-with-claude/batch-processing (checked 2026-11-07)"
+    ],
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "id": "d4-027",
+    "domain": "d4",
+    "difficulty": "medium",
+    "type": "single",
+    "scenario": "A team is about to batch-process 200,000 contracts with a new extraction prompt. If the prompt has a flaw, they will pay for 200,000 bad results and wait up to a day to find out.",
+    "question": "What should they do first?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Submit everything now and fix any problems in a second full batch afterwards."
+      },
+      {
+        "key": "B",
+        "text": "Split the work into two batches of 100,000 and refine the prompt between them."
+      },
+      {
+        "key": "C",
+        "text": "Test and refine the prompt on a representative sample before the full batch."
+      },
+      {
+        "key": "D",
+        "text": "Submit everything with max_tokens set as high as possible to avoid failures."
+      }
+    ],
+    "answer": [
+      "C"
+    ],
+    "explanation": {
+      "correct": "Refining the prompt on a small, representative sample catches problems cheaply and quickly, which maximizes first-pass success when the large batch runs.",
+      "distractors": {
+        "A": "A flawed prompt then costs a full extra batch plus a day of waiting.",
+        "B": "Half the contracts still run on an untested prompt.",
+        "D": "A higher token limit does not fix a flawed prompt."
+      }
+    },
+    "concepts": [
+      "prompt-refinement",
+      "message-batches"
+    ],
+    "source": "original",
+    "sources": [
+      "https://platform.claude.com/docs/en/build-with-claude/batch-processing (checked 2026-11-07)"
+    ],
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "id": "d4-028",
+    "domain": "d4",
+    "difficulty": "medium",
+    "type": "single",
+    "scenario": "A legal team reviews contract bundles: a master agreement plus six schedules, about 120 pages in all. A single review pass catches problems within each document but often misses conflicts between documents, such as a payment term in Schedule C that contradicts the master agreement.",
+    "question": "How should the review be structured?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Review each document in its own pass, then run a cross-document consistency pass."
+      },
+      {
+        "key": "B",
+        "text": "Keep one pass, but list the schedules in priority order at the top of the prompt."
+      },
+      {
+        "key": "C",
+        "text": "Have the owner of each schedule review their own schedule manually instead."
+      },
+      {
+        "key": "D",
+        "text": "Summarize every document first, then review the short summaries together."
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "correct": "Focused passes give each document full attention for local issues, and a separate pass dedicated to cross-document consistency looks specifically for contradictions between them.",
+      "distractors": {
+        "B": "Reordering the inputs does not give cross-document conflicts dedicated attention.",
+        "C": "Individual owners see only their own schedule, which is exactly how cross-document conflicts slip through.",
+        "D": "Summaries drop the precise terms, such as dates and amounts, where conflicts hide."
+      }
+    },
+    "concepts": [
+      "multi-pass-review",
+      "integration-pass"
+    ],
+    "source": "original",
+    "sources": [
+      "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (checked 2026-11-07)"
+    ],
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "id": "d4-029",
+    "domain": "d4",
+    "difficulty": "medium",
+    "type": "single",
+    "scenario": "An automated reviewer produces about 500 findings a day, and the human reviewers can check only about 100. Right now they check them in the order they arrive.",
+    "question": "How should findings be routed to reviewers?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Pick a random 100 findings each day, so that every finding has a fair chance."
+      },
+      {
+        "key": "B",
+        "text": "Check the 100 oldest findings first, so that none of them waits too long."
+      },
+      {
+        "key": "C",
+        "text": "Trust all high-confidence findings automatically, and review none of them."
+      },
+      {
+        "key": "D",
+        "text": "Calibrate model confidence on labeled data; route low ones to humans."
+      }
+    ],
+    "answer": [
+      "D"
+    ],
+    "explanation": {
+      "correct": "Per-finding confidence becomes useful for routing once its thresholds are calibrated against labeled examples. Then limited reviewer time goes to the findings most likely to be wrong.",
+      "distractors": {
+        "A": "Random selection ignores which findings most need a human.",
+        "B": "Age says nothing about which findings are risky.",
+        "C": "Auto-trusting high confidence without calibration or spot checks lets confident errors through."
+      }
+    },
+    "concepts": [
+      "confidence-routing",
+      "review-prioritization"
+    ],
+    "source": "original",
+    "sources": [
+      "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (checked 2026-11-07)"
+    ],
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "id": "d4-030",
+    "domain": "d4",
+    "difficulty": "hard",
+    "type": "single",
+    "scenario": "A coding agent writes SQL migrations. Afterwards, the same session is asked to review its own migration with high reasoning effort, and it approves migrations that later lock large tables in production. An engineer proposes raising effort to the maximum.",
+    "question": "What change will most improve the reviews?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Raise the reasoning effort for the review step to the maximum."
+      },
+      {
+        "key": "B",
+        "text": "Ask the same session to list its assumptions before it reviews."
+      },
+      {
+        "key": "C",
+        "text": "Review in a fresh instance given just the spec and migration."
+      },
+      {
+        "key": "D",
+        "text": "Have the same session review the migration twice in a row."
+      }
+    ],
+    "answer": [
+      "C"
+    ],
+    "explanation": {
+      "correct": "A model that keeps the reasoning context from generation tends not to question its own decisions. An independent instance, given only the spec and the migration, reviews what was actually written.",
+      "distractors": {
+        "A": "More effort in the same context still reasons from the same assumptions.",
+        "B": "Listing assumptions shows what the session already noticed, not what it missed.",
+        "D": "Repeating the review in the same session repeats the same blind spots."
+      }
+    },
+    "concepts": [
+      "independent-review",
+      "self-review-limits"
+    ],
+    "source": "original",
+    "sources": [
+      "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (checked 2026-11-07)"
+    ],
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+  }
+]
