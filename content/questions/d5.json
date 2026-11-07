@@ -172,7 +172,7 @@
       "C"
     ],
     "explanation": {
-      "correct": "Models handle the beginning and end of long inputs best and can miss material in the middle. Leading with a summary of key findings from every report, and organizing the details under clear section headers, counters that position effect.",
+      "correct": "Material in the middle of a long input is easier to miss than material at either end. Leading with a summary of key findings from every report, and organizing the details under clear section headers, counters that position effect.",
       "distractors": {
         "A": "Alphabetical order just changes which reports end up in the middle.",
         "B": "Dropping reports loses findings deliberately.",
@@ -220,7 +220,7 @@
       "B"
     ],
     "explanation": {
-      "correct": "The Messages API is stateless: it knows only what each request contains. Coherence needs the full history in every request, and prompt caching makes the repeated prefix cheap. For very long conversations, structured compaction can follow later.",
+      "correct": "The Messages API is stateless: it knows only what each request contains. Coherence needs the full history in every request, and prompt caching makes the repeated prefix cheap.",
       "distractors": {
         "A": "The Messages API does not remember earlier requests by any ID.",
         "C": "Two turns plus a one-line summary still drops details users already gave.",
@@ -940,7 +940,7 @@
       "B"
     ],
     "explanation": {
-      "correct": "/compact summarizes older history to free space while keeping the thread. Compaction can drop specific early instructions, so rules that must persist belong in CLAUDE.md, which is re-injected on every request.",
+      "correct": "/compact summarizes older history to free space while keeping the thread. Compaction can drop specific early instructions, so rules that must persist belong in CLAUDE.md, which Claude re-reads and re-injects after /compact.",
       "distractors": {
         "A": "/clear empties the context, so the developer has to rebuild everything by hand.",
         "C": "A fresh session without a summary loses the progress made so far.",
@@ -989,7 +989,7 @@
       "C"
     ],
     "explanation": {
-      "correct": "Compaction replaces older messages with a summary, so specific early instructions may not survive. CLAUDE.md is re-injected on every request, which makes it the place for persistent rules. A PreToolUse hook makes the rule deterministic if it must hold every time.",
+      "correct": "Compaction replaces older messages with a summary, so specific early instructions may not survive. CLAUDE.md is re-read and re-injected after compaction, which makes it the place for persistent rules. A PreToolUse hook makes the rule deterministic if it must hold every time.",
       "distractors": {
         "A": "Manual repetition is fragile and depends on the developer remembering.",
         "B": "Without compaction, long sessions hit the context limit and fail.",
