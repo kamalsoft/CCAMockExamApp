@@ -55,8 +55,9 @@ function readJson(path: string): unknown {
   return JSON.parse(readFileSync(path, 'utf8'))
 }
 
-if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  const contentDir = fileURLToPath(new URL('../content', import.meta.url))
+export const defaultContentDir = fileURLToPath(new URL('../content', import.meta.url))
+
+export function readContent(contentDir: string) {
   const questionsDir = join(contentDir, 'questions')
   const questionFiles: Record<string, unknown> = {}
   if (existsSync(questionsDir)) {
@@ -64,8 +65,12 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
       questionFiles[file] = readJson(join(questionsDir, file))
     }
   }
+  return { domainsJson: readJson(join(contentDir, 'domains.json')), questionFiles }
+}
 
-  const { errors, warnings } = checkContent(readJson(join(contentDir, 'domains.json')), questionFiles)
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  const { domainsJson, questionFiles } = readContent(defaultContentDir)
+  const { errors, warnings } = checkContent(domainsJson, questionFiles)
   for (const w of warnings) console.warn(`warning: ${w}`)
   for (const e of errors) console.error(`error: ${e}`)
   console.log(`${Object.keys(questionFiles).length} question file(s) checked: ${errors.length} error(s), ${warnings.length} warning(s)`)

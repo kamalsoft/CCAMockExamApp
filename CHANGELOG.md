@@ -1,5 +1,14 @@
 # Changelog
 
+## Milestone 3: Drill mode (2026-11-07)
+
+- Drill screen: choose domains and a difficulty, answer one question at a time, and see explanations right after each answer or at the end.
+- Results screen: overall score, score by domain, and a per-question review with explanations.
+- `scripts/build-index.ts`: a Vite plugin that validates content and serves only reviewed questions to the app. Draft questions are left out of the production bundle, and the build fails on invalid content.
+- Drill logic in `src/lib/drill.ts` with unit tests; Playwright tests for full drills in both explanation modes.
+- Playwright now runs its own dev server on port 5174, so it never reuses a server on 5173.
+- Not yet: links from concepts to walkthrough sections (walkthroughs arrive in Milestone 5) and saved progress (Milestone 7).
+
 ## Milestone 2: Content pilot (2026-11-07)
 
 - Blueprint in `content/blueprint.md` and `content/domains.json` filled from the official CCAR-F exam guide v1.0, with sources and the date checked.
