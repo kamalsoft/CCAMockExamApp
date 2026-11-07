@@ -4,7 +4,7 @@
 | --- | --- |
 | **Created** | 2026-11-07 |
 | **Last updated** | 2026-11-07 |
-| **Status** | Milestone 3 done; Milestone 4 next |
+| **Status** | Milestone 4 done; Milestone 5 next |
 | **Related** | [CLAUDE.md](CLAUDE.md) · [content/blueprint.md](content/blueprint.md) · [CHANGELOG.md](CHANGELOG.md) |
 
 ## Contents
@@ -75,12 +75,12 @@ Items marked *(planned)* do not exist yet.
 /labs
   <domain>-<lab>/           # starter code, tests, check script (planned)
 /src
-  components/               # shared UI, e.g. Explanation
-  pages/                    # Drill (includes its results view); Exam, Walkthrough, Lab, Progress (planned)
+  components/               # shared UI: QuestionCard, Explanation, Results
+  pages/                    # Drill, Exam; Walkthrough, Lab, Progress (planned)
   lib/
     schema.ts               # Zod schemas for questions and domains
     drill.ts                # drill question selection and scoring
-    exam.ts                 # mock exam assembly and timing (planned)
+    exam.ts                 # mock exam assembly by weight and timer helpers
     scoring.ts              # scoring and readiness logic (planned)
     storage.ts              # progress repository (planned)
   content.d.ts              # types for the virtual:content module served by build-index.ts
@@ -116,7 +116,7 @@ Some rules are checked by `scripts/validate-content.ts` (`npm run validate`). Th
 | Every question has an explanation for the correct answer and for every wrong option. | `validate-content.ts` |
 | Only questions with `review_status: "reviewed"` appear in the app. Drafts are excluded from builds. | `build-index.ts` (Vite plugin; build fails on invalid content) |
 | Question IDs are unique. | `validate-content.ts` |
-| Domain counts in a mock exam match the weights in `domains.json`, within rounding. | Exam assembly (planned, Milestone 4) |
+| Domain counts in a mock exam match the weights in `domains.json`, within rounding. | `src/lib/exam.ts` (largest-remainder rounding; short domains are reported) |
 | No question quotes or closely paraphrases confidential material or content copied from other exam-prep providers. | Review |
 | Every factual claim that depends on Anthropic documentation has a source note with the URL and the date checked. | Review |
 | Claims about APIs, SDK behavior, and features are checked against current official docs before a question is marked reviewed. | Review |
@@ -168,7 +168,7 @@ Each milestone ends with a working build and a short changelog entry.
 | 1 | Foundations | Repo setup, schemas, `validate-content.ts`, and CI running lint, typecheck, and tests. | Done |
 | 2 | Content pilot | Blueprint from the official guide. Write 30 reviewed questions for one domain with full explanations. | Done |
 | 3 | Drill mode | Domain selection, answer flow, explanation display, and results. | Done |
-| 4 | Mock exam mode | Assembly by weight, timer, navigation, auto-submit, and results screen. | Not started |
+| 4 | Mock exam mode | Assembly by weight, timer, navigation, auto-submit, and results screen. | Done (full 60 items once Milestone 6 adds d2–d5 content) |
 | 5 | Walkthrough and lab for the pilot domain | One complete end-to-end example. | Not started |
 | 6 | Replicate across domains | Repeat the content work for the remaining domains. | Not started |
 | 7 | Progress and readiness | Progress tracking and readiness indicator. | Not started |
