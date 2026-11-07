@@ -1,0 +1,51 @@
+import { expect, test, type Page } from '@playwright/test'
+
+async function startHardD1Drill(page: Page, explainImmediately: boolean) {
+  await page.goto('/')
+  await page.getByLabel(/Agentic Architecture & Orchestration/).check()
+  await page.getByLabel('Difficulty').selectOption('hard')
+  const explain = page.getByLabel(/Show the explanation right after each answer/)
+  if (!explainImmediately) await explain.uncheck()
+  await expect(page.getByText(/^\d+ questions? match/)).toBeVisible()
+  const total = Number((await page.getByText(/questions? match/).textContent())!.split(' ')[0])
+  await page.getByRole('button', { name: 'Start drill' }).click()
+  return total
+}
+
+test('drill with explanations after each answer', async ({ page }) => {
+  const total = await startHardD1Drill(page, true)
+  expect(total).toBeGreaterThan(0)
+
+  for (let i = 1; i <= total; i++) {
+    await expect(page.getByText(`Question ${i} of ${total}`)).toBeVisible()
+    await page.locator('fieldset input').first().check()
+    await page.getByRole('button', { name: 'Submit answer' }).click()
+    await expect(page.getByRole('status')).toContainText(/Correct:/)
+    await page.getByRole('button', { name: 'Next' }).click()
+  }
+
+  await expect(page.getByRole('heading', { name: 'Results' })).toBeVisible()
+  await expect(page.getByText(new RegExp(`of ${total} correct`))).toBeVisible()
+  await expect(page.getByRole('cell', { name: 'Agentic Architecture & Orchestration' })).toBeVisible()
+})
+
+test('drill with explanations at the end', async ({ page }) => {
+  const total = await startHardD1Drill(page, false)
+
+  for (let i = 1; i <= total; i++) {
+    await page.locator('fieldset input').first().check()
+    await page.getByRole('button', { name: 'Submit answer' }).click()
+    await expect(page.getByRole('status')).toHaveCount(0)
+  }
+
+  await expect(page.getByRole('heading', { name: 'Results' })).toBeVisible()
+  await expect(page.getByText(/Correct:/)).toHaveCount(total)
+  await page.getByRole('button', { name: 'New drill' }).click()
+  await expect(page.getByRole('heading', { name: 'Domain drill' })).toBeVisible()
+})
+
+test('start is disabled until a domain is chosen', async ({ page }) => {
+  await page.goto('/')
+  await expect(page.getByText('0 questions match')).toBeVisible()
+  await expect(page.getByRole('button', { name: 'Start drill' })).toBeDisabled()
+})

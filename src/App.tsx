@@ -1,8 +1,13 @@
+import content from 'virtual:content'
+import { Drill } from './pages/Drill.tsx'
+
 function App() {
   return (
     <main className="mx-auto max-w-2xl p-6">
       <h1 className="text-2xl font-bold">CCA Mock Exam</h1>
-      <p className="mt-2 text-gray-600">Practice questions and mock exams are coming soon.</p>
+      <div className="mt-6">
+        <Drill domains={content.domains} questions={content.questions} />
+      </div>
     </main>
   )
 }
