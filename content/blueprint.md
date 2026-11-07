@@ -34,6 +34,12 @@ The full task-statement titles are in `content/domains.json`. The guide's §6 al
 
 **Sources and open items.** Source: Anthropic, *Claude Certified Architect – Foundations Exam Guide*, version 1.0, effective July 2026, linked from https://anthropic-partners.skilljar.com/claude-certified-architect-foundations-certification (PDF: https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2F6nizmqk8tpzpfjvt6qmmav7rh%2Fpublic%2F1783542750%2FClaude+Certified+Architect+%E2%80%93+Foundations+Exam+Guide.pdf). Checked 2026-11-07. The guide says it is subject to change without notice. Domain IDs follow the guide's numbering, which differs from the earlier third-party order (Tool Design is Domain 2, Prompt Engineering is Domain 4). The guide's §17 appendix lists out-of-scope topics; questions must not test them. Its sample questions (§9) are Anthropic's material and must not be copied or paraphrased into the bank.
 
+**Where current docs differ from the guide** (checked 2026-11-07 against https://code.claude.com/docs/en/agent-sdk/subagents and https://code.claude.com/docs/en/agent-sdk/agent-loop). Questions must not depend on these points until the guide is updated:
+
+- The guide calls the subagent tool `Task`. Current docs call it `Agent` (renamed in Claude Code v2.1.63; `Task` still appears in the `system:init` tools list).
+- The guide says `allowedTools` must include `Task` for a coordinator to spawn subagents. Current docs say `allowedTools` only auto-approves listed tools; unlisted tools stay available through the permission flow.
+- Current docs let subagents spawn their own subagents (default depth 3), and run subagents in the background by default.
+
 Rules for this file:
 
 - Weights must sum to 100. The validator fails the build otherwise.
