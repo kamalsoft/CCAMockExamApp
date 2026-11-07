@@ -1,5 +1,13 @@
 # Changelog
 
+## Milestone 7: Progress and readiness (2026-11-07)
+
+- Progress page: readiness as an estimate, with each condition marked met or not and why; mock exam history with per-domain scores; the five weakest concepts, linked to their walkthrough sections; and a reset that asks for confirmation.
+- Readiness: three most recent full 60-question mock exams, each at 75% or more, with every domain at 65% or more; all labs marked complete; all walkthroughs opened. Short exams are recorded but don't count.
+- Drills and exams (including timed-out ones) are recorded once each. Lab pages have a completion checkbox, and opening a walkthrough marks it read.
+- `src/lib/progress.ts`: a small repository over `localStorage` that validates stored data and starts fresh if it's corrupt or unavailable, so a backend can replace it later.
+- Restored three `blueprint.md` notes (few-shot count, batch tool use, schema limits) that were lost while merging Milestone 6.
+
 ## Milestone 6: Replicate across domains (in progress, 2026-11-07)
 
 - Questions, walkthrough, and lab for each of d2–d5, matching the d1 pilot: 120 more original questions with sources checked 2026-11-07, every question concept covered by its domain's walkthrough, and one lab per domain.

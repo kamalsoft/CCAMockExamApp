@@ -1,9 +1,11 @@
-import { useSyncExternalStore } from 'react'
+import { useCallback, useEffect, useState, useSyncExternalStore } from 'react'
 import { content } from './content.ts'
+import { emptyProgress, localStorageRepository, recordAttempt, type Attempt } from './lib/progress.ts'
 import { parseRoute } from './lib/route.ts'
 import { Drill } from './pages/Drill.tsx'
 import { Exam } from './pages/Exam.tsx'
 import { Lab } from './pages/Lab.tsx'
+import { Progress } from './pages/Progress.tsx'
 import { Walkthrough } from './pages/Walkthrough.tsx'
 
 const pages = [
@@ -11,7 +13,10 @@ const pages = [
   { id: 'exam', label: 'Mock exam' },
   { id: 'walkthrough', label: 'Walkthroughs' },
   { id: 'lab', label: 'Labs' },
+  { id: 'progress', label: 'Progress' },
 ] as const
+
+const repository = localStorageRepository()
 
 const subscribe = (onChange: () => void) => {
   window.addEventListener('hashchange', onChange)
@@ -20,6 +25,19 @@ const subscribe = (onChange: () => void) => {
 
 function App() {
   const route = parseRoute(useSyncExternalStore(subscribe, () => window.location.hash))
+  const [progress, setProgress] = useState(() => repository.load())
+  useEffect(() => repository.save(progress), [progress])
+
+  // Stable callbacks, so pages can list them as effect dependencies without re-running.
+  const onComplete = useCallback((attempt: Attempt) => setProgress((p) => recordAttempt(p, attempt)), [])
+  const onSeen = useCallback(
+    (domainId: string) => setProgress((p) => ({ ...p, walkthroughsSeen: { ...p.walkthroughsSeen, [domainId]: new Date().toISOString() } })),
+    [],
+  )
+  const onLabChange = useCallback(
+    (domainId: string, done: boolean) => setProgress((p) => ({ ...p, labsCompleted: { ...p.labsCompleted, [domainId]: done } })),
+    [],
+  )
   return (
     <main className="mx-auto max-w-2xl p-6">
       <h1 className="text-2xl font-bold">CCA Mock Exam</h1>
@@ -39,10 +57,10 @@ function App() {
       </nav>
       {/* Drill and exam stay mounted so switching pages never loses a running exam or its timer. */}
       <div className="mt-6" hidden={route.page !== 'drill'}>
-        <Drill domains={content.domains} questions={content.questions} />
+        <Drill domains={content.domains} questions={content.questions} onComplete={onComplete} />
       </div>
       <div className="mt-6" hidden={route.page !== 'exam'}>
-        <Exam domains={content.domains} questions={content.questions} />
+        <Exam domains={content.domains} questions={content.questions} onComplete={onComplete} />
       </div>
       {route.page === 'walkthrough' && (
         <div className="mt-6">
@@ -51,12 +69,29 @@ function App() {
             domains={content.domains}
             domainId={route.domainId}
             anchor={route.anchor}
+            onSeen={onSeen}
           />
         </div>
       )}
       {route.page === 'lab' && (
         <div className="mt-6">
-          <Lab labs={content.labs} domains={content.domains} domainId={route.domainId} />
+          <Lab
+            labs={content.labs}
+            domains={content.domains}
+            domainId={route.domainId}
+            completed={progress.labsCompleted}
+            onCompletedChange={onLabChange}
+          />
+        </div>
+      )}
+      {route.page === 'progress' && (
+        <div className="mt-6">
+          <Progress
+            progress={progress}
+            domains={content.domains}
+            questions={content.questions}
+            onReset={() => setProgress(emptyProgress())}
+          />
         </div>
       )}
     </main>

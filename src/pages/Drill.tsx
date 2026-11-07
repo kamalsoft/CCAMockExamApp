@@ -3,15 +3,17 @@ import { Explanation } from '../components/Explanation.tsx'
 import { button, QuestionCard } from '../components/QuestionCard.tsx'
 import { Results } from '../components/Results.tsx'
 import { isCorrect, selectQuestions, type Difficulty, type Responses } from '../lib/drill.ts'
+import { makeAttempt, type Attempt } from '../lib/progress.ts'
 import type { Domain, Question } from '../lib/schema.ts'
 
 type Props = { domains: Domain[]; questions: Question[] }
 type Settings = { domainIds: string[]; difficulty: Difficulty; explainImmediately: boolean }
 
-export function Drill({ domains, questions }: Props) {
+export function Drill({ domains, questions, onComplete }: Props & { onComplete: (attempt: Attempt) => void }) {
   const [settings, setSettings] = useState<Settings>({ domainIds: [], difficulty: 'any', explainImmediately: true })
   const [set, setSet] = useState<Question[] | null>(null)
   const [responses, setResponses] = useState<Responses>({})
+  const [startedAt, setStartedAt] = useState(0)
 
   if (!set) {
     return (
@@ -22,10 +24,16 @@ export function Drill({ domains, questions }: Props) {
         onChange={setSettings}
         onStart={() => {
           setResponses({})
+          setStartedAt(Date.now())
           setSet(selectQuestions(questions, settings.domainIds, settings.difficulty))
         }}
       />
     )
+  }
+  const answer = (id: string, selected: string[]) => {
+    const next = { ...responses, [id]: selected }
+    setResponses(next)
+    if (Object.keys(next).length === set.length) onComplete(makeAttempt('drill', set, next, startedAt, false))
   }
   const index = Object.keys(responses).length
   if (index < set.length) {
@@ -36,7 +44,7 @@ export function Drill({ domains, questions }: Props) {
         position={`Question ${index + 1} of ${set.length}`}
         domainName={domains.find((d) => d.id === set[index].domain)?.name}
         explainImmediately={settings.explainImmediately}
-        onAnswer={(selected) => setResponses({ ...responses, [set[index].id]: selected })}
+        onAnswer={(selected) => answer(set[index].id, selected)}
       />
     )
   }

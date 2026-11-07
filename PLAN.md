@@ -4,7 +4,7 @@
 | --- | --- |
 | **Created** | 2026-11-07 |
 | **Last updated** | 2026-11-07 |
-| **Status** | Milestone 6 in progress: all content written; d3–d5 questions awaiting review |
+| **Status** | Milestone 7 done; Milestone 6 awaiting review of d3–d5 questions; Milestone 8 next |
 | **Related** | [CLAUDE.md](CLAUDE.md) · [content/blueprint.md](content/blueprint.md) · [CHANGELOG.md](CHANGELOG.md) |
 
 ## Contents
@@ -76,13 +76,13 @@ Items marked *(planned)* do not exist yet.
   <domain>-<lab>/           # starter (src/), tests, reference solution, demo; `npm run check`
 /src
   components/               # shared UI: QuestionCard, Explanation, Results
-  pages/                    # Drill, Exam, Walkthrough, Lab; Progress (planned)
+  pages/                    # Drill, Exam, Walkthrough, Lab, Progress
   lib/
     schema.ts               # Zod schemas for questions and domains
     drill.ts                # drill question selection and scoring
     exam.ts                 # mock exam assembly by weight and timer helpers
-    scoring.ts              # scoring and readiness logic (planned)
-    storage.ts              # progress repository (planned)
+    readiness.ts            # readiness conditions and practice targets
+    progress.ts             # progress repository (localStorage), attempts, concept accuracy
   content.ts                # typed access to the virtual:content index served by build-index.ts
 /scripts
   validate-content.ts
@@ -158,6 +158,7 @@ The validator also checks that domain weights sum to 100, that each question fil
 - Track scores by domain over time.
 - Readiness requires at least three full mock exams, a passing score on each, and no domain below its target. Show which condition is unmet.
 - Label readiness as an estimate, not a guarantee.
+- Practice targets (decided 2026-11-07): a mock exam passes at 75% correct, and every domain must reach 65%. Readiness uses the three most recent full (60-question) exams. All five labs must be marked complete (self-reported, since labs run locally) and all five walkthroughs opened. The official exam reports a scaled score (720 of 100–1,000), which does not convert to a percentage.
 
 ## 8. Milestones
 
@@ -171,7 +172,7 @@ Each milestone ends with a working build and a short changelog entry.
 | 4 | Mock exam mode | Assembly by weight, timer, navigation, auto-submit, and results screen. | Done (full 60 items once Milestone 6 adds d2–d5 content) |
 | 5 | Walkthrough and lab for the pilot domain | One complete end-to-end example. | Done (d1) |
 | 6 | Replicate across domains | Repeat the content work for the remaining domains. | In progress: walkthroughs and labs done for all five domains; d1–d2 questions reviewed; d3–d5 questions (90) drafted and awaiting review |
-| 7 | Progress and readiness | Progress tracking and readiness indicator. | Not started |
+| 7 | Progress and readiness | Progress tracking and readiness indicator. | Done |
 | 8 | Polish and calibration | Accessibility pass, mobile layout, and difficulty review against the official practice materials. | Not started |
 
 ## 9. Acceptance criteria
