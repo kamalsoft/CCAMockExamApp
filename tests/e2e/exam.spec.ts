@@ -8,12 +8,11 @@ async function startExam(page: Page) {
   return Number((await page.getByText(/^Question 1 of \d+/).textContent())!.match(/of (\d+)/)![1])
 }
 
-test('intro explains a short question bank', async ({ page }) => {
+test('intro offers a full 60-question exam now that every domain is filled', async ({ page }) => {
   await page.goto('/')
   await page.getByRole('link', { name: 'Mock exam' }).click()
-  await expect(page.getByText(/questions · 120 minutes/)).toBeVisible()
-  // Only d1 has reviewed questions today; this check goes away once every domain is filled.
-  await expect(page.getByRole('note')).toContainText("can't fill a full 60-question exam yet")
+  await expect(page.getByText(/60 questions · 120 minutes/)).toBeVisible()
+  await expect(page.getByRole('note')).toHaveCount(0)
 })
 
 test('take an exam: answer, flag, navigate, switch modes, and submit', async ({ page }) => {

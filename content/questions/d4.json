@@ -43,9 +43,9 @@
     "sources": [
       "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d4-002",
@@ -89,11 +89,11 @@
     ],
     "source": "original",
     "sources": [
-      "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (checked 2026-11-07)"
+      "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d4-003",
@@ -137,11 +137,11 @@
     ],
     "source": "original",
     "sources": [
-      "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (checked 2026-11-07)"
+      "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d4-004",
@@ -187,9 +187,9 @@
     "sources": [
       "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d4-005",
@@ -233,11 +233,11 @@
     ],
     "source": "original",
     "sources": [
-      "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (checked 2026-11-07)"
+      "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d4-006",
@@ -283,9 +283,9 @@
     "sources": [
       "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d4-007",
@@ -331,9 +331,9 @@
     "sources": [
       "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d4-008",
@@ -379,9 +379,9 @@
     "sources": [
       "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d4-009",
@@ -427,9 +427,9 @@
     "sources": [
       "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d4-010",
@@ -475,9 +475,9 @@
     "sources": [
       "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d4-011",
@@ -523,9 +523,9 @@
     "sources": [
       "https://platform.claude.com/docs/en/build-with-claude/structured-outputs (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d4-012",
@@ -571,9 +571,9 @@
     "sources": [
       "https://platform.claude.com/docs/en/build-with-claude/structured-outputs (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d4-013",
@@ -619,9 +619,9 @@
     "sources": [
       "https://platform.claude.com/docs/en/build-with-claude/structured-outputs (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d4-014",
@@ -667,9 +667,9 @@
     "sources": [
       "https://platform.claude.com/docs/en/build-with-claude/structured-outputs (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d4-015",
@@ -716,9 +716,9 @@
       "https://platform.claude.com/docs/en/build-with-claude/structured-outputs (checked 2026-11-07)",
       "https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d4-016",
@@ -764,9 +764,9 @@
     "sources": [
       "https://platform.claude.com/docs/en/build-with-claude/structured-outputs (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d4-017",
@@ -812,9 +812,9 @@
     "sources": [
       "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d4-018",
@@ -860,9 +860,9 @@
     "sources": [
       "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d4-019",
@@ -906,11 +906,11 @@
     ],
     "source": "original",
     "sources": [
-      "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (checked 2026-11-07)"
+      "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d4-020",
@@ -956,9 +956,9 @@
     "sources": [
       "https://platform.claude.com/docs/en/build-with-claude/structured-outputs (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d4-021",
@@ -1004,9 +1004,9 @@
     "sources": [
       "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d4-022",
@@ -1052,9 +1052,9 @@
     "sources": [
       "https://platform.claude.com/docs/en/build-with-claude/batch-processing (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d4-023",
@@ -1100,9 +1100,9 @@
     "sources": [
       "https://platform.claude.com/docs/en/build-with-claude/batch-processing (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d4-024",
@@ -1148,9 +1148,9 @@
     "sources": [
       "https://platform.claude.com/docs/en/build-with-claude/batch-processing (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d4-025",
@@ -1196,9 +1196,9 @@
     "sources": [
       "https://platform.claude.com/docs/en/build-with-claude/batch-processing (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d4-026",
@@ -1244,9 +1244,9 @@
     "sources": [
       "https://platform.claude.com/docs/en/build-with-claude/batch-processing (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d4-027",
@@ -1292,9 +1292,9 @@
     "sources": [
       "https://platform.claude.com/docs/en/build-with-claude/batch-processing (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d4-028",
@@ -1340,9 +1340,9 @@
     "sources": [
       "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d4-029",
@@ -1386,11 +1386,11 @@
     ],
     "source": "original",
     "sources": [
-      "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (checked 2026-11-07)"
+      "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d4-030",
@@ -1421,7 +1421,7 @@
       "C"
     ],
     "explanation": {
-      "correct": "A model that keeps the reasoning context from generation tends not to question its own decisions. An independent instance, given only the spec and the migration, reviews what was actually written.",
+      "correct": "A model that keeps its generation context may repeat the same assumptions when it reviews its own work. An independent instance, given only the spec and the migration, reviews what was actually written.",
       "distractors": {
         "A": "More effort in the same context still reasons from the same assumptions.",
         "B": "Listing assumptions shows what the session already noticed, not what it missed.",
@@ -1436,8 +1436,8 @@
     "sources": [
       "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   }
 ]
