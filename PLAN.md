@@ -69,7 +69,7 @@ Items marked *(planned)* do not exist yet.
 /content
   blueprint.md              # exam facts and question-writing guide, with sources
   domains.json              # domain names, weights, descriptions (from official guide)
-  questions/<domain>.json
+  bank/questions.json      # the question bank: version, publish date, and every question
   walkthroughs/<domain>.md  # sections list their concepts in <!-- concepts: ... -->
   labs/<domain>/README.md   # shown on the Lab page
 /labs
@@ -100,7 +100,7 @@ PLAN.md
 | Entity | Fields |
 | --- | --- |
 | **Domain** | `id`, `name`, `weight` (percent from the official guide), `description`, `walkthroughId`, `labId` |
-| **Question** | `id` (`<domain>-<nnn>`), `domain`, `difficulty` (`easy`, `medium`, `hard`), `type` (`single` or `multi`), `scenario` (optional), `question`, `options` (4 to 5, each with a `key`), `answer` (array of keys), `explanation` (`correct` text plus `distractors` mapping each wrong key to why it is wrong), `concepts`, `source` (`original`), `sources` (URL and date checked for each documented claim), `review_status` (`draft` or `reviewed`), `reviewed_by`, `reviewed_at` |
+| **Question** | `id` (`<domain>-<nnn>`), `domain`, `difficulty` (`easy`, `medium`, `hard`), `type` (`single` or `multi`), `scenario` (optional), `question`, `options` (4 to 5, each with a `key`), `answer` (array of keys), `explanation` (`correct` text plus `distractors` mapping each wrong key to why it is wrong), `concepts`, `source` (`original`), `sources` (URL and date checked for each documented claim), `review_status` (`draft` or `reviewed`), `reviewed_by`, `reviewed_at`, `published_at` |
 | **Attempt** | `id`, `mode` (`drill` or `exam`), `started_at`, `finished_at`, `question_ids`, `responses`, `score_by_domain` |
 | **Progress** | Attempts list, per-concept accuracy, lab completion flags, last-seen timestamps |
 

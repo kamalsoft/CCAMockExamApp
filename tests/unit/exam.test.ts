@@ -26,7 +26,7 @@ const question = (id: string, domainId: string): Question => ({
   sources: [],
   review_status: 'reviewed',
   reviewed_by: 'r',
-  reviewed_at: '2026-11-07',
+  reviewed_at: '2026-11-07', published_at: '2026-11-07',
 })
 const bank = (domainId: string, n: number) =>
   Array.from({ length: n }, (_, i) => question(`${domainId}-${String(i + 1).padStart(3, '0')}`, domainId))

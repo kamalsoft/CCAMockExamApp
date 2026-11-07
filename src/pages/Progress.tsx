@@ -7,10 +7,11 @@ import type { Domain, Question } from '../lib/schema.ts'
 
 const pct = (n: number) => `${Math.round(n * 100)}%`
 
-export function Progress({ progress, domains, questions, onReset }: {
+export function Progress({ progress, domains, questions, bank, onReset }: {
   progress: ProgressData
   domains: Domain[]
   questions: Question[]
+  bank: { version: number; published_at: string }
   onReset: () => void
 }) {
   const { ready, conditions } = readiness(progress, domains)
@@ -20,6 +21,9 @@ export function Progress({ progress, domains, questions, onReset }: {
 
   return (
     <div className="space-y-8">
+      <p className="text-sm text-gray-600">
+        Question bank version {bank.version}, published {bank.published_at}, {questions.length} questions.
+      </p>
       <section aria-labelledby="readiness-heading">
         <h2 id="readiness-heading" className="text-xl font-semibold">Readiness</h2>
         <p className={`mt-2 text-lg font-medium ${ready ? 'text-green-700' : 'text-gray-900'}`}>

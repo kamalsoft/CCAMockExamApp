@@ -20,13 +20,14 @@ const question = (id: string, review_status: 'draft' | 'reviewed') => ({
   review_status,
   reviewed_by: review_status === 'reviewed' ? 'r' : null,
   reviewed_at: review_status === 'reviewed' ? '2026-11-07' : null,
+  published_at: review_status === 'reviewed' ? '2026-11-07' : null,
 })
 
 function contentDir(questions: unknown[]) {
   const dir = mkdtempSync(join(tmpdir(), 'cca-content-'))
-  mkdirSync(join(dir, 'questions'))
+  mkdirSync(join(dir, 'bank'))
   writeFileSync(join(dir, 'domains.json'), JSON.stringify(domains))
-  writeFileSync(join(dir, 'questions', 'd1.json'), JSON.stringify(questions))
+  writeFileSync(join(dir, 'bank', 'questions.json'), JSON.stringify({ version: 1, published_at: '2026-11-07', questions }))
   return dir
 }
 
@@ -35,6 +36,11 @@ describe('buildIndex', () => {
     const index = buildIndex(contentDir([question('d1-001', 'reviewed'), question('d1-002', 'draft')]))
     expect(index.questions.map((q) => q.id)).toEqual(['d1-001'])
     expect(index.domains.map((d) => d.id)).toEqual(['d1'])
+  })
+
+  it('exposes the bank version and publish date', () => {
+    const index = buildIndex(contentDir([question('d1-001', 'reviewed')]))
+    expect(index.bank).toEqual({ version: 1, published_at: '2026-11-07' })
   })
 
   it('refuses to build from invalid content', () => {
@@ -48,7 +54,7 @@ describe('buildIndex', () => {
     writeFileSync(join(dir, 'labs', '.DS_Store'), '')
     expect(contentFiles(dir).map((f) => f.slice(dir.length))).toEqual([
       '/domains.json',
-      '/questions/d1.json',
+      '/bank/questions.json',
       '/labs/d1/README.md',
     ])
   })

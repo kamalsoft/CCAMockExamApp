@@ -11,6 +11,7 @@ export type LabPage = { domainId: string; labId: string; html: string }
 // What the build step serves to the app as `virtual:content`.
 export type ContentIndex = {
   domains: Domain[]
+  bank: { version: number; published_at: string }
   questions: Question[]
   walkthroughs: WalkthroughPage[]
   labs: LabPage[]
