@@ -32,9 +32,11 @@ export type ProgressRepository = { load(): Progress; save(progress: Progress): v
 
 const KEY = 'cca-progress-v1'
 
-export function localStorageRepository(custom?: Pick<Storage, 'getItem' | 'setItem'>): ProgressRepository {
-  // Looked up lazily: even reading window.localStorage throws when site data is blocked.
-  const storage = () => custom ?? window.localStorage
+type StorageLike = { getItem(key: string): string | null; setItem(key: string, value: string): void }
+
+export function localStorageRepository(custom?: StorageLike): ProgressRepository {
+  // Looked up lazily: even reading localStorage throws when site data is blocked.
+  const storage = () => custom ?? (globalThis as unknown as { localStorage: StorageLike }).localStorage
   return {
     load() {
       // Stored data is user-controlled and may be stale or corrupt: validate it, and start fresh if it's unusable.
