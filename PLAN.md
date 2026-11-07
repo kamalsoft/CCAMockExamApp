@@ -207,6 +207,31 @@ Each milestone ends with a working build and a short changelog entry.
 - Run `npm run validate` after every content change.
 - Keep API keys out of the repo. Use environment variables.
 
+### Milestone completion process
+
+Every milestone is finished through this process. It applies to each milestone and to each change that goes into a milestone.
+
+**Roles**
+- **Dev:** the developer agent (Claude Code). Builds the change on a branch and fixes what QA reports.
+- **QA:** the QA agent, named Quinn. Tests the change against the acceptance criteria and reports to the owner. QA does not edit code, commit, push, approve, or comment on the PR.
+- **Owner:** kamalsoft. Decides, approves the PR, and merges. Signs off question content as the human reviewer.
+
+Dev and QA do not message each other. QA works from the repository and the PR, not from Dev's session. Quinn reports to the owner.
+
+**Steps**
+1. **Build.** Dev works on one branch per milestone. Before the PR opens, all checks pass: `npm run validate`, `npm run typecheck`, `npm run lint`, `npm test`, `npm run build`, and `npm run e2e`.
+2. **Open the PR.** Dev opens the PR against `main`. The description lists the milestone's acceptance criteria, with the test that covers each one.
+3. **QA review.** QA checks each acceptance criterion in BACKLOG.md or PLAN.md section 9, runs the full check suite on the PR branch, and looks for regressions and docs that no longer match the code. QA then reports one of two verdicts to the owner:
+   - **READY FOR SIGN-OFF**, with the evidence for each criterion.
+   - **NOT READY**, with ranked findings, each saying what would fix it.
+4. **Fix and re-check.** If QA says NOT READY, Dev fixes the findings on the same branch. QA re-checks the changed items before the verdict changes to READY.
+5. **Approval.** The owner reviews the PR and the QA report, then approves and merges. Merge only after a READY verdict. A deferral of an acceptance criterion is the owner's decision, and it is recorded against that criterion.
+6. **Close out.** After the merge, Dev records the milestone in CHANGELOG.md and updates the status in PLAN.md and BACKLOG.md, then deletes the branch.
+
+**Rules that stay in force**
+- Questions move to `reviewed` only after the owner signs off each one. QA can recommend this, but QA does not mark questions reviewed.
+- Stop at the approval step. Dev does not merge its own PR.
+
 ## 12. First session prompt for Claude Code
 
 Kept for reference; Milestone 1 is complete.
