@@ -36,6 +36,8 @@ export const QuestionSchema = z
     review_status: z.enum(['draft', 'reviewed']),
     reviewed_by: text.nullable(),
     reviewed_at: z.iso.date().nullable(),
+    // Set once, when the question is first published in the bank. Drafts have none yet.
+    published_at: z.iso.date().nullable(),
   })
   .superRefine((q, ctx) => {
     const issue = (message: string, path: string) => ctx.addIssue({ code: 'custom', message, path: [path] })
@@ -55,7 +57,16 @@ export const QuestionSchema = z
     if (q.review_status === 'reviewed' && (!q.reviewed_by || !q.reviewed_at)) {
       issue('reviewed questions need reviewed_by and reviewed_at', 'review_status')
     }
+    if (q.review_status === 'reviewed' && !q.published_at) issue('reviewed questions need published_at', 'published_at')
   })
+
+// The question bank: every question, with the version and date this bank was published.
+export const BankSchema = z.object({
+  version: z.number().int().min(1),
+  published_at: z.iso.date(),
+  questions: z.array(QuestionSchema),
+})
 
 export type Domain = z.infer<typeof DomainSchema>
 export type Question = z.infer<typeof QuestionSchema>
+export type Bank = z.infer<typeof BankSchema>

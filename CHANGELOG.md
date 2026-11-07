@@ -1,5 +1,13 @@
 # Changelog
 
+## Milestone 10: Question bank with publish dates (2026-11-07)
+
+- Questions now live in one bank, `content/bank/questions.json`, with a version and a publish date. Each question has `published_at`, required once it is reviewed. The per-domain files in `content/questions/` are gone.
+- The build serves reviewed questions from the bank and exposes its version and date. The Progress page shows them.
+- The validator checks the bank: it needs a version and a date, each reviewed question needs `published_at`, and every domain must exist in `domains.json`.
+- The 150 questions are unchanged apart from `published_at`, which is their review date.
+- Not yet: `published_at` is not guarded against changes. That check belongs with the refresh step in Milestone 11.
+
 ## Milestone 9: Drill pause, resume, and hints (2026-11-07)
 
 - Drill: pause saves the drill (questions, answers, start time) in progress. A paused drill survives a reload and can be resumed or discarded. Starting a new drill replaces it. Finishing a drill clears it.

@@ -3,7 +3,7 @@ import { join } from 'node:path'
 import { marked } from 'marked'
 import type { Plugin } from 'vite'
 import type { ContentIndex } from '../src/lib/content-index.ts'
-import { DomainsSchema, QuestionSchema } from '../src/lib/schema.ts'
+import { BankSchema, DomainsSchema } from '../src/lib/schema.ts'
 import { parseWalkthrough, sectionAnchor } from '../src/lib/walkthrough.ts'
 import { checkContent, defaultContentDir, readContent } from './validate-content.ts'
 
@@ -16,14 +16,13 @@ const toHtml = (markdown: string) =>
 // Validates all content and returns only reviewed questions, so drafts never reach the app.
 // Walkthroughs and lab READMEs are rendered to HTML here, at build time, from repository files.
 export function buildIndex(contentDir = defaultContentDir): ContentIndex {
-  const { domainsJson, questionFiles, docs } = readContent(contentDir)
-  const { errors } = checkContent(domainsJson, questionFiles, docs)
+  const { domainsJson, bankJson, docs } = readContent(contentDir)
+  const { errors } = checkContent(domainsJson, bankJson, docs)
   if (errors.length) throw new Error(`Content is invalid:\n${errors.join('\n')}`)
 
   const domains = DomainsSchema.parse(domainsJson)
-  const questions = Object.values(questionFiles)
-    .flatMap((file) => QuestionSchema.array().parse(file))
-    .filter((q) => q.review_status === 'reviewed')
+  const bank = BankSchema.parse(bankJson)
+  const questions = bank.questions.filter((q) => q.review_status === 'reviewed')
 
   const walkthroughs = domains.flatMap((d) => {
     if (!d.walkthroughId) return []
@@ -42,7 +41,7 @@ export function buildIndex(contentDir = defaultContentDir): ContentIndex {
   })
   const labs = domains.flatMap((d) => (d.labId ? [{ domainId: d.id, labId: d.labId, html: toHtml(docs.labs[d.id]) }] : []))
 
-  return { domains, questions, walkthroughs, labs }
+  return { domains, bank: { version: bank.version, published_at: bank.published_at }, questions, walkthroughs, labs }
 }
 
 // Every file the index is built from, so the dev server reloads when any of them changes.
@@ -51,7 +50,7 @@ export function contentFiles(contentDir: string): string[] {
   const list = (dir: string) => (existsSync(dir) ? readdirSync(dir).map((f) => join(dir, f)) : [])
   return [
     join(contentDir, 'domains.json'),
-    ...list(join(contentDir, 'questions')),
+    ...list(join(contentDir, 'bank')),
     ...list(join(contentDir, 'walkthroughs')),
     ...list(join(contentDir, 'labs')).map((dir) => join(dir, 'README.md')),
   ].filter((file) => existsSync(file))

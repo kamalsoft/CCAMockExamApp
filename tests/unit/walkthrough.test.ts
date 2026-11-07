@@ -23,6 +23,8 @@ Body.
 - [Drill](#drill)
 `
 
+const bank = (questions: unknown[]) => ({ version: 1, published_at: '2026-11-07', questions })
+
 describe('parseWalkthrough', () => {
   it('splits sections and reads their concept lists', () => {
     const w = parseWalkthrough(markdown)
@@ -73,20 +75,20 @@ describe('checkContent with walkthroughs and labs', () => {
     sources: [],
     review_status: 'draft',
     reviewed_by: null,
-    reviewed_at: null,
+    reviewed_at: null, published_at: null,
   })
 
   it('passes when every concept is covered and the files exist', () => {
     const report = checkContent(
       domains({ walkthroughId: 'd1', labId: 'd1-lab' }),
-      { 'd1.json': [question(['stop_reason', 'hook-matchers'])] },
+      bank([question(['stop_reason', 'hook-matchers'])]),
       { walkthroughs: { d1: markdown }, labs: { d1: '# Lab' } },
     )
     expect(report.errors).toEqual([])
   })
 
   it('reports a concept no section explains', () => {
-    const report = checkContent(domains({ walkthroughId: 'd1' }), { 'd1.json': [question(['sessions'])] }, {
+    const report = checkContent(domains({ walkthroughId: 'd1' }), bank([question(['sessions'])]), {
       walkthroughs: { d1: markdown },
       labs: {},
     })
@@ -94,7 +96,7 @@ describe('checkContent with walkthroughs and labs', () => {
   })
 
   it('reports missing walkthrough and lab files', () => {
-    const report = checkContent(domains({ walkthroughId: 'd1', labId: 'd1-lab' }), {}, { walkthroughs: {}, labs: {} })
+    const report = checkContent(domains({ walkthroughId: 'd1', labId: 'd1-lab' }), bank([]), { walkthroughs: {}, labs: {} })
     expect(report.errors).toEqual([
       'domains.json: d1 has labId but no content/labs/d1/README.md',
       'domains.json: d1 has no content/walkthroughs/d1.md',
@@ -102,6 +104,6 @@ describe('checkContent with walkthroughs and labs', () => {
   })
 
   it('skips concept checks for domains without a walkthrough', () => {
-    expect(checkContent(domains({}), { 'd1.json': [question(['anything'])] }).errors).toEqual([])
+    expect(checkContent(domains({}), bank([question(['anything'])])).errors).toEqual([])
   })
 })

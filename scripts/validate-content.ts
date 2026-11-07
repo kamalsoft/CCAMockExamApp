@@ -2,7 +2,7 @@ import { existsSync, readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { z } from 'zod'
-import { DomainsSchema, QuestionSchema } from '../src/lib/schema.ts'
+import { BankSchema, DomainsSchema, QuestionSchema } from '../src/lib/schema.ts'
 import { parseWalkthrough } from '../src/lib/walkthrough.ts'
 
 type Report = { errors: string[]; warnings: string[] }
@@ -12,10 +12,10 @@ export type Docs = { walkthroughs: Record<string, string>; labs: Record<string, 
 const format = (where: string, error: z.ZodError) =>
   error.issues.map((i) => `${where}${i.path.length ? `.${i.path.join('.')}` : ''}: ${i.message}`)
 
-// questionFiles maps a file name like "d1.json" to its parsed JSON.
+// bankJson is content/bank/questions.json, parsed.
 export function checkContent(
   domainsJson: unknown,
-  questionFiles: Record<string, unknown>,
+  bankJson: unknown,
   docs: Docs = { walkthroughs: {}, labs: {} },
 ): Report {
   const report: Report = { errors: [], warnings: [] }
@@ -38,25 +38,20 @@ export function checkContent(
 
   const seenIds = new Set<string>()
   const conceptUses: Record<string, Record<string, string[]>> = {} // domain -> concept -> question ids
-  for (const [file, json] of Object.entries(questionFiles)) {
-    const fileDomain = file.replace(/\.json$/, '')
-    if (!domainIds.includes(fileDomain)) report.errors.push(`questions/${file}: no domain "${fileDomain}" in domains.json`)
-    if (!Array.isArray(json)) {
-      report.errors.push(`questions/${file}: must be an array of questions`)
-      continue
+  const bank = BankSchema.omit({ questions: true }).extend({ questions: z.array(z.unknown()) }).safeParse(bankJson)
+  if (!bank.success) report.errors.push(...format('bank/questions.json', bank.error))
+  const entries = bank.success ? bank.data.questions : []
+  entries.forEach((raw, i) => {
+    const q = QuestionSchema.safeParse(raw)
+    if (!q.success) {
+      report.errors.push(...format(`bank/questions.json[${i}]`, q.error))
+      return
     }
-    json.forEach((raw, i) => {
-      const q = QuestionSchema.safeParse(raw)
-      if (!q.success) {
-        report.errors.push(...format(`questions/${file}[${i}]`, q.error))
-        return
-      }
-      if (q.data.domain !== fileDomain) report.errors.push(`${q.data.id}: domain "${q.data.domain}" does not match file ${file}`)
-      if (seenIds.has(q.data.id)) report.errors.push(`${q.data.id}: duplicate question id`)
-      seenIds.add(q.data.id)
-      for (const c of q.data.concepts) ((conceptUses[q.data.domain] ??= {})[c] ??= []).push(q.data.id)
-    })
-  }
+    if (!domainIds.includes(q.data.domain)) report.errors.push(`${q.data.id}: no domain "${q.data.domain}" in domains.json`)
+    if (seenIds.has(q.data.id)) report.errors.push(`${q.data.id}: duplicate question id`)
+    seenIds.add(q.data.id)
+    for (const c of q.data.concepts) ((conceptUses[q.data.domain] ??= {})[c] ??= []).push(q.data.id)
+  })
 
   for (const d of domains.data) {
     if (d.labId && !docs.labs[d.id]) report.errors.push(`domains.json: ${d.id} has labId but no content/labs/${d.id}/README.md`)
@@ -84,13 +79,8 @@ function readJson(path: string): unknown {
 export const defaultContentDir = fileURLToPath(new URL('../content', import.meta.url))
 
 export function readContent(contentDir: string) {
-  const questionsDir = join(contentDir, 'questions')
-  const questionFiles: Record<string, unknown> = {}
-  if (existsSync(questionsDir)) {
-    for (const file of readdirSync(questionsDir).filter((f) => f.endsWith('.json'))) {
-      questionFiles[file] = readJson(join(questionsDir, file))
-    }
-  }
+  const bankFile = join(contentDir, 'bank', 'questions.json')
+  const bankJson = existsSync(bankFile) ? readJson(bankFile) : undefined
   const docs: Docs = { walkthroughs: {}, labs: {} }
   const walkthroughsDir = join(contentDir, 'walkthroughs')
   if (existsSync(walkthroughsDir)) {
@@ -105,14 +95,14 @@ export function readContent(contentDir: string) {
       if (existsSync(readme)) docs.labs[domainId] = readFileSync(readme, 'utf8')
     }
   }
-  return { domainsJson: readJson(join(contentDir, 'domains.json')), questionFiles, docs }
+  return { domainsJson: readJson(join(contentDir, 'domains.json')), bankJson, docs }
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  const { domainsJson, questionFiles, docs } = readContent(defaultContentDir)
-  const { errors, warnings } = checkContent(domainsJson, questionFiles, docs)
+  const { domainsJson, bankJson, docs } = readContent(defaultContentDir)
+  const { errors, warnings } = checkContent(domainsJson, bankJson, docs)
   for (const w of warnings) console.warn(`warning: ${w}`)
   for (const e of errors) console.error(`error: ${e}`)
-  console.log(`${Object.keys(questionFiles).length} question file(s) checked: ${errors.length} error(s), ${warnings.length} warning(s)`)
+  console.log(`content checked: ${errors.length} error(s), ${warnings.length} warning(s)`)
   process.exit(errors.length ? 1 : 0)
 }

@@ -95,6 +95,6 @@ Three requests conflict with PLAN.md or CLAUDE.md. Each needs a decision from yo
 | # | Milestone | Status |
 | --- | --- | --- |
 | 9 | Drill pause and resume, and hints | Done (see CHANGELOG); no hint content yet |
-| 10 | Question bank with publish dates | Planned, approved |
+| 10 | Question bank with publish dates | Done (see CHANGELOG); publish date guard lands with Milestone 11 |
 | 11 | Scheduled refresh and configuration screen | Planned, approved; decision 2 accepted |
 | 12 | Labs in the browser | Planned, approved; decision 1 accepted |

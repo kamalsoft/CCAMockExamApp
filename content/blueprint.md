@@ -94,7 +94,7 @@ Every question must test a decision, not a fact recall. Ask: what would a practi
 
 ## 3. Question template and review checklist
 
-Save each question as one JSON object in `content/questions/<domain>.json`. Use this template:
+Save each question as one JSON object in the `questions` array of `content/bank/questions.json`. Set `published_at` to the date the question is first published, which is its review date. Use this template:
 
 ```json
 {
@@ -120,7 +120,8 @@ Save each question as one JSON object in `content/questions/<domain>.json`. Use 
   "sources": ["TODO: URL and date checked"],
   "review_status": "draft",
   "reviewed_by": null,
-  "reviewed_at": null
+  "reviewed_at": null,
+  "published_at": null
 }
 ```
 

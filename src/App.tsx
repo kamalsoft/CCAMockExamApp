@@ -96,6 +96,7 @@ function App() {
           <Progress
             progress={progress}
             domains={content.domains}
+            bank={content.bank}
             questions={content.questions}
             onReset={() => setProgress(emptyProgress())}
           />
