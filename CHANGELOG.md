@@ -1,5 +1,12 @@
 # Changelog
 
+## Follow-ups from the milestone review (2026-11-07)
+
+- PLAN.md and BACKLOG.md match the code: milestone rows 9–12 added, status lines updated, and Milestone 10 notes its deferred publish-date guard.
+- Drill: a paused drill whose questions are no longer in the bank shows a message before it is discarded.
+- Tests: a 360px no-horizontal-scroll check, a hint validation test, and e2e tests for the bank line on the Progress page and the discarded-drill message.
+- The 14 d1 questions that had no sources now carry a design-guidance note, since their claims are design judgement, not documented facts. Their reviewer should confirm this.
+
 ## Milestone 10: Question bank with publish dates (2026-11-07)
 
 - Questions now live in one bank, `content/bank/questions.json`, with a version and a publish date. Each question has `published_at`, required once it is reviewed. The per-domain files in `content/questions/` are gone.

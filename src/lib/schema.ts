@@ -69,4 +69,3 @@ export const BankSchema = z.object({
 
 export type Domain = z.infer<typeof DomainSchema>
 export type Question = z.infer<typeof QuestionSchema>
-export type Bank = z.infer<typeof BankSchema>

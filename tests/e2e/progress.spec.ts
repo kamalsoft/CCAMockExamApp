@@ -77,3 +77,8 @@ test('reset deletes all progress after confirmation', async ({ page }) => {
   await page.reload()
   await expect(page.getByText('0 drills completed.')).toBeVisible()
 })
+
+test('the progress page shows the question bank version and publish date', async ({ page }) => {
+  await page.goto('/#progress')
+  await expect(page.getByText(/Question bank version 1, published 2026-11-07, 150 questions/)).toBeVisible()
+})

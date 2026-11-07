@@ -109,4 +109,11 @@ describe('checkContent', () => {
       'd9-001: no domain "d9" in domains.json',
     ])
   })
+
+  it('accepts an optional hint, and rejects a hint that is not text', () => {
+    expect(checkContent(domains, bank([question({ hint: 'Think about the loop.' })])).errors).toEqual([])
+    expect(checkContent(domains, bank([question({ hint: 42 })])).errors).toEqual([
+      'bank/questions.json[0].hint: Invalid input: expected string, received number',
+    ])
+  })
 })

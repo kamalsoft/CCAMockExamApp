@@ -20,13 +20,17 @@ export function Drill({ domains, questions, saved, onSave, onComplete }: Props &
   const [set, setSet] = useState<Question[] | null>(null)
   const [responses, setResponses] = useState<Responses>({})
   const [startedAt, setStartedAt] = useState(0)
+  const [notice, setNotice] = useState<string | null>(null)
 
   if (!set) {
     const resume = () => {
       if (!saved) return
       const restored = saved.questionIds.flatMap((id) => questions.filter((q) => q.id === id))
       // The bank changed since the pause and a question is gone, so the drill can't be restored.
-      if (restored.length !== saved.questionIds.length) return onSave(null)
+      if (restored.length !== saved.questionIds.length) {
+        setNotice('The paused drill used questions that are no longer in the bank, so it was discarded.')
+        return onSave(null)
+      }
       setSet(restored)
       setResponses(saved.responses)
       setStartedAt(saved.startedAt)
@@ -39,10 +43,12 @@ export function Drill({ domains, questions, saved, onSave, onComplete }: Props &
         settings={settings}
         onChange={setSettings}
         saved={saved}
+        notice={notice}
         onResume={resume}
         onDiscard={() => onSave(null)}
         onStart={() => {
           // Starting a new drill replaces a paused one.
+          setNotice(null)
           if (saved) onSave(null)
           setResponses({})
           setStartedAt(Date.now())
@@ -88,10 +94,11 @@ export function Drill({ domains, questions, saved, onSave, onComplete }: Props &
   )
 }
 
-function Setup({ domains, questions, settings, onChange, saved, onResume, onDiscard, onStart }: Props & {
+function Setup({ domains, questions, settings, onChange, saved, notice, onResume, onDiscard, onStart }: Props & {
   settings: Settings
   onChange: (s: Settings) => void
   saved: DrillSnapshot | null
+  notice: string | null
   onResume: () => void
   onDiscard: () => void
   onStart: () => void
@@ -151,6 +158,7 @@ function Setup({ domains, questions, settings, onChange, saved, onResume, onDisc
         Show the explanation right after each answer (otherwise at the end)
       </label>
 
+      {notice && <p role="status" className="mt-4 text-red-700">{notice}</p>}
       {saved && (
         <div role="status" className="mt-4 rounded border border-gray-400 p-4">
           <p>

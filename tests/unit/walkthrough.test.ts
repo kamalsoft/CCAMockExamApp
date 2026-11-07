@@ -75,7 +75,8 @@ describe('checkContent with walkthroughs and labs', () => {
     sources: [],
     review_status: 'draft',
     reviewed_by: null,
-    reviewed_at: null, published_at: null,
+    reviewed_at: null,
+    published_at: null,
   })
 
   it('passes when every concept is covered and the files exist', () => {

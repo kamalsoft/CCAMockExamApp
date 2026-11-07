@@ -4,7 +4,7 @@
 | --- | --- |
 | **Created** | 2026-11-07 |
 | **Last updated** | 2026-11-07 |
-| **Status** | Milestones 6 and 7 done; Milestone 8 in progress (accessibility and mobile done, difficulty calibration pending) |
+| **Status** | Milestones 1–7, 9 and 10 done; Milestone 8 in progress (accessibility and mobile done, difficulty calibration pending); Milestones 11 and 12 planned in [BACKLOG.md](BACKLOG.md) |
 | **Related** | [CLAUDE.md](CLAUDE.md) · [content/blueprint.md](content/blueprint.md) · [CHANGELOG.md](CHANGELOG.md) |
 
 ## Contents
@@ -121,7 +121,7 @@ Some rules are checked by `scripts/validate-content.ts` (`npm run validate`). Th
 | Every factual claim that depends on Anthropic documentation has a source note with the URL and the date checked. | Review |
 | Claims about APIs, SDK behavior, and features are checked against current official docs before a question is marked reviewed. | Review |
 
-The validator also checks that domain weights sum to 100, that each question file matches a domain in `domains.json`, and that reviewed questions have `reviewed_by` and `reviewed_at`.
+The validator also checks that domain weights sum to 100, that every question in the bank names a domain in `domains.json`, and that reviewed questions have `reviewed_by`, `reviewed_at` and `published_at`.
 
 ## 7. Feature specifications
 
@@ -174,6 +174,10 @@ Each milestone ends with a working build and a short changelog entry.
 | 6 | Replicate across domains | Repeat the content work for the remaining domains. | Done: walkthroughs and labs for all five domains; all 150 questions reviewed (d3–d5 by kamalsoft, 2026-11-07) |
 | 7 | Progress and readiness | Progress tracking and readiness indicator. | Done |
 | 8 | Polish and calibration | Accessibility pass, mobile layout, and difficulty review against the official practice materials. | In progress: accessibility and mobile layout done; difficulty calibration needs the official practice materials and a human reviewer |
+| 9 | Drill pause and resume, and hints | Pause and resume a drill; optional hint on each question, drill mode only. | Done (no hint content yet) |
+| 10 | Question bank with publish dates | One question bank with a version and publish dates; the app serves reviewed questions from it. | Done (the publish-date guard lands with Milestone 11) |
+| 11 | Scheduled refresh and configuration screen | Scheduled bank refresh, configuration screen, and the `published_at` guard. | Planned (see BACKLOG.md) |
+| 12 | Labs in the browser | Guided, browser-based steps for each lab; no code runs in the browser. | Planned (see BACKLOG.md) |
 
 ## 9. Acceptance criteria
 
