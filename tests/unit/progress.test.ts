@@ -30,7 +30,8 @@ const question = (id: string, domain: string, concepts: string[]): Question => (
   sources: [],
   review_status: 'reviewed',
   reviewed_by: 'r',
-  reviewed_at: '2026-11-07', published_at: '2026-11-07',
+  reviewed_at: '2026-11-07',
+  published_at: '2026-11-07',
 })
 
 describe('localStorageRepository', () => {

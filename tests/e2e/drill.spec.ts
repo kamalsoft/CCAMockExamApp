@@ -88,3 +88,15 @@ test('discarding a paused drill removes it', async ({ page }) => {
   await page.getByRole('button', { name: 'Discard paused drill' }).click()
   await expect(page.getByText(/You have a paused drill/)).toHaveCount(0)
 })
+
+test('a paused drill with a question no longer in the bank says so', async ({ page }) => {
+  await page.addInitScript(() => {
+    localStorage.setItem('cca-progress-v1', JSON.stringify({
+      attempts: [], labsCompleted: {}, walkthroughsSeen: {},
+      drill: { questionIds: ['d1-999'], responses: {}, startedAt: 1, explainImmediately: true },
+    }))
+  })
+  await page.goto('/')
+  await page.getByRole('button', { name: 'Resume drill' }).click()
+  await expect(page.getByText(/no longer in the bank, so it was discarded/)).toBeVisible()
+})

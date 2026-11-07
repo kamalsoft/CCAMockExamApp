@@ -290,7 +290,9 @@
         "observability"
       ],
       "source": "original",
-      "sources": [],
+      "sources": [
+        "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
+      ],
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
@@ -337,7 +339,9 @@
         "coordinator-role"
       ],
       "source": "original",
-      "sources": [],
+      "sources": [
+        "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
+      ],
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
@@ -385,7 +389,9 @@
         "coordinator-role"
       ],
       "source": "original",
-      "sources": [],
+      "sources": [
+        "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
+      ],
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
@@ -437,7 +443,9 @@
         "parallel-subagents"
       ],
       "source": "original",
-      "sources": [],
+      "sources": [
+        "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
+      ],
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
@@ -533,7 +541,9 @@
         "attribution"
       ],
       "source": "original",
-      "sources": [],
+      "sources": [
+        "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
+      ],
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
@@ -678,7 +688,9 @@
         "subagent-adaptability"
       ],
       "source": "original",
-      "sources": [],
+      "sources": [
+        "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
+      ],
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
@@ -775,7 +787,9 @@
         "prerequisite-gates"
       ],
       "source": "original",
-      "sources": [],
+      "sources": [
+        "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
+      ],
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
@@ -822,7 +836,9 @@
         "escalation"
       ],
       "source": "original",
-      "sources": [],
+      "sources": [
+        "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
+      ],
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
@@ -869,7 +885,9 @@
         "multi-concern-handling"
       ],
       "source": "original",
-      "sources": [],
+      "sources": [
+        "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
+      ],
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
@@ -916,7 +934,9 @@
         "proportionate-design"
       ],
       "source": "original",
-      "sources": [],
+      "sources": [
+        "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
+      ],
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
@@ -1160,7 +1180,9 @@
         "task-decomposition"
       ],
       "source": "original",
-      "sources": [],
+      "sources": [
+        "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
+      ],
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
@@ -1207,7 +1229,9 @@
         "prioritization"
       ],
       "source": "original",
-      "sources": [],
+      "sources": [
+        "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
+      ],
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
@@ -1254,7 +1278,9 @@
         "prompt-chaining-tradeoffs"
       ],
       "source": "original",
-      "sources": [],
+      "sources": [
+        "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
+      ],
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
@@ -1306,7 +1332,9 @@
         "dynamic-decomposition"
       ],
       "source": "original",
-      "sources": [],
+      "sources": [
+        "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
+      ],
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",

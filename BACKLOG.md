@@ -3,7 +3,7 @@
 | | |
 | --- | --- |
 | **Created** | 2026-11-07 |
-| **Status** | Milestones 9–12 planned; no work started |
+| **Status** | Milestones 9 and 10 done; Milestones 11 and 12 approved, not started |
 | **Related** | [PLAN.md](PLAN.md) · [CLAUDE.md](CLAUDE.md) · [CHANGELOG.md](CHANGELOG.md) |
 
 Features that come after the v1 milestones. Per PLAN.md section 10, new features go here, not into the current milestone. Each milestone starts only after its plan is approved.
@@ -95,6 +95,6 @@ Three requests conflict with PLAN.md or CLAUDE.md. Each needs a decision from yo
 | # | Milestone | Status |
 | --- | --- | --- |
 | 9 | Drill pause and resume, and hints | Done (see CHANGELOG); no hint content yet |
-| 10 | Question bank with publish dates | Done (see CHANGELOG); publish date guard lands with Milestone 11 |
+| 10 | Question bank with publish dates | Done, except acceptance criterion 1 (the `published_at` guard), which is deferred to Milestone 11 |
 | 11 | Scheduled refresh and configuration screen | Planned, approved; decision 2 accepted |
 | 12 | Labs in the browser | Planned, approved; decision 1 accepted |
