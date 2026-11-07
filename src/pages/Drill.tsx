@@ -3,26 +3,47 @@ import { Explanation } from '../components/Explanation.tsx'
 import { button, QuestionCard } from '../components/QuestionCard.tsx'
 import { Results } from '../components/Results.tsx'
 import { isCorrect, selectQuestions, type Difficulty, type Responses } from '../lib/drill.ts'
-import { makeAttempt, type Attempt } from '../lib/progress.ts'
+import { makeAttempt, type Attempt, type DrillSnapshot } from '../lib/progress.ts'
 import type { Domain, Question } from '../lib/schema.ts'
 
 type Props = { domains: Domain[]; questions: Question[] }
 type Settings = { domainIds: string[]; difficulty: Difficulty; explainImmediately: boolean }
 
-export function Drill({ domains, questions, onComplete }: Props & { onComplete: (attempt: Attempt) => void }) {
+const secondary = 'rounded border border-gray-400 px-4 py-2 font-medium hover:bg-gray-100'
+
+export function Drill({ domains, questions, saved, onSave, onComplete }: Props & {
+  saved: DrillSnapshot | null
+  onSave: (drill: DrillSnapshot | null) => void
+  onComplete: (attempt: Attempt) => void
+}) {
   const [settings, setSettings] = useState<Settings>({ domainIds: [], difficulty: 'any', explainImmediately: true })
   const [set, setSet] = useState<Question[] | null>(null)
   const [responses, setResponses] = useState<Responses>({})
   const [startedAt, setStartedAt] = useState(0)
 
   if (!set) {
+    const resume = () => {
+      if (!saved) return
+      const restored = saved.questionIds.flatMap((id) => questions.filter((q) => q.id === id))
+      // The bank changed since the pause and a question is gone, so the drill can't be restored.
+      if (restored.length !== saved.questionIds.length) return onSave(null)
+      setSet(restored)
+      setResponses(saved.responses)
+      setStartedAt(saved.startedAt)
+      setSettings({ ...settings, explainImmediately: saved.explainImmediately })
+    }
     return (
       <Setup
         domains={domains}
         questions={questions}
         settings={settings}
         onChange={setSettings}
+        saved={saved}
+        onResume={resume}
+        onDiscard={() => onSave(null)}
         onStart={() => {
+          // Starting a new drill replaces a paused one.
+          if (saved) onSave(null)
           setResponses({})
           setStartedAt(Date.now())
           setSet(selectQuestions(questions, settings.domainIds, settings.difficulty))
@@ -30,10 +51,17 @@ export function Drill({ domains, questions, onComplete }: Props & { onComplete: 
       />
     )
   }
+  const pause = () => {
+    onSave({ questionIds: set.map((q) => q.id), responses, startedAt, explainImmediately: settings.explainImmediately })
+    setSet(null)
+  }
   const answer = (id: string, selected: string[]) => {
     const next = { ...responses, [id]: selected }
     setResponses(next)
-    if (Object.keys(next).length === set.length) onComplete(makeAttempt('drill', set, next, startedAt, false))
+    if (Object.keys(next).length === set.length) {
+      onComplete(makeAttempt('drill', set, next, startedAt, false))
+      onSave(null)
+    }
   }
   const index = Object.keys(responses).length
   if (index < set.length) {
@@ -45,6 +73,7 @@ export function Drill({ domains, questions, onComplete }: Props & { onComplete: 
         domainName={domains.find((d) => d.id === set[index].domain)?.name}
         explainImmediately={settings.explainImmediately}
         onAnswer={(selected) => answer(set[index].id, selected)}
+        onPause={pause}
       />
     )
   }
@@ -59,9 +88,12 @@ export function Drill({ domains, questions, onComplete }: Props & { onComplete: 
   )
 }
 
-function Setup({ domains, questions, settings, onChange, onStart }: Props & {
+function Setup({ domains, questions, settings, onChange, saved, onResume, onDiscard, onStart }: Props & {
   settings: Settings
   onChange: (s: Settings) => void
+  saved: DrillSnapshot | null
+  onResume: () => void
+  onDiscard: () => void
   onStart: () => void
 }) {
   const matching = selectQuestions(questions, settings.domainIds, settings.difficulty).length
@@ -119,25 +151,40 @@ function Setup({ domains, questions, settings, onChange, onStart }: Props & {
         Show the explanation right after each answer (otherwise at the end)
       </label>
 
+      {saved && (
+        <div role="status" className="mt-4 rounded border border-gray-400 p-4">
+          <p>
+            You have a paused drill: {Object.keys(saved.responses).length} of {saved.questionIds.length} answered.
+          </p>
+          <div className="mt-3 flex flex-wrap gap-2">
+            <button type="button" className={button} onClick={onResume}>Resume drill</button>
+            <button type="button" className={secondary} onClick={onDiscard}>Discard paused drill</button>
+          </div>
+        </div>
+      )}
+
       <p className="mt-4 text-gray-600" aria-live="polite">
         {matching} {matching === 1 ? 'question matches' : 'questions match'}
       </p>
       <button type="button" className={`${button} mt-2`} disabled={matching === 0} onClick={onStart}>
         Start drill
       </button>
+      {saved && <p className="mt-2 text-sm text-gray-600">Starting a new drill replaces the paused one.</p>}
     </section>
   )
 }
 
-function QuestionView({ question, position, domainName, explainImmediately, onAnswer }: {
+function QuestionView({ question, position, domainName, explainImmediately, onAnswer, onPause }: {
   question: Question
   position: string
   domainName?: string
   explainImmediately: boolean
   onAnswer: (selected: string[]) => void
+  onPause: () => void
 }) {
   const [selected, setSelected] = useState<string[]>([])
   const [submitted, setSubmitted] = useState(false)
+  const [hintShown, setHintShown] = useState(false)
   const submit = () => (explainImmediately ? setSubmitted(true) : onAnswer(selected))
   // Each new question is a new element, so move focus to it rather than dropping it to the page.
   const top = useRef<HTMLElement>(null)
@@ -151,6 +198,15 @@ function QuestionView({ question, position, domainName, explainImmediately, onAn
         {position} · {domainName} · {question.difficulty}
       </p>
       <QuestionCard question={question} selected={selected} onChange={setSelected} disabled={submitted} />
+
+      {question.hint && (
+        <div className="mt-4">
+          <button type="button" className={secondary} aria-expanded={hintShown} onClick={() => setHintShown(!hintShown)}>
+            {hintShown ? 'Hide hint' : 'Show hint'}
+          </button>
+          {hintShown && <p className="mt-2 text-sm text-gray-700">{question.hint}</p>}
+        </div>
+      )}
 
       {!submitted && (
         <button type="button" className={`${button} mt-4`} disabled={selected.length === 0} onClick={submit}>
@@ -168,6 +224,9 @@ function QuestionView({ question, position, domainName, explainImmediately, onAn
           </button>
         </div>
       )}
+      <button type="button" className={`${secondary} mt-4 block`} onClick={onPause}>
+        Pause drill
+      </button>
     </section>
   )
 }

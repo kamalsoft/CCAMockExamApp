@@ -81,7 +81,7 @@ describe('readiness', () => {
     id: `exam-${Math.random()}`, mode: 'exam', started_at: '', finished_at: '', question_ids: [], responses: {},
     score_by_domain: { d1: { correct: d1[0], total: d1[1] }, d2: { correct: d2[0], total: d2[1] } }, full,
   })
-  const done = { labsCompleted: { d1: true, d2: true }, walkthroughsSeen: { d1: 'x', d2: 'x' } }
+  const done = { labsCompleted: { d1: true, d2: true }, walkthroughsSeen: { d1: 'x', d2: 'x' }, drill: null }
   const unmet = (p: Progress) => readiness(p, domains).conditions.filter((c) => !c.met).map((c) => c.id)
 
   it('is ready with three passing full exams, no weak domain, and all labs and walkthroughs done', () => {
@@ -106,5 +106,19 @@ describe('readiness', () => {
     const result = readiness(p, domains)
     expect(unmet(p)).toEqual(['domains'])
     expect(result.conditions.find((c) => c.id === 'domains')?.detail).toContain('D2 at 60% (exam 1)')
+  })
+})
+
+describe('paused drill storage', () => {
+  it('loads progress saved before pause existed, with no paused drill', () => {
+    const saved = JSON.stringify({ attempts: [], labsCompleted: {}, walkthroughsSeen: {} })
+    expect(localStorageRepository(memoryStorage(saved)).load().drill).toBeNull()
+  })
+
+  it('keeps a paused drill across a reload', () => {
+    const storage = memoryStorage()
+    const drill = { questionIds: ['d1-001', 'd1-002'], responses: { 'd1-001': ['A'] }, startedAt: 1, explainImmediately: false }
+    localStorageRepository(storage).save({ ...emptyProgress(), drill })
+    expect(localStorageRepository(storage).load().drill).toEqual(drill)
   })
 })

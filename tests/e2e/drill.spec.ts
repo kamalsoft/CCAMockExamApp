@@ -60,3 +60,31 @@ test('focus moves to each new question in a drill', async ({ page }) => {
   await expect(page.getByText(/^Question 2 of/)).toBeVisible()
   await expect(page.locator(':focus')).toHaveAttribute('tabindex', '-1')
 })
+
+test('pause a drill, reload, and resume where it left off', async ({ page }) => {
+  await page.goto('/')
+  await page.getByLabel(/Agentic Architecture & Orchestration/).check()
+  await page.getByLabel(/Show the explanation right after each answer/).uncheck()
+  await page.getByRole('button', { name: 'Start drill' }).click()
+
+  await page.locator('fieldset input').first().check()
+  await page.getByRole('button', { name: 'Submit answer' }).click()
+  await expect(page.getByText(/^Question 2 of/)).toBeVisible()
+  await page.getByRole('button', { name: 'Pause drill' }).click()
+
+  await page.reload()
+  await expect(page.getByText(/You have a paused drill: 1 of \d+ answered/)).toBeVisible()
+  await page.getByRole('button', { name: 'Resume drill' }).click()
+  await expect(page.getByText(/^Question 2 of/)).toBeVisible()
+})
+
+test('discarding a paused drill removes it', async ({ page }) => {
+  await page.goto('/')
+  await page.getByLabel(/Agentic Architecture & Orchestration/).check()
+  await page.getByRole('button', { name: 'Start drill' }).click()
+  await page.getByRole('button', { name: 'Pause drill' }).click()
+
+  await expect(page.getByText(/You have a paused drill/)).toBeVisible()
+  await page.getByRole('button', { name: 'Discard paused drill' }).click()
+  await expect(page.getByText(/You have a paused drill/)).toHaveCount(0)
+})

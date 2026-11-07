@@ -1,5 +1,11 @@
 # Changelog
 
+## Milestone 9: Drill pause, resume, and hints (2026-11-07)
+
+- Drill: pause saves the drill (questions, answers, start time) in progress. A paused drill survives a reload and can be resumed or discarded. Starting a new drill replaces it. Finishing a drill clears it.
+- Questions can carry an optional `hint`, shown on demand in drill mode only. The mock exam never shows hints. No question has a hint yet; writing and reviewing hints is a separate content pass.
+- Stored progress from before this change loads with no paused drill.
+
 ## Milestone 8: Polish and calibration (in progress, 2026-11-07)
 
 - Accessibility: focus moves to each new drill question and into the exam when it starts, and to "Keep working" when the submit dialog opens, so keyboard and screen-reader users aren't dropped to the top of the page.
