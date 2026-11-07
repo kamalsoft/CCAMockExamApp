@@ -1,0 +1,21 @@
+{
+  "name": "d1-agent-loop",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.18"
+  },
+  "scripts": {
+    "check": "node --test --test-reporter=spec tests/agent.test.ts",
+    "check:solution": "LAB_SOLUTION=1 node --test --test-reporter=spec tests/agent.test.ts",
+    "typecheck": "tsc --noEmit",
+    "demo": "node demo.ts"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^1.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.19.2",
+    "typescript": "~7.0.2"
+  }
+}

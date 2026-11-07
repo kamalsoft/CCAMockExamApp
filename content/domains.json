@@ -4,8 +4,8 @@
     "name": "Agentic Architecture & Orchestration",
     "weight": 27,
     "description": "Task statements: 1.1 Design and implement agentic loops for autonomous task execution; 1.2 Orchestrate multi-agent systems with coordinator-subagent patterns; 1.3 Configure subagent invocation, context passing, and spawning; 1.4 Implement multi-step workflows with enforcement and handoff patterns; 1.5 Apply Agent SDK hooks for tool call interception and data normalization; 1.6 Design task decomposition strategies for complex workflows; 1.7 Manage session state, resumption, and forking.",
-    "walkthroughId": null,
-    "labId": null
+    "walkthroughId": "d1",
+    "labId": "d1-agent-loop"
   },
   {
     "id": "d2",

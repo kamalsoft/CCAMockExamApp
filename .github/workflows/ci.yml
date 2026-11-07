@@ -22,3 +22,10 @@ jobs:
       - run: npm run build
       - run: npx playwright install --with-deps chromium
       - run: npm run e2e
+      # Labs: the starter is meant to fail, so CI checks the tests against the reference solution.
+      - run: npm ci
+        working-directory: labs/d1-agent-loop
+      - run: npm run typecheck
+        working-directory: labs/d1-agent-loop
+      - run: npm run check:solution
+        working-directory: labs/d1-agent-loop

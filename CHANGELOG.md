@@ -1,5 +1,14 @@
 # Changelog
 
+## Milestone 5: Walkthrough and lab for d1 (2026-11-07)
+
+- `content/walkthroughs/d1.md`: one section per task statement (core concepts, decision rules, common mistakes), a checklist of what to do without notes, and links to the drill and lab. SDK and API facts were checked against current docs on 2026-11-07.
+- Concept links: every concept on a question's explanation links to the walkthrough section that explains it. The validator fails if a question uses a concept no section lists, or if a domain's walkthrough or lab file is missing.
+- `labs/d1-agent-loop`: build an agent loop and a prerequisite gate. `npm run check` runs 11 tests against a scripted fake model, so it needs no API key or install. An optional `npm run demo` runs the learner's code against Claude (`claude-opus-5-5` with server-side fallbacks).
+- Walkthroughs and Labs pages render the Markdown at build time. Navigation now uses URL hashes, so links and the back button work; the drill and exam stay mounted while browsing.
+- CI typechecks the lab and runs its tests against the reference solution.
+- Fixed: the `virtual:content` type declaration had silently resolved to `any` since Milestone 3, because ambient modules can't import relative types and `skipLibCheck` hid the error. The index is now typed through `src/content.ts`.
+
 ## Milestone 4: Mock exam mode (2026-11-07)
 
 - Mock exam page: questions assembled by domain weight (60 items, split 16/11/12/12/9 by largest-remainder rounding), a 120-minute countdown, and automatic submission at zero.

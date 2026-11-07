@@ -40,4 +40,23 @@ describe('buildIndex', () => {
   it('refuses to build from invalid content', () => {
     expect(() => buildIndex(contentDir([{ id: 'd1-001' }]))).toThrow('Content is invalid')
   })
+
+  it('renders walkthrough sections and lab READMEs, one heading level down', () => {
+    const dir = contentDir([question('d1-001', 'reviewed')])
+    writeFileSync(
+      join(dir, 'domains.json'),
+      JSON.stringify([{ ...domains[0], walkthroughId: 'd1', labId: 'd1-lab' }]),
+    )
+    mkdirSync(join(dir, 'walkthroughs'))
+    writeFileSync(join(dir, 'walkthroughs', 'd1.md'), '# D1\n\nIntro.\n\n## Loops\n<!-- concepts: c -->\n\n### Core\n\nText.\n')
+    mkdirSync(join(dir, 'labs', 'd1'), { recursive: true })
+    writeFileSync(join(dir, 'labs', 'd1', 'README.md'), '# Lab\n\nRun `npm run check`.\n')
+
+    const index = buildIndex(dir)
+    expect(index.walkthroughs).toHaveLength(1)
+    const [section] = index.walkthroughs[0].sections
+    expect(section).toMatchObject({ anchor: 'wt-d1-loops', title: 'Loops', concepts: ['c'] })
+    expect(section.html).toContain('<h4>Core</h4>')
+    expect(index.labs).toEqual([{ domainId: 'd1', labId: 'd1-lab', html: expect.stringContaining('<h2>Lab</h2>') }])
+  })
 })
