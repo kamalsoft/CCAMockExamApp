@@ -43,9 +43,9 @@
     "sources": [
       "https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d1-002",
@@ -91,9 +91,9 @@
     "sources": [
       "https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d1-003",
@@ -140,9 +140,9 @@
     "sources": [
       "https://code.claude.com/docs/en/agent-sdk/agent-loop (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d1-004",
@@ -188,9 +188,9 @@
     "sources": [
       "https://code.claude.com/docs/en/agent-sdk/agent-loop (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d1-005",
@@ -236,9 +236,9 @@
     "sources": [
       "https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d1-006",
@@ -283,9 +283,9 @@
     ],
     "source": "original",
     "sources": [],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d1-007",
@@ -329,9 +329,9 @@
     ],
     "source": "original",
     "sources": [],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d1-008",
@@ -376,9 +376,9 @@
     ],
     "source": "original",
     "sources": [],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d1-009",
@@ -427,9 +427,9 @@
     ],
     "source": "original",
     "sources": [],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d1-010",
@@ -475,9 +475,9 @@
     "sources": [
       "https://code.claude.com/docs/en/agent-sdk/subagents (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d1-011",
@@ -521,9 +521,9 @@
     ],
     "source": "original",
     "sources": [],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d1-012",
@@ -568,9 +568,9 @@
     "sources": [
       "https://code.claude.com/docs/en/agent-sdk/subagents (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d1-013",
@@ -617,9 +617,9 @@
       "https://code.claude.com/docs/en/agent-sdk/subagents (checked 2026-11-07)",
       "https://code.claude.com/docs/en/agent-sdk/agent-loop (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d1-014",
@@ -663,9 +663,9 @@
     ],
     "source": "original",
     "sources": [],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d1-015",
@@ -712,9 +712,9 @@
     "sources": [
       "https://code.claude.com/docs/en/agent-sdk/subagents (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d1-016",
@@ -758,9 +758,9 @@
     ],
     "source": "original",
     "sources": [],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d1-017",
@@ -804,9 +804,9 @@
     ],
     "source": "original",
     "sources": [],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d1-018",
@@ -850,9 +850,9 @@
     ],
     "source": "original",
     "sources": [],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d1-019",
@@ -896,9 +896,9 @@
     ],
     "source": "original",
     "sources": [],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d1-020",
@@ -944,9 +944,9 @@
     "sources": [
       "https://code.claude.com/docs/en/agent-sdk/hooks (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d1-021",
@@ -992,9 +992,9 @@
     "sources": [
       "https://code.claude.com/docs/en/agent-sdk/hooks (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d1-022",
@@ -1041,9 +1041,9 @@
       "https://code.claude.com/docs/en/agent-sdk/hooks (checked 2026-11-07)",
       "https://code.claude.com/docs/en/agent-sdk/agent-loop (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d1-023",
@@ -1089,9 +1089,9 @@
     "sources": [
       "https://code.claude.com/docs/en/agent-sdk/hooks (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d1-024",
@@ -1135,9 +1135,9 @@
     ],
     "source": "original",
     "sources": [],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d1-025",
@@ -1181,9 +1181,9 @@
     ],
     "source": "original",
     "sources": [],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d1-026",
@@ -1227,9 +1227,9 @@
     ],
     "source": "original",
     "sources": [],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d1-027",
@@ -1278,9 +1278,9 @@
     ],
     "source": "original",
     "sources": [],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d1-028",
@@ -1327,9 +1327,9 @@
       "https://code.claude.com/docs/en/agent-sdk/sessions (checked 2026-11-07)",
       "https://code.claude.com/docs/en/agent-sdk/agent-loop (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d1-029",
@@ -1374,9 +1374,9 @@
     "sources": [
       "https://code.claude.com/docs/en/agent-sdk/sessions (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d1-030",
@@ -1422,8 +1422,8 @@
     "sources": [
       "https://code.claude.com/docs/en/agent-sdk/sessions (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   }
 ]
