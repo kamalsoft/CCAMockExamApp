@@ -39,7 +39,7 @@ function App() {
     [],
   )
   return (
-    <main className="mx-auto max-w-2xl p-6">
+    <main className="mx-auto max-w-2xl p-4 sm:p-6">
       <h1 className="text-2xl font-bold">CCA Mock Exam</h1>
       <nav aria-label="Modes" className="mt-4 flex flex-wrap gap-x-2 border-b">
         {pages.map((p) => (
