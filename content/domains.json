@@ -20,8 +20,8 @@
     "name": "Claude Code Configuration & Workflows",
     "weight": 20,
     "description": "Task statements: 3.1 Configure CLAUDE.md files with appropriate hierarchy, scoping, and modular organization; 3.2 Create and configure custom slash commands and skills; 3.3 Apply path-specific rules for conditional convention loading; 3.4 Determine when to use plan mode vs direct execution; 3.5 Apply iterative refinement techniques for progressive improvement; 3.6 Integrate Claude Code into CI/CD pipelines.",
-    "walkthroughId": null,
-    "labId": null
+    "walkthroughId": "d3",
+    "labId": "d3-team-config"
   },
   {
     "id": "d4",

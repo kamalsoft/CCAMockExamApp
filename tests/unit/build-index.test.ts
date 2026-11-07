@@ -2,7 +2,7 @@ import { mkdirSync, mkdtempSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { describe, expect, it } from 'vitest'
-import { buildIndex } from '../../scripts/build-index.ts'
+import { buildIndex, contentFiles } from '../../scripts/build-index.ts'
 
 const domains = [{ id: 'd1', name: 'D1', weight: 100, description: 'd', walkthroughId: null, labId: null }]
 const question = (id: string, review_status: 'draft' | 'reviewed') => ({
@@ -39,6 +39,18 @@ describe('buildIndex', () => {
 
   it('refuses to build from invalid content', () => {
     expect(() => buildIndex(contentDir([{ id: 'd1-001' }]))).toThrow('Content is invalid')
+  })
+
+  it('watches only files that exist, ignoring stray entries such as .DS_Store', () => {
+    const dir = contentDir([question('d1-001', 'reviewed')])
+    mkdirSync(join(dir, 'labs', 'd1'), { recursive: true })
+    writeFileSync(join(dir, 'labs', 'd1', 'README.md'), '# Lab\n')
+    writeFileSync(join(dir, 'labs', '.DS_Store'), '')
+    expect(contentFiles(dir).map((f) => f.slice(dir.length))).toEqual([
+      '/domains.json',
+      '/questions/d1.json',
+      '/labs/d1/README.md',
+    ])
   })
 
   it('renders walkthrough sections and lab READMEs, one heading level down', () => {

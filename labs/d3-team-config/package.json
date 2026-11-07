@@ -1,0 +1,17 @@
+{
+  "name": "d3-team-config",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.18"
+  },
+  "scripts": {
+    "check": "node --test --test-reporter=spec tests/config.test.ts",
+    "check:solution": "LAB_SOLUTION=1 node --test --test-reporter=spec tests/config.test.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^24.19.2",
+    "typescript": "~7.0.2"
+  }
+}

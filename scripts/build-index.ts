@@ -46,14 +46,15 @@ export function buildIndex(contentDir = defaultContentDir): ContentIndex {
 }
 
 // Every file the index is built from, so the dev server reloads when any of them changes.
-function contentFiles(contentDir: string): string[] {
+// Only existing paths: Vite fails the whole module on a missing one, such as a stray .DS_Store "lab".
+export function contentFiles(contentDir: string): string[] {
   const list = (dir: string) => (existsSync(dir) ? readdirSync(dir).map((f) => join(dir, f)) : [])
   return [
     join(contentDir, 'domains.json'),
     ...list(join(contentDir, 'questions')),
     ...list(join(contentDir, 'walkthroughs')),
     ...list(join(contentDir, 'labs')).map((dir) => join(dir, 'README.md')),
-  ]
+  ].filter((file) => existsSync(file))
 }
 
 const virtualId = 'virtual:content'
