@@ -1041,7 +1041,7 @@
       "distractors": {
         "A": "Parallel synchronous calls finish sooner but pay full price for work that has no latency need.",
         "C": "Streaming helps interactive latency, not cost, and batches do not support it.",
-        "D": "Fast mode costs more, not less, and is not available in batches."
+        "D": "Fast mode tunes synchronous latency, which does not apply to batches."
       }
     },
     "concepts": [
@@ -1214,7 +1214,7 @@
       },
       {
         "key": "B",
-        "text": "Fetch each account's data beforehand and include it in that request's prompt."
+        "text": "Prefetch each account's data into that request's prompt."
       },
       {
         "key": "C",
@@ -1306,7 +1306,7 @@
     "options": [
       {
         "key": "A",
-        "text": "Review each document in its own pass, then run a cross-document consistency pass."
+        "text": "Review each document separately, then run a consistency pass."
       },
       {
         "key": "B",

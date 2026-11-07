@@ -220,7 +220,7 @@
       "B"
     ],
     "explanation": {
-      "correct": ".claude/rules/ holds topic-specific rule files. Rules without paths frontmatter load at launch with the same priority as the project CLAUDE.md, so behavior stays the same while each team owns a small file.",
+      "correct": ".claude/rules/ holds topic-specific rule files. Rules without paths frontmatter load at launch, alongside the project CLAUDE.md, so behavior stays the same while each team owns a small file.",
       "distractors": {
         "A": "A table of contents helps navigation but leaves four teams editing one file, so the merge conflicts remain.",
         "C": "These rules apply to all work. Skills load on demand, so the rules would sometimes be missing.",
