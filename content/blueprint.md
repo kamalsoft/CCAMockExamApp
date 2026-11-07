@@ -39,6 +39,9 @@ The full task-statement titles are in `content/domains.json`. The guide's §6 al
 - The guide calls the subagent tool `Task`. Current docs call it `Agent` (renamed in Claude Code v2.1.63; `Task` still appears in the `system:init` tools list).
 - The guide says `allowedTools` must include `Task` for a coordinator to spawn subagents. Current docs say `allowedTools` only auto-approves listed tools; unlisted tools stay available through the permission flow.
 - Current docs let subagents spawn their own subagents (default depth 3), and run subagents in the background by default.
+- Forced `tool_choice` (`any` or a named `tool`) returns a 400 on Claude Opus 5.5, Claude Sonnet 5.5, Claude Fable 5.1, and Claude Mythos 5.1. Other models, such as Claude Opus 5, accept it. Questions about forced tool use must name a model that supports it, or test the replacement (`auto` plus `strict: true`). Source: https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools (checked 2026-11-07).
+- The guide recommends splitting generic tools into purpose-specific ones. Current docs recommend consolidating related operations into fewer tools with an `action` parameter. Both hold: split a tool that hides different input and output contracts; consolidate near-duplicate operations. Questions must make clear which situation applies.
+- On macOS, Linux, and WSL, current Claude Code leaves `Glob` and `Grep` out of the default tool set and searches with `find` and `grep` through Bash. The guide treats them as always present. Questions test content search vs file-name search rather than the tool names. Source: https://code.claude.com/docs/en/tools-reference (checked 2026-11-07).
 
 Rules for this file:
 
