@@ -63,8 +63,8 @@ This document outlines the core principles and operational framework for all eng
 
 Every milestone and every change into a milestone goes through the completion process in PLAN.md, section 11. In short:
 - Dev builds on one branch, and all checks pass before the PR opens.
-- QA (Quinn) reviews the PR against the acceptance criteria and reports READY or NOT READY to the owner. QA does not edit, commit, approve, or message Dev.
-- The owner approves and merges only after a READY verdict. Dev never merges its own PR, and questions are marked reviewed only after the owner signs off.
+- QA (Quinn) reviews the PR against the acceptance criteria and reports READY FOR SIGN-OFF or NOT READY to the owner. QA does not edit, commit, approve, or message Dev.
+- The owner approves and merges only after a READY FOR SIGN-OFF verdict. Dev never merges its own PR, and questions are marked reviewed only after the owner signs off.
 
 ## Standard Workflow Matrix
 

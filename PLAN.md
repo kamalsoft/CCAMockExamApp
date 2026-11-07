@@ -224,8 +224,8 @@ Dev and QA do not message each other. QA works from the repository and the PR, n
 3. **QA review.** QA checks each acceptance criterion in BACKLOG.md or PLAN.md section 9, runs the full check suite on the PR branch, and looks for regressions and docs that no longer match the code. QA then reports one of two verdicts to the owner:
    - **READY FOR SIGN-OFF**, with the evidence for each criterion.
    - **NOT READY**, with ranked findings, each saying what would fix it.
-4. **Fix and re-check.** If QA says NOT READY, Dev fixes the findings on the same branch. QA re-checks the changed items before the verdict changes to READY.
-5. **Approval.** The owner reviews the PR and the QA report, then approves and merges. Merge only after a READY verdict. A deferral of an acceptance criterion is the owner's decision, and it is recorded against that criterion.
+4. **Fix and re-check.** If QA says NOT READY, Dev fixes the findings on the same branch. QA re-checks the changed items before the verdict changes to READY FOR SIGN-OFF.
+5. **Approval.** The owner reviews the PR and the QA report, then approves and merges. Merge only after a READY FOR SIGN-OFF verdict. A deferral of an acceptance criterion is the owner's decision. Record it in the milestone's status row, and name the criterion it applies to.
 6. **Close out.** After the merge, Dev records the milestone in CHANGELOG.md and updates the status in PLAN.md and BACKLOG.md, then deletes the branch.
 
 **Rules that stay in force**
