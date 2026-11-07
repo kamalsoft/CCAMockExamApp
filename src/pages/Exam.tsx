@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { button, QuestionCard } from '../components/QuestionCard.tsx'
 import { Results } from '../components/Results.tsx'
 import type { Responses } from '../lib/drill.ts'
@@ -115,7 +115,12 @@ function Running({ run, domains, responses, flagged, onAnswer, onFlag, onFinish 
   const remaining = remainingSeconds(run.endsAt, now)
   const question = run.questions[index]
   const unanswered = run.questions.filter((q) => !responses[q.id]?.length).length
+  // Starting the exam unmounts the Start button, so move focus into the exam.
+  const top = useRef<HTMLElement>(null)
 
+  useEffect(() => {
+    top.current?.focus()
+  }, [])
   useEffect(() => {
     const id = setInterval(() => setNow(Date.now()), 1000)
     return () => clearInterval(id)
@@ -125,7 +130,7 @@ function Running({ run, domains, responses, flagged, onAnswer, onFlag, onFinish 
   }, [remaining, onFinish])
 
   return (
-    <section>
+    <section ref={top} tabIndex={-1} className="focus:outline-none">
       <div className="flex items-center justify-between text-sm text-gray-600">
         <span>
           Question {index + 1} of {run.questions.length} · {domains.find((d) => d.id === question.domain)?.name}
@@ -206,7 +211,7 @@ function Running({ run, domains, responses, flagged, onAnswer, onFlag, onFinish 
               <button type="button" className={button} onClick={() => onFinish('manual')}>
                 Confirm submit
               </button>
-              <button type="button" className={secondary} onClick={() => setConfirming(false)}>
+              <button type="button" className={secondary} autoFocus onClick={() => setConfirming(false)}>
                 Keep working
               </button>
             </div>

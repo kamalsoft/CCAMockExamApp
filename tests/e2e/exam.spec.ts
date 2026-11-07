@@ -59,3 +59,12 @@ test('exam submits itself when time runs out', async ({ page }) => {
   await expect(page.getByRole('heading', { name: 'Results' })).toBeVisible()
   await expect(page.getByText(/Time ran out, so the exam was submitted automatically/)).toBeVisible()
 })
+
+test('focus moves into the exam on start and to "Keep working" when the submit dialog opens', async ({ page }) => {
+  await page.goto('/')
+  await startExam(page)
+  await expect(page.locator(':focus')).toHaveAttribute('tabindex', '-1')
+
+  await page.getByRole('button', { name: 'Submit exam' }).click()
+  await expect(page.getByRole('button', { name: 'Keep working' })).toBeFocused()
+})

@@ -49,3 +49,14 @@ test('start is disabled until a domain is chosen', async ({ page }) => {
   await expect(page.getByText('0 questions match')).toBeVisible()
   await expect(page.getByRole('button', { name: 'Start drill' })).toBeDisabled()
 })
+
+test('focus moves to each new question in a drill', async ({ page }) => {
+  await startHardD1Drill(page, true)
+  await expect(page.locator(':focus')).toHaveAttribute('tabindex', '-1')
+
+  await page.locator('fieldset input').first().check()
+  await page.getByRole('button', { name: 'Submit answer' }).click()
+  await page.getByRole('button', { name: 'Next' }).click()
+  await expect(page.getByText(/^Question 2 of/)).toBeVisible()
+  await expect(page.locator(':focus')).toHaveAttribute('tabindex', '-1')
+})

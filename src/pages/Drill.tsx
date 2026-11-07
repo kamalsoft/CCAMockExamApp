@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Explanation } from '../components/Explanation.tsx'
 import { button, QuestionCard } from '../components/QuestionCard.tsx'
 import { Results } from '../components/Results.tsx'
@@ -139,9 +139,14 @@ function QuestionView({ question, position, domainName, explainImmediately, onAn
   const [selected, setSelected] = useState<string[]>([])
   const [submitted, setSubmitted] = useState(false)
   const submit = () => (explainImmediately ? setSubmitted(true) : onAnswer(selected))
+  // Each new question is a new element, so move focus to it rather than dropping it to the page.
+  const top = useRef<HTMLElement>(null)
+  useEffect(() => {
+    top.current?.focus()
+  }, [])
 
   return (
-    <section>
+    <section ref={top} tabIndex={-1} className="focus:outline-none">
       <p className="text-sm text-gray-600">
         {position} · {domainName} · {question.difficulty}
       </p>
