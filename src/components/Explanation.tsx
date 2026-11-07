@@ -1,11 +1,5 @@
-import { content } from '../content.ts'
+import { conceptAnchor } from '../content.ts'
 import type { Question } from '../lib/schema.ts'
-
-// The walkthrough section that explains a concept, if the question's domain has one.
-function conceptAnchor(domainId: string, concept: string) {
-  const page = content.walkthroughs.find((w) => w.domainId === domainId)
-  return page?.sections.find((s) => s.concepts.includes(concept))?.anchor
-}
 
 // Correct reasoning first, then a short note on each distractor.
 export function Explanation({ question }: { question: Question }) {

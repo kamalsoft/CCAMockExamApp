@@ -3,25 +3,34 @@ import { button, QuestionCard } from '../components/QuestionCard.tsx'
 import { Results } from '../components/Results.tsx'
 import type { Responses } from '../lib/drill.ts'
 import { assembleExam, EXAM_ITEMS, EXAM_MINUTES, formatTime, remainingSeconds } from '../lib/exam.ts'
+import { makeAttempt, type Attempt } from '../lib/progress.ts'
 import type { Domain, Question } from '../lib/schema.ts'
 
 type Props = { domains: Domain[]; questions: Question[] }
-type Run = { questions: Question[]; endsAt: number }
+type Run = { questions: Question[]; startedAt: number; endsAt: number }
 
 const secondary = 'rounded border border-gray-400 px-4 py-2 font-medium hover:bg-gray-100 disabled:text-gray-400'
 
-export function Exam({ domains, questions }: Props) {
+export function Exam({ domains, questions, onComplete }: Props & { onComplete: (attempt: Attempt) => void }) {
   const preview = useMemo(() => assembleExam(questions, domains), [questions, domains])
   const [run, setRun] = useState<Run | null>(null)
   const [responses, setResponses] = useState<Responses>({})
   const [flagged, setFlagged] = useState<string[]>([])
   const [finished, setFinished] = useState<'manual' | 'timeout' | null>(null)
 
+  // Recorded once per run: the attempt id comes from the start time, and saving ignores repeat ids.
+  useEffect(() => {
+    if (finished && run) {
+      onComplete(makeAttempt('exam', run.questions, responses, run.startedAt, run.questions.length === EXAM_ITEMS))
+    }
+  }, [finished, run, responses, onComplete])
+
   const start = () => {
+    const now = Date.now()
     setResponses({})
     setFlagged([])
     setFinished(null)
-    setRun({ questions: assembleExam(questions, domains).questions, endsAt: Date.now() + EXAM_MINUTES * 60_000 })
+    setRun({ questions: assembleExam(questions, domains).questions, startedAt: now, endsAt: now + EXAM_MINUTES * 60_000 })
   }
 
   if (!run) return <Intro domains={domains} preview={preview} onStart={start} />

@@ -2,11 +2,12 @@ import { useEffect } from 'react'
 import type { WalkthroughPage } from '../lib/content-index.ts'
 import type { Domain } from '../lib/schema.ts'
 
-export function Walkthrough({ walkthroughs, domains, domainId, anchor }: {
+export function Walkthrough({ walkthroughs, domains, domainId, anchor, onSeen }: {
   walkthroughs: WalkthroughPage[]
   domains: Domain[]
   domainId?: string
   anchor?: string
+  onSeen: (domainId: string) => void
 }) {
   const page = walkthroughs.find((w) => w.domainId === domainId)
 
@@ -14,6 +15,10 @@ export function Walkthrough({ walkthroughs, domains, domainId, anchor }: {
     if (anchor) document.getElementById(anchor)?.scrollIntoView()
     else window.scrollTo(0, 0)
   }, [anchor, domainId])
+
+  useEffect(() => {
+    if (page) onSeen(page.domainId)
+  }, [page, onSeen])
 
   if (!page) return <DocIndex kind="walkthrough" label="Walkthroughs" pages={walkthroughs} domains={domains} />
   return (
