@@ -89,7 +89,7 @@
     ],
     "source": "original",
     "sources": [
-      "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (checked 2026-11-07)"
+      "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
     ],
     "review_status": "draft",
     "reviewed_by": null,
@@ -137,7 +137,7 @@
     ],
     "source": "original",
     "sources": [
-      "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (checked 2026-11-07)"
+      "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
     ],
     "review_status": "draft",
     "reviewed_by": null,
@@ -233,7 +233,7 @@
     ],
     "source": "original",
     "sources": [
-      "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (checked 2026-11-07)"
+      "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
     ],
     "review_status": "draft",
     "reviewed_by": null,
@@ -906,7 +906,7 @@
     ],
     "source": "original",
     "sources": [
-      "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (checked 2026-11-07)"
+      "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
     ],
     "review_status": "draft",
     "reviewed_by": null,
@@ -1386,7 +1386,7 @@
     ],
     "source": "original",
     "sources": [
-      "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (checked 2026-11-07)"
+      "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
     ],
     "review_status": "draft",
     "reviewed_by": null,
@@ -1421,7 +1421,7 @@
       "C"
     ],
     "explanation": {
-      "correct": "A model that keeps the reasoning context from generation tends not to question its own decisions. An independent instance, given only the spec and the migration, reviews what was actually written.",
+      "correct": "A model that keeps its generation context may repeat the same assumptions when it reviews its own work. An independent instance, given only the spec and the migration, reviews what was actually written.",
       "distractors": {
         "A": "More effort in the same context still reasons from the same assumptions.",
         "B": "Listing assumptions shows what the session already noticed, not what it missed.",

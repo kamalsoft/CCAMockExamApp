@@ -41,7 +41,7 @@
     ],
     "source": "original",
     "sources": [
-      "https://code.claude.com/docs/en/agent-sdk/agent-loop (checked 2026-11-07)"
+      "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
     ],
     "review_status": "draft",
     "reviewed_by": null,
@@ -329,7 +329,7 @@
     ],
     "source": "original",
     "sources": [
-      "https://code.claude.com/docs/en/agent-sdk/agent-loop (checked 2026-11-07)"
+      "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
     ],
     "review_status": "draft",
     "reviewed_by": null,
@@ -377,7 +377,7 @@
     ],
     "source": "original",
     "sources": [
-      "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (checked 2026-11-07)"
+      "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
     ],
     "review_status": "draft",
     "reviewed_by": null,
@@ -425,7 +425,7 @@
     ],
     "source": "original",
     "sources": [
-      "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (checked 2026-11-07)"
+      "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
     ],
     "review_status": "draft",
     "reviewed_by": null,
@@ -473,7 +473,7 @@
     ],
     "source": "original",
     "sources": [
-      "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (checked 2026-11-07)"
+      "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
     ],
     "review_status": "draft",
     "reviewed_by": null,
@@ -521,7 +521,7 @@
     ],
     "source": "original",
     "sources": [
-      "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (checked 2026-11-07)"
+      "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
     ],
     "review_status": "draft",
     "reviewed_by": null,
@@ -569,7 +569,7 @@
     ],
     "source": "original",
     "sources": [
-      "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (checked 2026-11-07)"
+      "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
     ],
     "review_status": "draft",
     "reviewed_by": null,
@@ -617,7 +617,7 @@
     ],
     "source": "original",
     "sources": [
-      "https://code.claude.com/docs/en/agent-sdk/subagents (checked 2026-11-07)"
+      "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
     ],
     "review_status": "draft",
     "reviewed_by": null,
@@ -665,7 +665,7 @@
     ],
     "source": "original",
     "sources": [
-      "https://code.claude.com/docs/en/agent-sdk/subagents (checked 2026-11-07)"
+      "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
     ],
     "review_status": "draft",
     "reviewed_by": null,
@@ -713,7 +713,7 @@
     ],
     "source": "original",
     "sources": [
-      "https://code.claude.com/docs/en/agent-sdk/subagents (checked 2026-11-07)"
+      "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
     ],
     "review_status": "draft",
     "reviewed_by": null,
@@ -761,7 +761,7 @@
     ],
     "source": "original",
     "sources": [
-      "https://code.claude.com/docs/en/agent-sdk/subagents (checked 2026-11-07)"
+      "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
     ],
     "review_status": "draft",
     "reviewed_by": null,
@@ -809,7 +809,7 @@
     ],
     "source": "original",
     "sources": [
-      "https://code.claude.com/docs/en/agent-sdk/agent-loop (checked 2026-11-07)"
+      "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
     ],
     "review_status": "draft",
     "reviewed_by": null,
@@ -905,7 +905,7 @@
     ],
     "source": "original",
     "sources": [
-      "https://code.claude.com/docs/en/agent-sdk/agent-loop (checked 2026-11-07)"
+      "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
     ],
     "review_status": "draft",
     "reviewed_by": null,
@@ -940,7 +940,7 @@
       "B"
     ],
     "explanation": {
-      "correct": "/compact summarizes older history to free space while keeping the thread. Compaction can drop specific early instructions, so rules that must persist belong in CLAUDE.md, which Claude re-reads and re-injects after /compact.",
+      "correct": "/compact summarizes older history to free space while keeping the thread. Compaction can drop specific early instructions, so rules that must persist belong in CLAUDE.md, which is re-injected on every request.",
       "distractors": {
         "A": "/clear empties the context, so the developer has to rebuild everything by hand.",
         "C": "A fresh session without a summary loses the progress made so far.",
@@ -989,7 +989,7 @@
       "C"
     ],
     "explanation": {
-      "correct": "Compaction replaces older messages with a summary, so specific early instructions may not survive. CLAUDE.md is re-read and re-injected after compaction, which makes it the place for persistent rules. A PreToolUse hook makes the rule deterministic if it must hold every time.",
+      "correct": "Compaction replaces older messages with a summary, so specific early instructions may not survive. CLAUDE.md is re-injected on every request, which makes it the place for persistent rules. A PreToolUse hook makes the rule deterministic if it must hold every time.",
       "distractors": {
         "A": "Manual repetition is fragile and depends on the developer remembering.",
         "B": "Without compaction, long sessions hit the context limit and fail.",
@@ -1243,7 +1243,7 @@
     ],
     "source": "original",
     "sources": [
-      "https://code.claude.com/docs/en/agent-sdk/subagents (checked 2026-11-07)"
+      "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
     ],
     "review_status": "draft",
     "reviewed_by": null,
@@ -1291,7 +1291,7 @@
     ],
     "source": "original",
     "sources": [
-      "https://code.claude.com/docs/en/agent-sdk/subagents (checked 2026-11-07)"
+      "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
     ],
     "review_status": "draft",
     "reviewed_by": null,
@@ -1339,7 +1339,7 @@
     ],
     "source": "original",
     "sources": [
-      "https://code.claude.com/docs/en/agent-sdk/subagents (checked 2026-11-07)"
+      "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
     ],
     "review_status": "draft",
     "reviewed_by": null,
@@ -1387,7 +1387,7 @@
     ],
     "source": "original",
     "sources": [
-      "https://code.claude.com/docs/en/agent-sdk/subagents (checked 2026-11-07)"
+      "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
     ],
     "review_status": "draft",
     "reviewed_by": null,

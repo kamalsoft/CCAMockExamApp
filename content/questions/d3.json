@@ -490,7 +490,7 @@
     "options": [
       {
         "key": "A",
-        "text": "It only pre-approves tools. Run the skill in a subagent limited to them."
+        "text": "It only pre-approves tools. Run the skill with context: fork, using an agent with a restricted tool list."
       },
       {
         "key": "B",
@@ -762,7 +762,7 @@
     ],
     "source": "original",
     "sources": [
-      "https://code.claude.com/docs/en/common-workflows (checked 2026-11-07)"
+      "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
     ],
     "review_status": "draft",
     "reviewed_by": null,
@@ -810,7 +810,7 @@
     ],
     "source": "original",
     "sources": [
-      "https://code.claude.com/docs/en/common-workflows (checked 2026-11-07)"
+      "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
     ],
     "review_status": "draft",
     "reviewed_by": null,
@@ -907,7 +907,7 @@
     ],
     "source": "original",
     "sources": [
-      "https://code.claude.com/docs/en/common-workflows (checked 2026-11-07)"
+      "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
     ],
     "review_status": "draft",
     "reviewed_by": null,
@@ -1003,7 +1003,7 @@
     ],
     "source": "original",
     "sources": [
-      "https://code.claude.com/docs/en/common-workflows (checked 2026-11-07)"
+      "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
     ],
     "review_status": "draft",
     "reviewed_by": null,
@@ -1051,7 +1051,7 @@
     ],
     "source": "original",
     "sources": [
-      "https://code.claude.com/docs/en/common-workflows (checked 2026-11-07)"
+      "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
     ],
     "review_status": "draft",
     "reviewed_by": null,
@@ -1099,7 +1099,7 @@
     ],
     "source": "original",
     "sources": [
-      "https://code.claude.com/docs/en/common-workflows (checked 2026-11-07)"
+      "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
     ],
     "review_status": "draft",
     "reviewed_by": null,
@@ -1147,7 +1147,7 @@
     ],
     "source": "original",
     "sources": [
-      "https://code.claude.com/docs/en/common-workflows (checked 2026-11-07)"
+      "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
     ],
     "review_status": "draft",
     "reviewed_by": null,
