@@ -16,16 +16,27 @@ export const AttemptSchema = z.object({
   full: z.boolean(),
 })
 
+// A drill paused partway through. Stores question IDs, so the questions come back from the bank on resume.
+export const DrillSnapshotSchema = z.object({
+  questionIds: z.array(z.string()),
+  responses: z.record(z.string(), z.array(z.string())),
+  startedAt: z.number(),
+  explainImmediately: z.boolean(),
+})
+
 const ProgressSchema = z.object({
   attempts: z.array(AttemptSchema),
   labsCompleted: z.record(z.string(), z.boolean()),
   walkthroughsSeen: z.record(z.string(), z.string()),
+  // Optional in stored data from before pause existed.
+  drill: DrillSnapshotSchema.nullable().default(null),
 })
 
 export type Attempt = z.infer<typeof AttemptSchema>
+export type DrillSnapshot = z.infer<typeof DrillSnapshotSchema>
 export type Progress = z.infer<typeof ProgressSchema>
 
-export const emptyProgress = (): Progress => ({ attempts: [], labsCompleted: {}, walkthroughsSeen: {} })
+export const emptyProgress = (): Progress => ({ attempts: [], labsCompleted: {}, walkthroughsSeen: {}, drill: null })
 
 /** Where progress lives. localStorage today; a backend can implement the same interface later. */
 export type ProgressRepository = { load(): Progress; save(progress: Progress): void }

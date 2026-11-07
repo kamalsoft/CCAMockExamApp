@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState, useSyncExternalStore } from 'react'
 import { content } from './content.ts'
-import { emptyProgress, localStorageRepository, recordAttempt, type Attempt } from './lib/progress.ts'
+import { emptyProgress, localStorageRepository, recordAttempt, type Attempt, type DrillSnapshot } from './lib/progress.ts'
 import { parseRoute } from './lib/route.ts'
 import { Drill } from './pages/Drill.tsx'
 import { Exam } from './pages/Exam.tsx'
@@ -30,6 +30,7 @@ function App() {
 
   // Stable callbacks, so pages can list them as effect dependencies without re-running.
   const onComplete = useCallback((attempt: Attempt) => setProgress((p) => recordAttempt(p, attempt)), [])
+  const onSaveDrill = useCallback((drill: DrillSnapshot | null) => setProgress((p) => ({ ...p, drill })), [])
   const onSeen = useCallback(
     (domainId: string) => setProgress((p) => ({ ...p, walkthroughsSeen: { ...p.walkthroughsSeen, [domainId]: new Date().toISOString() } })),
     [],
@@ -57,7 +58,13 @@ function App() {
       </nav>
       {/* Drill and exam stay mounted so switching pages never loses a running exam or its timer. */}
       <div className="mt-6" hidden={route.page !== 'drill'}>
-        <Drill domains={content.domains} questions={content.questions} onComplete={onComplete} />
+        <Drill
+          domains={content.domains}
+          questions={content.questions}
+          saved={progress.drill}
+          onSave={onSaveDrill}
+          onComplete={onComplete}
+        />
       </div>
       <div className="mt-6" hidden={route.page !== 'exam'}>
         <Exam domains={content.domains} questions={content.questions} onComplete={onComplete} />

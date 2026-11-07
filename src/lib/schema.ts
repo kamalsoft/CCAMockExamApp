@@ -21,6 +21,8 @@ export const QuestionSchema = z
     difficulty: z.enum(['easy', 'medium', 'hard']),
     type: z.enum(['single', 'multi']),
     scenario: text.optional(),
+    // Shown on demand in drill mode only. Points at the reasoning without naming the answer.
+    hint: text.optional(),
     question: text,
     options: z.array(z.object({ key: z.string().regex(/^[A-E]$/), text })).min(4).max(5),
     answer: z.array(z.string()).min(1),
