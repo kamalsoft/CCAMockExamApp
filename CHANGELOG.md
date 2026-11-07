@@ -1,5 +1,14 @@
 # Changelog
 
+## Milestone 4: Mock exam mode (2026-11-07)
+
+- Mock exam page: questions assembled by domain weight (60 items, split 16/11/12/12/9 by largest-remainder rounding), a 120-minute countdown, and automatic submission at zero.
+- Navigation with Previous/Next and a question palette showing answered and flagged questions; flag for review; confirmation before submitting, listing unanswered and flagged counts.
+- No explanations until submission; results show the overall score, score by domain, unanswered count, and a full review.
+- When the bank can't fill a domain's share, the exam uses what exists and the intro lists each short domain. Today only d1 has questions, so exams have 16 items.
+- Mode switcher between Domain drill and Mock exam. Both stay mounted, so switching never loses a running exam or its timer.
+- Shared `QuestionCard` and `Results` components used by both modes. Answer groups now use a unique name per card, so a drill and an exam showing the same question can't interfere.
+
 ## Milestone 3: Drill mode (2026-11-07)
 
 - Drill screen: choose domains and a difficulty, answer one question at a time, and see explanations right after each answer or at the end.
