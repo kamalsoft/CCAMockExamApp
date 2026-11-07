@@ -1,11 +1,5 @@
 # Changelog
 
-## Milestone 8: Polish and calibration (in progress, 2026-11-07)
-
-- Accessibility: focus moves to each new drill question and into the exam when it starts, and to "Keep working" when the submit dialog opens, so keyboard and screen-reader users aren't dropped to the top of the page.
-- Mobile: 16px page gutter on phones, and walkthrough tables scroll sideways instead of squeezing. Checked at 360px wide on every page: no horizontal page scroll.
-- Not yet: difficulty calibration against official practice materials. This needs those materials and a human reviewer.
-
 ## Milestone 7: Progress and readiness (2026-11-07)
 
 - Progress page: readiness as an estimate, with each condition marked met or not and why; mock exam history with per-domain scores; the five weakest concepts, linked to their walkthrough sections; and a reset that asks for confirmation.

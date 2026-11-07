@@ -4,7 +4,7 @@
 | --- | --- |
 | **Created** | 2026-11-07 |
 | **Last updated** | 2026-11-07 |
-| **Status** | Milestone 7 done; Milestone 8 in progress (accessibility and mobile done, difficulty calibration pending); Milestone 6 awaiting review of d3–d5 questions |
+| **Status** | Milestone 7 done; Milestone 6 awaiting review of d3–d5 questions; Milestone 8 next |
 | **Related** | [CLAUDE.md](CLAUDE.md) · [content/blueprint.md](content/blueprint.md) · [CHANGELOG.md](CHANGELOG.md) |
 
 ## Contents
@@ -173,7 +173,7 @@ Each milestone ends with a working build and a short changelog entry.
 | 5 | Walkthrough and lab for the pilot domain | One complete end-to-end example. | Done (d1) |
 | 6 | Replicate across domains | Repeat the content work for the remaining domains. | In progress: walkthroughs and labs done for all five domains; d1–d2 questions reviewed; d3–d5 questions (90) drafted and awaiting review |
 | 7 | Progress and readiness | Progress tracking and readiness indicator. | Done |
-| 8 | Polish and calibration | Accessibility pass, mobile layout, and difficulty review against the official practice materials. | In progress: accessibility and mobile layout done; difficulty calibration needs the official practice materials and a human reviewer |
+| 8 | Polish and calibration | Accessibility pass, mobile layout, and difficulty review against the official practice materials. | Not started |
 
 ## 9. Acceptance criteria
 
