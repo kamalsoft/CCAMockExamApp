@@ -43,9 +43,9 @@
     "sources": [
       "https://code.claude.com/docs/en/memory (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d3-002",
@@ -91,9 +91,9 @@
     "sources": [
       "https://code.claude.com/docs/en/memory (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d3-003",
@@ -139,9 +139,9 @@
     "sources": [
       "https://code.claude.com/docs/en/memory (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d3-004",
@@ -187,9 +187,9 @@
     "sources": [
       "https://code.claude.com/docs/en/memory (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d3-005",
@@ -235,9 +235,9 @@
     "sources": [
       "https://code.claude.com/docs/en/memory (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d3-006",
@@ -283,9 +283,9 @@
     "sources": [
       "https://code.claude.com/docs/en/skills (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d3-007",
@@ -331,9 +331,9 @@
     "sources": [
       "https://code.claude.com/docs/en/skills (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d3-008",
@@ -379,9 +379,9 @@
     "sources": [
       "https://code.claude.com/docs/en/skills (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d3-009",
@@ -428,9 +428,9 @@
       "https://code.claude.com/docs/en/skills (checked 2026-11-07)",
       "https://code.claude.com/docs/en/memory (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d3-010",
@@ -476,9 +476,9 @@
     "sources": [
       "https://code.claude.com/docs/en/skills (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d3-011",
@@ -524,9 +524,9 @@
     "sources": [
       "https://code.claude.com/docs/en/skills (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d3-012",
@@ -572,9 +572,9 @@
     "sources": [
       "https://code.claude.com/docs/en/skills (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d3-013",
@@ -620,9 +620,9 @@
     "sources": [
       "https://code.claude.com/docs/en/memory (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d3-014",
@@ -668,9 +668,9 @@
     "sources": [
       "https://code.claude.com/docs/en/memory (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d3-015",
@@ -716,9 +716,9 @@
     "sources": [
       "https://code.claude.com/docs/en/memory (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d3-016",
@@ -764,9 +764,9 @@
     "sources": [
       "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d3-017",
@@ -812,9 +812,9 @@
     "sources": [
       "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d3-018",
@@ -861,9 +861,9 @@
       "https://code.claude.com/docs/en/common-workflows (checked 2026-11-07)",
       "https://code.claude.com/docs/en/agent-sdk/subagents (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d3-019",
@@ -909,9 +909,9 @@
     "sources": [
       "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d3-020",
@@ -957,9 +957,9 @@
     "sources": [
       "https://code.claude.com/docs/en/common-workflows (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d3-021",
@@ -1005,9 +1005,9 @@
     "sources": [
       "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d3-022",
@@ -1053,9 +1053,9 @@
     "sources": [
       "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d3-023",
@@ -1101,9 +1101,9 @@
     "sources": [
       "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d3-024",
@@ -1149,9 +1149,9 @@
     "sources": [
       "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d3-025",
@@ -1197,9 +1197,9 @@
     "sources": [
       "https://code.claude.com/docs/en/headless (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d3-026",
@@ -1245,9 +1245,9 @@
     "sources": [
       "https://code.claude.com/docs/en/headless (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d3-027",
@@ -1293,9 +1293,9 @@
     "sources": [
       "https://code.claude.com/docs/en/headless (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d3-028",
@@ -1341,9 +1341,9 @@
     "sources": [
       "https://code.claude.com/docs/en/headless (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d3-029",
@@ -1389,9 +1389,9 @@
     "sources": [
       "https://code.claude.com/docs/en/headless (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d3-030",
@@ -1438,8 +1438,8 @@
       "https://code.claude.com/docs/en/headless (checked 2026-11-07)",
       "https://code.claude.com/docs/en/memory (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   }
 ]

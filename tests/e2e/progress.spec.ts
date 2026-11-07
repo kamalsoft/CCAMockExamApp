@@ -25,11 +25,24 @@ test('a finished drill appears on the progress page, with concepts to revisit', 
 })
 
 test('a short mock exam is recorded but does not count toward readiness', async ({ page }) => {
-  await page.goto('/#exam')
-  await page.getByRole('button', { name: 'Start exam' }).click()
-  await page.getByRole('button', { name: 'Submit exam' }).click()
-  await page.getByRole('button', { name: 'Confirm submit' }).click()
-  await page.getByRole('link', { name: 'Progress' }).click()
+  // Every domain now fills a full exam, so seed a short one directly in storage.
+  await page.addInitScript(() => {
+    localStorage.setItem('cca-progress-v1', JSON.stringify({
+      attempts: [{
+        id: 'exam-short',
+        mode: 'exam',
+        started_at: '2026-11-07T10:00:00.000Z',
+        finished_at: '2026-11-07T10:20:00.000Z',
+        question_ids: ['d1-001'],
+        responses: { 'd1-001': ['B'] },
+        score_by_domain: { d1: { correct: 1, total: 1 } },
+        full: false,
+      }],
+      labsCompleted: {},
+      walkthroughsSeen: {},
+    }))
+  })
+  await page.goto('/#progress')
   await expect(page.getByText('short exam')).toBeVisible()
   await expect(condition(page, /full mock exams/)).toContainText('0 of 3 completed')
   await expect(page.getByText('Not ready yet')).toBeVisible()

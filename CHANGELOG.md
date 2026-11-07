@@ -14,14 +14,14 @@
 - `src/lib/progress.ts`: a small repository over `localStorage` that validates stored data and starts fresh if it's corrupt or unavailable, so a backend can replace it later.
 - Restored three `blueprint.md` notes (few-shot count, batch tool use, schema limits) that were lost while merging Milestone 6.
 
-## Milestone 6: Replicate across domains (in progress, 2026-11-07)
+## Milestone 6: Replicate across domains (2026-11-07)
 
 - Questions, walkthrough, and lab for each of d2–d5, matching the d1 pilot: 120 more original questions with sources checked 2026-11-07, every question concept covered by its domain's walkthrough, and one lab per domain.
 - Labs: `d2-tool-errors` (structured MCP errors and bounded retry), `d3-team-config` (Claude Code configuration, checked statically), `d4-extraction-loop` (validation, retry with feedback, batch result pairing), `d5-provenance-review` (provenance-preserving synthesis, calibrated routing, stratified sampling). None needs an API key.
 - CI runs every lab's typecheck and tests against its reference solution.
 - `blueprint.md` lists every place current docs differ from the exam guide, and the questions that test current behavior.
 - Fix: the dev server no longer fails when `content/labs/` contains a non-lab entry such as `.DS_Store`.
-- Review status: d2 questions reviewed. d3, d4, and d5 questions are drafts until reviewed, so the mock exam stays short of 60 until then.
+- Review: all 150 questions are reviewed. d3–d5 (90) were reviewed by kamalsoft on 2026-11-07, which completes the bank and gives the mock exam its full 60 items. The review fixed two answers that were the longest option, corrected wording, and replaced citations that didn't support their claims.
 
 ## Milestone 5: Walkthrough and lab for d1 (2026-11-07)
 

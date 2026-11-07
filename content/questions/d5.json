@@ -43,9 +43,9 @@
     "sources": [
       "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d5-002",
@@ -91,9 +91,9 @@
     "sources": [
       "https://code.claude.com/docs/en/agent-sdk/agent-loop (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d5-003",
@@ -139,9 +139,9 @@
     "sources": [
       "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d5-004",
@@ -187,9 +187,9 @@
     "sources": [
       "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d5-005",
@@ -235,9 +235,9 @@
     "sources": [
       "https://code.claude.com/docs/en/agent-sdk/agent-loop (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d5-006",
@@ -283,9 +283,9 @@
     "sources": [
       "https://code.claude.com/docs/en/agent-sdk/subagents (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d5-007",
@@ -331,9 +331,9 @@
     "sources": [
       "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d5-008",
@@ -379,9 +379,9 @@
     "sources": [
       "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d5-009",
@@ -427,9 +427,9 @@
     "sources": [
       "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d5-010",
@@ -475,9 +475,9 @@
     "sources": [
       "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d5-011",
@@ -523,9 +523,9 @@
     "sources": [
       "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d5-012",
@@ -571,9 +571,9 @@
     "sources": [
       "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d5-013",
@@ -619,9 +619,9 @@
     "sources": [
       "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d5-014",
@@ -667,9 +667,9 @@
     "sources": [
       "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d5-015",
@@ -715,9 +715,9 @@
     "sources": [
       "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d5-016",
@@ -763,9 +763,9 @@
     "sources": [
       "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d5-017",
@@ -811,9 +811,9 @@
     "sources": [
       "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d5-018",
@@ -859,9 +859,9 @@
     "sources": [
       "https://code.claude.com/docs/en/agent-sdk/subagents (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d5-019",
@@ -907,9 +907,9 @@
     "sources": [
       "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d5-020",
@@ -956,9 +956,9 @@
       "https://code.claude.com/docs/en/agent-sdk/agent-loop (checked 2026-11-07)",
       "https://code.claude.com/docs/en/memory (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d5-021",
@@ -1005,9 +1005,9 @@
       "https://code.claude.com/docs/en/agent-sdk/agent-loop (checked 2026-11-07)",
       "https://code.claude.com/docs/en/memory (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d5-022",
@@ -1053,9 +1053,9 @@
     "sources": [
       "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d5-023",
@@ -1101,9 +1101,9 @@
     "sources": [
       "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d5-024",
@@ -1149,9 +1149,9 @@
     "sources": [
       "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d5-025",
@@ -1197,9 +1197,9 @@
     "sources": [
       "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d5-026",
@@ -1245,9 +1245,9 @@
     "sources": [
       "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d5-027",
@@ -1293,9 +1293,9 @@
     "sources": [
       "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d5-028",
@@ -1341,9 +1341,9 @@
     "sources": [
       "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d5-029",
@@ -1389,9 +1389,9 @@
     "sources": [
       "Design guidance, not a claim from Anthropic docs (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d5-030",
@@ -1437,8 +1437,8 @@
     "sources": [
       "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   }
 ]
