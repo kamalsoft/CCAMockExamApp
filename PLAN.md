@@ -4,7 +4,7 @@
 | --- | --- |
 | **Created** | 2026-11-07 |
 | **Last updated** | 2026-11-07 |
-| **Status** | Milestone 6 in progress (d1–d2 done, d3–d4 drafted) |
+| **Status** | Milestone 6 in progress: all content written; d3–d5 questions awaiting review |
 | **Related** | [CLAUDE.md](CLAUDE.md) · [content/blueprint.md](content/blueprint.md) · [CHANGELOG.md](CHANGELOG.md) |
 
 ## Contents
@@ -170,7 +170,7 @@ Each milestone ends with a working build and a short changelog entry.
 | 3 | Drill mode | Domain selection, answer flow, explanation display, and results. | Done |
 | 4 | Mock exam mode | Assembly by weight, timer, navigation, auto-submit, and results screen. | Done (full 60 items once Milestone 6 adds d2–d5 content) |
 | 5 | Walkthrough and lab for the pilot domain | One complete end-to-end example. | Done (d1) |
-| 6 | Replicate across domains | Repeat the content work for the remaining domains. | In progress: d2 done (30 reviewed questions, walkthrough, lab); d3 and d4 walkthroughs and labs done, 30 questions each drafted and awaiting review; d5 not started |
+| 6 | Replicate across domains | Repeat the content work for the remaining domains. | In progress: walkthroughs and labs done for all five domains; d1–d2 questions reviewed; d3–d5 questions (90) drafted and awaiting review |
 | 7 | Progress and readiness | Progress tracking and readiness indicator. | Not started |
 | 8 | Polish and calibration | Accessibility pass, mobile layout, and difficulty review against the official practice materials. | Not started |
 

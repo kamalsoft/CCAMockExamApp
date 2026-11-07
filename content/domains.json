@@ -36,7 +36,7 @@
     "name": "Context Management & Reliability",
     "weight": 15,
     "description": "Task statements: 5.1 Manage conversation context to preserve critical information across long interactions; 5.2 Design effective escalation and ambiguity resolution patterns; 5.3 Implement error propagation strategies across multi-agent systems; 5.4 Manage context effectively in large codebase exploration; 5.5 Design human review workflows and confidence calibration; 5.6 Preserve information provenance and handle uncertainty in multi-source synthesis.",
-    "walkthroughId": null,
-    "labId": null
+    "walkthroughId": "d5",
+    "labId": "d5-provenance-review"
   }
 ]

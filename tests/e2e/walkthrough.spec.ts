@@ -3,7 +3,9 @@ import { expect, test } from '@playwright/test'
 test('browse to the d1 walkthrough and on to its lab', async ({ page }) => {
   await page.goto('/')
   await page.getByRole('link', { name: 'Walkthroughs' }).click()
-  await expect(page.getByText('Context Management & Reliability (coming soon)')).toBeVisible()
+  // Every domain has a walkthrough now, so the index lists five links and nothing "coming soon".
+  await expect(page.getByRole('main').getByRole('listitem').getByRole('link')).toHaveCount(5)
+  await expect(page.getByText(/coming soon/)).toHaveCount(0)
 
   await page.getByRole('link', { name: 'Agentic Architecture & Orchestration' }).click()
   await expect(page).toHaveURL(/#walkthrough-d1$/)
