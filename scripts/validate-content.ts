@@ -3,14 +3,21 @@ import { join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { z } from 'zod'
 import { DomainsSchema, QuestionSchema } from '../src/lib/schema.ts'
+import { parseWalkthrough } from '../src/lib/walkthrough.ts'
 
 type Report = { errors: string[]; warnings: string[] }
+// Markdown keyed by walkthrough id (walkthroughs/<id>.md) and by domain id (labs/<domain>/README.md).
+export type Docs = { walkthroughs: Record<string, string>; labs: Record<string, string> }
 
 const format = (where: string, error: z.ZodError) =>
   error.issues.map((i) => `${where}${i.path.length ? `.${i.path.join('.')}` : ''}: ${i.message}`)
 
 // questionFiles maps a file name like "d1.json" to its parsed JSON.
-export function checkContent(domainsJson: unknown, questionFiles: Record<string, unknown>): Report {
+export function checkContent(
+  domainsJson: unknown,
+  questionFiles: Record<string, unknown>,
+  docs: Docs = { walkthroughs: {}, labs: {} },
+): Report {
   const report: Report = { errors: [], warnings: [] }
 
   const domains = DomainsSchema.safeParse(domainsJson)
@@ -30,6 +37,7 @@ export function checkContent(domainsJson: unknown, questionFiles: Record<string,
   }
 
   const seenIds = new Set<string>()
+  const conceptUses: Record<string, Record<string, string[]>> = {} // domain -> concept -> question ids
   for (const [file, json] of Object.entries(questionFiles)) {
     const fileDomain = file.replace(/\.json$/, '')
     if (!domainIds.includes(fileDomain)) report.errors.push(`questions/${file}: no domain "${fileDomain}" in domains.json`)
@@ -46,7 +54,25 @@ export function checkContent(domainsJson: unknown, questionFiles: Record<string,
       if (q.data.domain !== fileDomain) report.errors.push(`${q.data.id}: domain "${q.data.domain}" does not match file ${file}`)
       if (seenIds.has(q.data.id)) report.errors.push(`${q.data.id}: duplicate question id`)
       seenIds.add(q.data.id)
+      for (const c of q.data.concepts) ((conceptUses[q.data.domain] ??= {})[c] ??= []).push(q.data.id)
     })
+  }
+
+  for (const d of domains.data) {
+    if (d.labId && !docs.labs[d.id]) report.errors.push(`domains.json: ${d.id} has labId but no content/labs/${d.id}/README.md`)
+    if (!d.walkthroughId) continue
+    const markdown = docs.walkthroughs[d.walkthroughId]
+    if (!markdown) {
+      report.errors.push(`domains.json: ${d.id} has no content/walkthroughs/${d.walkthroughId}.md`)
+      continue
+    }
+    // Every concept a question tests must link to a walkthrough section that explains it.
+    const covered = new Set(parseWalkthrough(markdown).sections.flatMap((s) => s.concepts))
+    for (const [concept, ids] of Object.entries(conceptUses[d.id] ?? {})) {
+      if (!covered.has(concept)) {
+        report.errors.push(`walkthroughs/${d.walkthroughId}.md: no section lists concept "${concept}" (used by ${ids.join(', ')})`)
+      }
+    }
   }
   return report
 }
@@ -65,12 +91,26 @@ export function readContent(contentDir: string) {
       questionFiles[file] = readJson(join(questionsDir, file))
     }
   }
-  return { domainsJson: readJson(join(contentDir, 'domains.json')), questionFiles }
+  const docs: Docs = { walkthroughs: {}, labs: {} }
+  const walkthroughsDir = join(contentDir, 'walkthroughs')
+  if (existsSync(walkthroughsDir)) {
+    for (const file of readdirSync(walkthroughsDir).filter((f) => f.endsWith('.md'))) {
+      docs.walkthroughs[file.replace(/\.md$/, '')] = readFileSync(join(walkthroughsDir, file), 'utf8')
+    }
+  }
+  const labsDir = join(contentDir, 'labs')
+  if (existsSync(labsDir)) {
+    for (const domainId of readdirSync(labsDir)) {
+      const readme = join(labsDir, domainId, 'README.md')
+      if (existsSync(readme)) docs.labs[domainId] = readFileSync(readme, 'utf8')
+    }
+  }
+  return { domainsJson: readJson(join(contentDir, 'domains.json')), questionFiles, docs }
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  const { domainsJson, questionFiles } = readContent(defaultContentDir)
-  const { errors, warnings } = checkContent(domainsJson, questionFiles)
+  const { domainsJson, questionFiles, docs } = readContent(defaultContentDir)
+  const { errors, warnings } = checkContent(domainsJson, questionFiles, docs)
   for (const w of warnings) console.warn(`warning: ${w}`)
   for (const e of errors) console.error(`error: ${e}`)
   console.log(`${Object.keys(questionFiles).length} question file(s) checked: ${errors.length} error(s), ${warnings.length} warning(s)`)

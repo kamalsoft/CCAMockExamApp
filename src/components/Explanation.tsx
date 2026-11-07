@@ -1,4 +1,11 @@
+import { content } from '../content.ts'
 import type { Question } from '../lib/schema.ts'
+
+// The walkthrough section that explains a concept, if the question's domain has one.
+function conceptAnchor(domainId: string, concept: string) {
+  const page = content.walkthroughs.find((w) => w.domainId === domainId)
+  return page?.sections.find((s) => s.concepts.includes(concept))?.anchor
+}
 
 // Correct reasoning first, then a short note on each distractor.
 export function Explanation({ question }: { question: Question }) {
@@ -15,7 +22,22 @@ export function Explanation({ question }: { question: Question }) {
           </li>
         ))}
       </ul>
-      <p className="mt-3 text-gray-600">Concepts: {question.concepts.join(', ')}</p>
+      <p className="mt-3 text-gray-600">
+        Concepts:{' '}
+        {question.concepts.map((c, i) => {
+          const anchor = conceptAnchor(question.domain, c)
+          return (
+            <span key={c}>
+              {i > 0 && ', '}
+              {anchor ? (
+                <a className="text-blue-700 underline" href={`#${anchor}`}>{c}</a>
+              ) : (
+                c
+              )}
+            </span>
+          )
+        })}
+      </p>
     </div>
   )
 }

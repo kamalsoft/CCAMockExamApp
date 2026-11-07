@@ -4,7 +4,7 @@
 | --- | --- |
 | **Created** | 2026-11-07 |
 | **Last updated** | 2026-11-07 |
-| **Status** | Milestone 4 done; Milestone 5 next |
+| **Status** | Milestone 5 done; Milestone 6 next |
 | **Related** | [CLAUDE.md](CLAUDE.md) · [content/blueprint.md](content/blueprint.md) · [CHANGELOG.md](CHANGELOG.md) |
 
 ## Contents
@@ -70,20 +70,20 @@ Items marked *(planned)* do not exist yet.
   blueprint.md              # exam facts and question-writing guide, with sources
   domains.json              # domain names, weights, descriptions (from official guide)
   questions/<domain>.json
-  walkthroughs/<domain>.md  # (planned)
-  labs/<domain>/README.md   # (planned)
+  walkthroughs/<domain>.md  # sections list their concepts in <!-- concepts: ... -->
+  labs/<domain>/README.md   # shown on the Lab page
 /labs
-  <domain>-<lab>/           # starter code, tests, check script (planned)
+  <domain>-<lab>/           # starter (src/), tests, reference solution, demo; `npm run check`
 /src
   components/               # shared UI: QuestionCard, Explanation, Results
-  pages/                    # Drill, Exam; Walkthrough, Lab, Progress (planned)
+  pages/                    # Drill, Exam, Walkthrough, Lab; Progress (planned)
   lib/
     schema.ts               # Zod schemas for questions and domains
     drill.ts                # drill question selection and scoring
     exam.ts                 # mock exam assembly by weight and timer helpers
     scoring.ts              # scoring and readiness logic (planned)
     storage.ts              # progress repository (planned)
-  content.d.ts              # types for the virtual:content module served by build-index.ts
+  content.ts                # typed access to the virtual:content index served by build-index.ts
 /scripts
   validate-content.ts
   build-index.ts            # Vite plugin: validates content, serves reviewed questions only
@@ -169,7 +169,7 @@ Each milestone ends with a working build and a short changelog entry.
 | 2 | Content pilot | Blueprint from the official guide. Write 30 reviewed questions for one domain with full explanations. | Done |
 | 3 | Drill mode | Domain selection, answer flow, explanation display, and results. | Done |
 | 4 | Mock exam mode | Assembly by weight, timer, navigation, auto-submit, and results screen. | Done (full 60 items once Milestone 6 adds d2–d5 content) |
-| 5 | Walkthrough and lab for the pilot domain | One complete end-to-end example. | Not started |
+| 5 | Walkthrough and lab for the pilot domain | One complete end-to-end example. | Done (d1) |
 | 6 | Replicate across domains | Repeat the content work for the remaining domains. | Not started |
 | 7 | Progress and readiness | Progress tracking and readiness indicator. | Not started |
 | 8 | Polish and calibration | Accessibility pass, mobile layout, and difficulty review against the official practice materials. | Not started |

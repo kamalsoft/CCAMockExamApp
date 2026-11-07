@@ -3,14 +3,14 @@ import { expect, test, type Page } from '@playwright/test'
 const visibleOption = (page: Page) => page.locator('fieldset:visible input').first()
 
 async function startExam(page: Page) {
-  await page.getByRole('button', { name: 'Mock exam' }).click()
+  await page.getByRole('link', { name: 'Mock exam' }).click()
   await page.getByRole('button', { name: 'Start exam' }).click()
   return Number((await page.getByText(/^Question 1 of \d+/).textContent())!.match(/of (\d+)/)![1])
 }
 
 test('intro explains a short question bank', async ({ page }) => {
   await page.goto('/')
-  await page.getByRole('button', { name: 'Mock exam' }).click()
+  await page.getByRole('link', { name: 'Mock exam' }).click()
   await expect(page.getByText(/questions · 120 minutes/)).toBeVisible()
   // Only d1 has reviewed questions today; this check goes away once every domain is filled.
   await expect(page.getByRole('note')).toContainText("can't fill a full 60-question exam yet")
@@ -28,8 +28,8 @@ test('take an exam: answer, flag, navigate, switch modes, and submit', async ({ 
   await expect(page.getByRole('button', { name: 'Question 2, flagged' })).toBeVisible()
 
   // Switching to the drill and back keeps the running exam.
-  await page.getByRole('button', { name: 'Domain drill' }).click()
-  await page.getByRole('button', { name: 'Mock exam' }).click()
+  await page.getByRole('link', { name: 'Domain drill' }).click()
+  await page.getByRole('link', { name: 'Mock exam' }).click()
   await page.getByRole('button', { name: 'Question 1, answered' }).click()
   await expect(page.getByText(`Question 1 of ${total}`)).toBeVisible()
   await expect(visibleOption(page)).toBeChecked()
