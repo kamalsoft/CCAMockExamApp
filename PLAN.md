@@ -4,7 +4,7 @@
 | --- | --- |
 | **Created** | 2026-11-07 |
 | **Last updated** | 2026-11-07 |
-| **Status** | Milestone 2 in progress |
+| **Status** | Milestone 2 done; Milestone 3 next |
 | **Related** | [CLAUDE.md](CLAUDE.md) · [content/blueprint.md](content/blueprint.md) · [CHANGELOG.md](CHANGELOG.md) |
 
 ## Contents
@@ -165,7 +165,7 @@ Each milestone ends with a working build and a short changelog entry.
 | # | Milestone | Deliverables | Status |
 | --- | --- | --- | --- |
 | 1 | Foundations | Repo setup, schemas, `validate-content.ts`, and CI running lint, typecheck, and tests. | Done |
-| 2 | Content pilot | Blueprint from the official guide. Write 30 reviewed questions for one domain with full explanations. | In progress: blueprint done; 30 d1 questions drafted, awaiting review |
+| 2 | Content pilot | Blueprint from the official guide. Write 30 reviewed questions for one domain with full explanations. | Done |
 | 3 | Drill mode | Domain selection, answer flow, explanation display, and results. | Not started |
 | 4 | Mock exam mode | Assembly by weight, timer, navigation, auto-submit, and results screen. | Not started |
 | 5 | Walkthrough and lab for the pilot domain | One complete end-to-end example. | Not started |
