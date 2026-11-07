@@ -1,0 +1,1451 @@
+[
+  {
+    "id": "d2-001",
+    "domain": "d2",
+    "difficulty": "easy",
+    "type": "single",
+    "scenario": "A finance assistant has a get_invoice tool that returns one invoice from the billing system by its ID (format INV-123456), including line items, totals, and dates. It does not return payment status; a separate get_payment_status tool does that. The team is writing the description for get_invoice.",
+    "question": "Which description will help Claude choose and call the tool most reliably?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Gets an invoice."
+      },
+      {
+        "key": "B",
+        "text": "Returns one invoice by ID (INV-123456): line items, totals, dates. Use when the user names an invoice. For payment status, use get_payment_status."
+      },
+      {
+        "key": "C",
+        "text": "A powerful general billing tool. Use it whenever the conversation mentions billing, invoices, payments, refunds, or money in any form, so the user always gets an answer."
+      },
+      {
+        "key": "D",
+        "text": "Calls GET /v2/billing/invoices/{id} on the internal billing service with a five-second timeout, three retries with backoff, and JSON response parsing."
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "correct": "A good description says what the tool does, what it returns, when to use it, what the input means, and what it does not cover, with a pointer to the right tool for that. That is what Claude uses to choose between similar tools.",
+      "distractors": {
+        "A": "A one-line description leaves Claude guessing about the input format, the output, and the boundary with get_payment_status.",
+        "C": "Over-broad trigger words route payment questions to the wrong tool. A description should narrow when the tool applies, not widen it.",
+        "D": "Implementation details such as endpoints and retries do not help Claude decide when to call the tool or what it gets back."
+      }
+    },
+    "concepts": [
+      "tool-descriptions",
+      "tool-selection"
+    ],
+    "source": "original",
+    "sources": [
+      "https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools (checked 2026-11-07)"
+    ],
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "id": "d2-002",
+    "domain": "d2",
+    "difficulty": "medium",
+    "type": "single",
+    "scenario": "A support agent has two tools: get_contact, which reads the sales CRM, and lookup_user, which reads accounts in the product database. Both descriptions say \"Finds a person by name or email.\" When users report login problems, the agent often calls get_contact and then reports that it can't see any login history.",
+    "question": "What is the most effective fix?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Add a line to the system prompt telling Claude to think carefully about which tool to call."
+      },
+      {
+        "key": "B",
+        "text": "Remove lookup_user and ask users to provide their CRM contact ID instead."
+      },
+      {
+        "key": "C",
+        "text": "Add input_examples to both tools showing typical names and email addresses."
+      },
+      {
+        "key": "D",
+        "text": "Prefix the names by system (crm_, app_) and describe what each returns and when to use it."
+      }
+    ],
+    "answer": [
+      "D"
+    ],
+    "explanation": {
+      "correct": "The two tools overlap in name and description, so Claude has nothing to tell them apart. Naming each tool after its service and describing what it returns (CRM contact data vs product account and login data) and when to use it removes the ambiguity at its source.",
+      "distractors": {
+        "A": "A general \"think carefully\" instruction gives Claude no new information about the difference between the tools.",
+        "B": "Removing the tool that has the login data makes the login questions impossible to answer.",
+        "C": "Examples of names and emails show the input format, which both tools share. They say nothing about which system each tool reads."
+      }
+    },
+    "concepts": [
+      "tool-descriptions",
+      "tool-naming",
+      "tool-overlap"
+    ],
+    "source": "original",
+    "sources": [
+      "https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools (checked 2026-11-07)"
+    ],
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "id": "d2-003",
+    "domain": "d2",
+    "difficulty": "medium",
+    "type": "single",
+    "scenario": "An order-management agent has well-described tools, including get_order_history and cancel_order. Its system prompt says: \"Whenever the user mentions an order, always check their order history first.\" When a user writes \"Cancel order 5521\", the agent spends several turns reading order history before cancelling, and sometimes asks the user to confirm details they already gave.",
+    "question": "What should the team change?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Narrow the system prompt rule so not every mention of an order goes to history."
+      },
+      {
+        "key": "B",
+        "text": "Make the cancel_order description longer than the get_order_history description."
+      },
+      {
+        "key": "C",
+        "text": "Add a third tool that calls order history and then cancels the order in a single step."
+      },
+      {
+        "key": "D",
+        "text": "Remove get_order_history so the agent cannot read history before cancelling."
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "correct": "A keyword-triggered rule in the system prompt (\"whenever the user mentions an order\") overrides the tool descriptions, so a clear cancel request still goes through order history. Narrowing the rule to the cases that need history lets the descriptions do their job.",
+      "distractors": {
+        "B": "Description length is not a priority signal. The system prompt rule still tells Claude to read history first.",
+        "C": "A combined tool works around the rule for one case and adds a tool that overlaps both existing ones.",
+        "D": "Order history is needed for other questions, and the rule would still push the agent toward a tool that no longer exists."
+      }
+    },
+    "concepts": [
+      "system-prompt-tool-conflicts",
+      "tool-selection"
+    ],
+    "source": "original",
+    "sources": [
+      "https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools (checked 2026-11-07)"
+    ],
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "id": "d2-004",
+    "domain": "d2",
+    "difficulty": "hard",
+    "type": "single",
+    "scenario": "An agent integrates with an issue tracker through 14 separate tools: create_issue, close_issue, reopen_issue, label_issue, unlabel_issue, assign_issue, unassign_issue, and seven more of the same kind. Each tool is described accurately, but Claude often picks a neighbor of the right tool, such as unlabel_issue when it meant label_issue.",
+    "question": "What change best improves tool selection?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Split the tools further, so each one covers a single field change on a single issue type."
+      },
+      {
+        "key": "B",
+        "text": "Keep all 14 tools and add input_examples to every one of them."
+      },
+      {
+        "key": "C",
+        "text": "Merge them into one issue tool with a described action parameter."
+      },
+      {
+        "key": "D",
+        "text": "Remove the seven least-used operations and handle them manually outside the agent."
+      }
+    ],
+    "answer": [
+      "C"
+    ],
+    "explanation": {
+      "correct": "Many near-identical tools make selection harder, not easier. Grouping related operations into one tool with an action parameter (an enum, with each action described) reduces the choice to one tool and one clearly listed option, which current guidance recommends for exactly this situation.",
+      "distractors": {
+        "A": "Splitting further multiplies the near-identical choices that are causing the errors. Splitting helps when one tool hides several different input and output contracts, which is not the case here.",
+        "B": "Examples show input formats. They do not reduce the number of similar tools Claude has to choose between.",
+        "D": "Dropping operations removes functionality users need, and the remaining seven tools are still near-duplicates of each other."
+      }
+    },
+    "concepts": [
+      "tool-consolidation",
+      "tool-selection"
+    ],
+    "source": "original",
+    "sources": [
+      "https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools (checked 2026-11-07)"
+    ],
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "id": "d2-005",
+    "domain": "d2",
+    "difficulty": "medium",
+    "type": "single",
+    "scenario": "A document agent has one process_document tool with a mode parameter: \"extract\" returns JSON fields, \"summarize\" returns prose, and \"verify\" checks a claim against the document and returns a verdict. Each mode uses a different subset of eight optional parameters. Claude often sends parameter combinations that are invalid for the chosen mode.",
+    "question": "What is the best fix?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Expand the description to explain which parameters belong to which mode."
+      },
+      {
+        "key": "B",
+        "text": "Replace it with three tools, each with its own input schema and output contract."
+      },
+      {
+        "key": "C",
+        "text": "Make all eight parameters required so Claude always provides every value."
+      },
+      {
+        "key": "D",
+        "text": "Validate the inputs afterwards and ask Claude to retry when a combination is invalid."
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "correct": "The modes are really three tools with different inputs and outputs hidden behind one schema that cannot express which parameters go together. Separate tools give each operation a schema that only allows valid inputs and a clear output contract.",
+      "distractors": {
+        "A": "A longer description helps a little, but the schema still accepts every invalid combination, so errors keep happening.",
+        "C": "Requiring all eight parameters forces Claude to invent values that do not apply to the mode.",
+        "D": "Retrying after validation catches errors late and costs extra turns, while the schema keeps inviting the same mistakes."
+      }
+    },
+    "concepts": [
+      "tool-splitting",
+      "input-schema-design"
+    ],
+    "source": "original",
+    "sources": [
+      "https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools (checked 2026-11-07)"
+    ],
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "id": "d2-006",
+    "domain": "d2",
+    "difficulty": "easy",
+    "type": "single",
+    "scenario": "A get_shipment tool returns the full database row for a shipment: about 60 fields, including internal surrogate keys such as row_id and carrier_ref_internal alongside the public tracking number. Claude sometimes quotes row_id to customers as their tracking number.",
+    "question": "What change addresses this best?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Raise max_tokens so Claude has more room to process the full response."
+      },
+      {
+        "key": "B",
+        "text": "Tell Claude in the system prompt to ignore fields that look internal."
+      },
+      {
+        "key": "C",
+        "text": "Return the raw row and add a short summary of the key fields at the top."
+      },
+      {
+        "key": "D",
+        "text": "Return only the fields Claude needs, using public, stable identifiers."
+      }
+    ],
+    "answer": [
+      "D"
+    ],
+    "explanation": {
+      "correct": "Tool responses should carry high-signal information and semantic, stable identifiers. Returning only the needed fields, with the public tracking number as the identifier, removes the confusing internal keys and saves context.",
+      "distractors": {
+        "A": "The problem is which fields come back, not output length. max_tokens limits Claude's response, not the tool result.",
+        "B": "A prompt rule relies on Claude recognizing \"internal-looking\" fields every time, while the confusing data keeps arriving.",
+        "C": "A summary helps, but the internal keys are still in the result and can still be quoted."
+      }
+    },
+    "concepts": [
+      "tool-response-design",
+      "high-signal-output"
+    ],
+    "source": "original",
+    "sources": [
+      "https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools (checked 2026-11-07)"
+    ],
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "id": "d2-007",
+    "domain": "d2",
+    "difficulty": "medium",
+    "type": "single",
+    "scenario": "A scheduling tool takes a recurrence parameter in a strict format, such as \"FREQ=WEEKLY;BYDAY=MO,WE\". Its description explains the tool well, but Claude often produces malformed recurrence strings such as \"every Monday and Wednesday\", which the backend rejects.",
+    "question": "What should the team do first?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Document the format in the parameter description and add input_examples."
+      },
+      {
+        "key": "B",
+        "text": "Accept free text for recurrence and convert it on the server with regular expressions."
+      },
+      {
+        "key": "C",
+        "text": "Retry automatically until Claude happens to produce a string the backend accepts."
+      },
+      {
+        "key": "D",
+        "text": "Remove the recurrence parameter and ask users to set repeating events by hand."
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "correct": "For format-sensitive parameters, the parameter description plus input_examples show Claude exactly what valid input looks like. Each example must match the schema, so they double as documentation the API checks.",
+      "distractors": {
+        "B": "Parsing free text with regular expressions on the server is brittle and moves the ambiguity into code that cannot ask for clarification.",
+        "C": "Blind retries cost turns and do not give Claude any new information about the expected format.",
+        "D": "Dropping the parameter removes a feature to avoid fixing a documentation problem."
+      }
+    },
+    "concepts": [
+      "input-examples",
+      "parameter-descriptions"
+    ],
+    "source": "original",
+    "sources": [
+      "https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools (checked 2026-11-07)"
+    ],
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "id": "d2-008",
+    "domain": "d2",
+    "difficulty": "easy",
+    "type": "single",
+    "scenario": "A team is building an MCP server whose search_tickets tool calls an upstream ticketing API. Sometimes that API times out. The team wants the agent to see the failure and decide what to do next, such as retrying or telling the user.",
+    "question": "How should the MCP server report the timeout?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Return a normal successful result containing an empty list of tickets."
+      },
+      {
+        "key": "B",
+        "text": "Return a JSON-RPC protocol error from the tools/call request."
+      },
+      {
+        "key": "C",
+        "text": "Return a tool result with isError: true and a failure message."
+      },
+      {
+        "key": "D",
+        "text": "Log the error on the server and return no content to the client."
+      }
+    ],
+    "answer": [
+      "C"
+    ],
+    "explanation": {
+      "correct": "The MCP spec reports tool execution failures, such as an upstream API failure, inside the tool result with isError: true. The model sees the message as the tool's output and can decide how to recover.",
+      "distractors": {
+        "A": "An empty success says \"no tickets match\", which is false. The agent would give the user a wrong answer instead of handling an outage.",
+        "B": "Protocol errors are for problems with the request itself, such as an unknown tool. The spec puts API failures in the tool result so the model can reason about them.",
+        "D": "Returning nothing hides the failure from the agent, which then cannot react to it."
+      }
+    },
+    "concepts": [
+      "mcp-iserror",
+      "tool-execution-errors"
+    ],
+    "source": "original",
+    "sources": [
+      "https://modelcontextprotocol.io/specification/2025-06-18/server/tools (checked 2026-11-07)"
+    ],
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "id": "d2-009",
+    "domain": "d2",
+    "difficulty": "medium",
+    "type": "single",
+    "scenario": "Every error from a team's MCP tools returns the same text: \"Operation failed.\" Logs show the agent retrying invalid-input errors five times in a row, while giving up immediately on brief network timeouts that would have succeeded on a second try.",
+    "question": "What change helps the agent recover appropriately?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Wrap every tool call in automatic retry logic that retries any error three times."
+      },
+      {
+        "key": "B",
+        "text": "Return structured errors: a category, an isRetryable flag, a message."
+      },
+      {
+        "key": "C",
+        "text": "Tell the agent in its prompt never to retry a tool call more than twice."
+      },
+      {
+        "key": "D",
+        "text": "Return just the HTTP status code from the upstream service as the error text."
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "correct": "A uniform message hides the one thing the agent needs: whether trying again can help. A category (transient, validation, permission, business), an isRetryable flag, and a readable message let it retry timeouts and fix or report invalid input instead.",
+      "distractors": {
+        "A": "Retrying everything wastes calls on errors that will never succeed, such as invalid input, and still gives the agent no explanation.",
+        "C": "A fixed cap treats every error the same, so it still under-retries timeouts and over-retries invalid input.",
+        "D": "A raw status code is better than nothing, but it lacks a retry hint and a human-readable explanation of what to change."
+      }
+    },
+    "concepts": [
+      "structured-errors",
+      "retryable-errors",
+      "error-categories"
+    ],
+    "source": "original",
+    "sources": [
+      "https://modelcontextprotocol.io/specification/2025-06-18/server/tools (checked 2026-11-07)"
+    ],
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "id": "d2-010",
+    "domain": "d2",
+    "difficulty": "medium",
+    "type": "single",
+    "scenario": "A hotel-booking agent calls cancel_booking. When a cancellation falls outside the free-cancellation window, the tool returns \"Error 422.\" The agent retries several times, then tells the guest that \"a technical problem\" stopped the cancellation, which leads to complaints.",
+    "question": "What should the tool return instead?",
+    "options": [
+      {
+        "key": "A",
+        "text": "A success result, so the agent stops retrying and moves on to the next request."
+      },
+      {
+        "key": "B",
+        "text": "A protocol-level error, so the client stops the session and alerts an engineer."
+      },
+      {
+        "key": "C",
+        "text": "The same 422 code, plus a system prompt rule asking the agent to explain policies."
+      },
+      {
+        "key": "D",
+        "text": "A non-retryable business-rule error with a guest-friendly explanation."
+      }
+    ],
+    "answer": [
+      "D"
+    ],
+    "explanation": {
+      "correct": "This is a business-rule outcome, not a malfunction. Marking it as a non-retryable business error with a guest-friendly explanation (for example, that the window closed 48 hours before check-in) stops the pointless retries and lets the agent tell the guest the real reason and their options.",
+      "distractors": {
+        "A": "Reporting success when nothing was cancelled misleads both the agent and the guest.",
+        "B": "Stopping the session for a normal policy outcome is far too drastic. The agent should explain and continue.",
+        "C": "The agent still cannot tell which policy applied or that retrying is pointless, so it has to guess what to tell the guest."
+      }
+    },
+    "concepts": [
+      "business-rule-errors",
+      "retryable-errors"
+    ],
+    "source": "original",
+    "sources": [
+      "https://modelcontextprotocol.io/specification/2025-06-18/server/tools (checked 2026-11-07)"
+    ],
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "id": "d2-011",
+    "domain": "d2",
+    "difficulty": "medium",
+    "type": "single",
+    "scenario": "A customer-lookup tool returns an empty list in two situations: when no customer matches the query, and when the customer database is unreachable. During a database outage, the agent confidently told several callers that they had no account on file.",
+    "question": "How should the tool change?",
+    "options": [
+      {
+        "key": "A",
+        "text": "An error result when the lookup fails; an empty success only for no match."
+      },
+      {
+        "key": "B",
+        "text": "Return an empty list in both cases, but add a note in the system prompt about outages."
+      },
+      {
+        "key": "C",
+        "text": "Keep the empty list, and retry every empty result three times before answering."
+      },
+      {
+        "key": "D",
+        "text": "Return a randomly chosen similar customer whenever the database is unreachable."
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "correct": "An access failure and a valid empty result mean different things and need different responses. Reporting the failure as an error lets the agent say it could not check, while an empty success still means no match.",
+      "distractors": {
+        "B": "The agent still cannot tell from the result which situation it is in, so the prompt note cannot help.",
+        "C": "Retries add delay to every genuine \"no match\" result and still cannot tell an outage from no data.",
+        "D": "Inventing a match is worse than the original problem. It gives callers someone else's account."
+      }
+    },
+    "concepts": [
+      "access-failure-vs-empty",
+      "tool-execution-errors"
+    ],
+    "source": "original",
+    "sources": [
+      "https://modelcontextprotocol.io/specification/2025-06-18/server/tools (checked 2026-11-07)"
+    ],
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "id": "d2-012",
+    "domain": "d2",
+    "difficulty": "hard",
+    "type": "single",
+    "scenario": "In a multi-agent system, an inventory subagent calls an MCP stock-level tool that times out on about 5% of calls; a second attempt almost always succeeds. Today every timeout is passed straight up to the coordinator, which re-plans the whole task. Runs are slow, and the coordinator's context fills with error reports.",
+    "question": "What is the best design?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Have the coordinator retry every failed tool call itself, so all recovery stays in one place."
+      },
+      {
+        "key": "B",
+        "text": "Have the subagent hide timeouts by returning empty stock levels as a successful result."
+      },
+      {
+        "key": "C",
+        "text": "Retry transient errors in the subagent; escalate the rest with partial results."
+      },
+      {
+        "key": "D",
+        "text": "Raise the tool timeout to five minutes so that timeouts become much less frequent."
+      }
+    ],
+    "answer": [
+      "C"
+    ],
+    "explanation": {
+      "correct": "Transient failures that a retry usually fixes should be handled where they happen. The subagent retries a bounded number of times and passes up only errors it cannot resolve, along with what it tried and any partial results, so the coordinator re-plans only when it needs to.",
+      "distractors": {
+        "A": "Centralizing recovery sounds tidy, but it puts every routine timeout through the coordinator, which is exactly what is slowing runs and filling its context.",
+        "B": "Reporting a failure as an empty success makes the system act on false stock data.",
+        "D": "A huge timeout makes every slow call block for minutes, and the occasional failure still needs handling."
+      }
+    },
+    "concepts": [
+      "local-error-recovery",
+      "error-propagation"
+    ],
+    "source": "original",
+    "sources": [
+      "https://modelcontextprotocol.io/specification/2025-06-18/server/tools (checked 2026-11-07)"
+    ],
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "id": "d2-013",
+    "domain": "d2",
+    "difficulty": "easy",
+    "type": "multi",
+    "scenario": "A platform team is standardizing the error format that all of its MCP tools return to agents.",
+    "question": "Which two fields most help an agent decide what to do after a tool error? (Select two.)",
+    "options": [
+      {
+        "key": "A",
+        "text": "The full server-side stack trace of the exception that was raised."
+      },
+      {
+        "key": "B",
+        "text": "Whether retrying the same call could succeed, such as an isRetryable flag."
+      },
+      {
+        "key": "C",
+        "text": "An error category, such as transient, validation, permission, or business."
+      },
+      {
+        "key": "D",
+        "text": "The hostname and process ID of the particular server instance that handled the call."
+      },
+      {
+        "key": "E",
+        "text": "The date and time of the server's most recent deployment."
+      }
+    ],
+    "answer": [
+      "B",
+      "C"
+    ],
+    "explanation": {
+      "correct": "The agent's next move depends on whether retrying can help and on what kind of problem occurred. A retry flag and a category answer exactly those questions, and a readable message completes the picture.",
+      "distractors": {
+        "A": "Stack traces are useful to engineers but noisy for the agent, and they can leak internal details.",
+        "D": "Host and process details help operators debug, not the agent deciding its next step.",
+        "E": "Deployment timing has no bearing on how the agent should respond to this call."
+      }
+    },
+    "concepts": [
+      "structured-errors",
+      "error-categories"
+    ],
+    "source": "original",
+    "sources": [
+      "https://modelcontextprotocol.io/specification/2025-06-18/server/tools (checked 2026-11-07)"
+    ],
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "id": "d2-014",
+    "domain": "d2",
+    "difficulty": "medium",
+    "type": "single",
+    "scenario": "A single operations agent has 22 tools from five integrations: monitoring, ticketing, deployments, chat, and billing. As tools were added, the rate of wrong-tool calls rose steadily, even though each tool is well described.",
+    "question": "What change is most likely to restore reliable tool selection?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Add input_examples to all 22 tools so every tool's usage is clearer."
+      },
+      {
+        "key": "B",
+        "text": "Add a long section to the system prompt explaining when to use each of the 22 tools."
+      },
+      {
+        "key": "C",
+        "text": "Switch to a larger model and keep the same 22 tools on the one agent."
+      },
+      {
+        "key": "D",
+        "text": "Split into specialist subagents, each with only the tools its role needs."
+      }
+    ],
+    "answer": [
+      "D"
+    ],
+    "explanation": {
+      "correct": "Giving one agent many tools increases decision complexity and degrades selection. Specialist subagents with small, role-specific tool sets (for example, incident triage with monitoring and ticketing tools) each face far fewer choices.",
+      "distractors": {
+        "A": "Examples clarify inputs, but the agent still chooses among 22 tools on every turn.",
+        "B": "More prompt text about 22 tools adds context without reducing the number of choices.",
+        "C": "A larger model may help a little, but the choice among 22 tools stays just as complex."
+      }
+    },
+    "concepts": [
+      "scoped-tool-access",
+      "tool-count"
+    ],
+    "source": "original",
+    "sources": [
+      "https://code.claude.com/docs/en/agent-sdk/subagents (checked 2026-11-07)"
+    ],
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "id": "d2-015",
+    "domain": "d2",
+    "difficulty": "medium",
+    "type": "single",
+    "scenario": "A help-center agent has a generic fetch_url tool so it can read the company documentation site. Logs show it sometimes fetches arbitrary external pages and, once, an internal admin URL that appeared in a user's message. It only ever needs published documentation articles.",
+    "question": "What is the best change?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Add a system prompt rule saying the agent may only fetch documentation pages."
+      },
+      {
+        "key": "B",
+        "text": "Replace fetch_url with load_doc, which takes a published document ID."
+      },
+      {
+        "key": "C",
+        "text": "Keep fetch_url, and review a weekly log of every URL the agent fetched."
+      },
+      {
+        "key": "D",
+        "text": "List the allowed documentation URLs in the system prompt for the agent to check."
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "correct": "A constrained tool that accepts a document ID, and only loads published docs, removes the ability to reach anything else and gives Claude a simpler input. The agent cannot fetch an admin URL because the tool cannot express one.",
+      "distractors": {
+        "A": "A prompt rule is guidance, not a guarantee, and the admin-URL incident shows instructions can be steered by user input.",
+        "C": "A weekly review finds problems after the data has already been fetched.",
+        "D": "The agent still holds a general fetch tool, and checking a list is something it can skip or get wrong."
+      }
+    },
+    "concepts": [
+      "constrained-tools",
+      "scoped-tool-access"
+    ],
+    "source": "original",
+    "sources": [
+      "https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools (checked 2026-11-07)"
+    ],
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "id": "d2-016",
+    "domain": "d2",
+    "difficulty": "medium",
+    "type": "single",
+    "scenario": "A document-intake pipeline runs on Claude Opus 5 with three extraction tools: extract_invoice, extract_receipt, and extract_contract. The document type is not known in advance. With the default tool_choice, Claude occasionally replies with a prose summary instead of calling any tool, which breaks the pipeline.",
+    "question": "Which tool_choice setting fits?",
+    "options": [
+      {
+        "key": "A",
+        "text": "{\"type\": \"auto\"}, together with a stronger instruction in the system prompt."
+      },
+      {
+        "key": "B",
+        "text": "{\"type\": \"tool\", \"name\": \"extract_invoice\"} on every request."
+      },
+      {
+        "key": "C",
+        "text": "{\"type\": \"any\"}, so Claude must call one of the tools but picks which."
+      },
+      {
+        "key": "D",
+        "text": "{\"type\": \"none\"}, and parse the JSON out of Claude's prose reply."
+      }
+    ],
+    "answer": [
+      "C"
+    ],
+    "explanation": {
+      "correct": "On models that support forced tool use, such as Claude Opus 5, \"any\" guarantees a tool call while leaving the choice of tool to Claude, which is what you want when the document type is unknown.",
+      "distractors": {
+        "A": "auto lets Claude answer in prose, which is the failure being fixed. A prompt instruction makes a tool call more likely but not certain.",
+        "B": "Forcing extract_invoice would run invoice extraction on receipts and contracts too.",
+        "D": "none disables tool use entirely, giving up the schema-validated output the pipeline relies on."
+      }
+    },
+    "concepts": [
+      "tool-choice",
+      "forced-tool-use"
+    ],
+    "source": "original",
+    "sources": [
+      "https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools (checked 2026-11-07)"
+    ],
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "id": "d2-017",
+    "domain": "d2",
+    "difficulty": "hard",
+    "type": "single",
+    "scenario": "A team moves an extraction pipeline from Claude Opus 5 to Claude Opus 5.5. The pipeline sets tool_choice to {\"type\": \"any\"} so that Claude always calls one of its extraction tools. On Claude Opus 5.5, every request now fails with a 400 error.",
+    "question": "What should the team do?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Use auto with an instruction to call a tool, set strict: true, and retry if no tool is called."
+      },
+      {
+        "key": "B",
+        "text": "Keep \"any\" in the request, catch the 400 error, and resend the same request after a short delay."
+      },
+      {
+        "key": "C",
+        "text": "Set tool_choice to none and ask Claude to write the extracted JSON as plain text."
+      },
+      {
+        "key": "D",
+        "text": "Switch to {\"type\": \"tool\", \"name\": ...} so the request names one specific tool to call."
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "correct": "Claude Opus 5.5 rejects forced tool use: both \"any\" and \"tool\" return a 400. The documented replacement is auto with an explicit instruction, strict: true on the tools to keep schema-valid inputs, and a check that a call was made, with a retry if not. Structured outputs are the other option when the call only existed to get JSON back.",
+      "distractors": {
+        "B": "The 400 is a fixed rule for this model, not a temporary error, so resending the same request fails every time.",
+        "C": "none disables tools, and free-text JSON gives up the schema guarantees the pipeline relied on.",
+        "D": "Naming a specific tool is also forced tool use, which this model rejects in the same way."
+      }
+    },
+    "concepts": [
+      "forced-tool-use",
+      "model-differences",
+      "strict-tool-use"
+    ],
+    "source": "original",
+    "sources": [
+      "https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools (checked 2026-11-07)"
+    ],
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "id": "d2-018",
+    "domain": "d2",
+    "difficulty": "medium",
+    "type": "single",
+    "scenario": "A pipeline on Claude Opus 5 must always start by calling extract_metadata on each document. After that first step, Claude should decide on its own which of several enrichment tools, if any, to call next.",
+    "question": "How should tool_choice be set?",
+    "options": [
+      {
+        "key": "A",
+        "text": "{\"type\": \"any\"} on every request, so Claude always calls one of the tools."
+      },
+      {
+        "key": "B",
+        "text": "Force extract_metadata on the first request, then use auto on the turns after it."
+      },
+      {
+        "key": "C",
+        "text": "Force extract_metadata on every request until the document has been fully processed."
+      },
+      {
+        "key": "D",
+        "text": "Leave auto throughout, and list extract_metadata first in the tools array."
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "correct": "Naming the tool in tool_choice on the first request guarantees that step runs first. Switching to auto afterwards returns the choice of enrichment tools, including whether to call any, to Claude.",
+      "distractors": {
+        "A": "\"any\" does not guarantee extract_metadata comes first, and it forces a tool call even when no enrichment is needed.",
+        "C": "Forcing extract_metadata on every turn stops Claude from ever calling the enrichment tools.",
+        "D": "The order of tools in the array is not a control mechanism, so Claude may skip the metadata step."
+      }
+    },
+    "concepts": [
+      "forced-tool-use",
+      "tool-choice"
+    ],
+    "source": "original",
+    "sources": [
+      "https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools (checked 2026-11-07)"
+    ],
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "id": "d2-019",
+    "domain": "d2",
+    "difficulty": "medium",
+    "type": "single",
+    "scenario": "On Claude Opus 5, a team forces a specific diagnosis tool with tool_choice so that it is always called. They notice the tool is called with shallow arguments, and responses never include any thinking before the call. They want Claude to reason first and still call the tool.",
+    "question": "What should they change?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Keep forcing the tool and raise max_tokens so there is room for reasoning."
+      },
+      {
+        "key": "B",
+        "text": "Switch to {\"type\": \"any\"} so Claude has a choice among the tools."
+      },
+      {
+        "key": "C",
+        "text": "Use auto and tell Claude in the prompt to use the diagnosis tool."
+      },
+      {
+        "key": "D",
+        "text": "Set tool_choice to none and describe the diagnosis tool in the system prompt."
+      }
+    ],
+    "answer": [
+      "C"
+    ],
+    "explanation": {
+      "correct": "A forced tool call skips thinking: the response starts with the tool_use block. Using auto, with a prompt instruction naming the tool, lets Claude think before making the call, while prompting still steers which tool it picks.",
+      "distractors": {
+        "A": "More output room does not change the fact that a forced call skips thinking.",
+        "B": "\"any\" is also forced tool use, so the call still skips thinking.",
+        "D": "none prevents the tool from being called at all."
+      }
+    },
+    "concepts": [
+      "forced-tool-use",
+      "tool-choice"
+    ],
+    "source": "original",
+    "sources": [
+      "https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools (checked 2026-11-07)"
+    ],
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "id": "d2-020",
+    "domain": "d2",
+    "difficulty": "easy",
+    "type": "single",
+    "scenario": "A team wants every developer to get the same Jira MCP server in Claude Code as soon as they clone or pull the repository, with no manual setup beyond their own credentials.",
+    "question": "Where should the server be configured?",
+    "options": [
+      {
+        "key": "A",
+        "text": "In project scope, in a .mcp.json file at the repository root."
+      },
+      {
+        "key": "B",
+        "text": "In user scope, in each developer's own ~/.claude.json."
+      },
+      {
+        "key": "C",
+        "text": "In local scope, on the machine of the developer who set it up."
+      },
+      {
+        "key": "D",
+        "text": "In the project's CLAUDE.md, as a description of the server."
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "correct": "Project scope stores the server in .mcp.json at the project root, which is committed to version control, so everyone who clones the repository gets it.",
+      "distractors": {
+        "B": "User scope applies to one developer across their projects and is not shared through the repository.",
+        "C": "Local scope is private to one developer in one project, so teammates never see it.",
+        "D": "CLAUDE.md holds instructions and context. Describing a server there does not configure or connect it."
+      }
+    },
+    "concepts": [
+      "mcp-scopes",
+      "project-scope"
+    ],
+    "source": "original",
+    "sources": [
+      "https://code.claude.com/docs/en/mcp (checked 2026-11-07)"
+    ],
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "id": "d2-021",
+    "domain": "d2",
+    "difficulty": "medium",
+    "type": "single",
+    "scenario": "A project's .mcp.json configures a GitHub MCP server, and a developer pasted a personal access token directly into the headers field. The team wants to keep the shared configuration in the repository without committing anyone's secret.",
+    "question": "What should they do?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Keep the token in the file but make the repository private."
+      },
+      {
+        "key": "B",
+        "text": "Use ${GITHUB_TOKEN} in the file; each developer sets the variable."
+      },
+      {
+        "key": "C",
+        "text": "Move the server to user scope on every developer's machine instead."
+      },
+      {
+        "key": "D",
+        "text": "Base64-encode the token so it is not readable in the committed file."
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "correct": ".mcp.json supports environment variable expansion (${VAR}, or ${VAR:-default}) in fields such as headers, url, and env. The committed file holds only the reference, and each developer supplies their own token through the environment.",
+      "distractors": {
+        "A": "A private repository still exposes the secret to everyone with access, and to its full history.",
+        "C": "User scope avoids committing the token but gives up the shared, version-controlled configuration the team wants.",
+        "D": "Base64 is an encoding, not encryption. Anyone can decode the token."
+      }
+    },
+    "concepts": [
+      "mcp-env-expansion",
+      "credential-management"
+    ],
+    "source": "original",
+    "sources": [
+      "https://code.claude.com/docs/en/mcp (checked 2026-11-07)"
+    ],
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "id": "d2-022",
+    "domain": "d2",
+    "difficulty": "medium",
+    "type": "single",
+    "scenario": "A developer wants to try an experimental MCP server while working on one particular project. It should not appear in their other projects, and teammates should never see it.",
+    "question": "Which scope fits?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Project scope, with a note in .mcp.json saying the server is experimental."
+      },
+      {
+        "key": "B",
+        "text": "User scope, so the server lives in their own ~/.claude.json file."
+      },
+      {
+        "key": "C",
+        "text": "A section in the project's CLAUDE.md describing the server."
+      },
+      {
+        "key": "D",
+        "text": "Local scope, which is private to them and limited to this project."
+      }
+    ],
+    "answer": [
+      "D"
+    ],
+    "explanation": {
+      "correct": "Local scope stores the server in ~/.claude.json under that project's path, so it loads only in this project and is never shared through version control.",
+      "distractors": {
+        "A": "Project scope commits the server to .mcp.json, so every teammate gets it, whatever the note says.",
+        "B": "User scope is private, but it loads in all of the developer's projects, not just this one.",
+        "C": "CLAUDE.md does not configure MCP servers."
+      }
+    },
+    "concepts": [
+      "mcp-scopes",
+      "local-scope"
+    ],
+    "source": "original",
+    "sources": [
+      "https://code.claude.com/docs/en/mcp (checked 2026-11-07)"
+    ],
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "id": "d2-023",
+    "domain": "d2",
+    "difficulty": "medium",
+    "type": "single",
+    "scenario": "An analytics agent uses an MCP server for a data warehouse. Before most queries, it makes a series of exploratory tool calls (listing schemas, listing tables, describing columns) just to find out what data exists, which adds latency and fills context.",
+    "question": "What change best reduces the exploration?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Add a list_everything tool that returns every schema, table, and column in one call."
+      },
+      {
+        "key": "B",
+        "text": "Paste the entire warehouse schema into the agent's system prompt."
+      },
+      {
+        "key": "C",
+        "text": "Expose the schema catalog as MCP resources that can be referenced when needed."
+      },
+      {
+        "key": "D",
+        "text": "Raise the agent's turn limit so the exploration has room to finish."
+      }
+    ],
+    "answer": [
+      "C"
+    ],
+    "explanation": {
+      "correct": "MCP resources let a server expose content catalogs, such as schemas or documentation, that can be referenced directly (in Claude Code with @server:protocol://path) and are fetched as attachments, so the agent can see what exists without exploratory tool calls.",
+      "distractors": {
+        "A": "One giant call still dumps everything into context on every run, most of it irrelevant to the query at hand.",
+        "B": "The whole schema in every prompt costs context on every request and goes stale as the warehouse changes.",
+        "D": "A higher turn limit accepts the slow exploration instead of removing it."
+      }
+    },
+    "concepts": [
+      "mcp-resources",
+      "context-efficiency"
+    ],
+    "source": "original",
+    "sources": [
+      "https://code.claude.com/docs/en/mcp (checked 2026-11-07)"
+    ],
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "id": "d2-024",
+    "domain": "d2",
+    "difficulty": "medium",
+    "type": "single",
+    "scenario": "A team built an MCP code-search tool that understands symbols across all of the company's repositories. Its description says only \"Searches code.\" Claude keeps using plain text search in the current repository instead, and misses usages in other repositories.",
+    "question": "What is the most effective fix?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Describe what it does that text search can't, and when to prefer it."
+      },
+      {
+        "key": "B",
+        "text": "Remove Bash from the session so that plain text search is no longer available."
+      },
+      {
+        "key": "C",
+        "text": "Rename the MCP tool to grep so Claude reaches for it out of habit."
+      },
+      {
+        "key": "D",
+        "text": "Add a system prompt line telling Claude never to use plain text search at all."
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "correct": "Claude chooses tools from their descriptions. \"Searches code\" gives no reason to prefer the MCP tool. Explaining that it searches symbols across every repository, and when that beats local text search, lets Claude pick it for the right questions.",
+      "distractors": {
+        "B": "Removing Bash takes away far more than text search, and the MCP tool would still be poorly described.",
+        "C": "A misleading name confuses selection further and clashes with the familiar meaning of grep.",
+        "D": "A blanket ban blocks text search even where it is the right tool, such as quick searches within one file."
+      }
+    },
+    "concepts": [
+      "mcp-tool-descriptions",
+      "tool-selection"
+    ],
+    "source": "original",
+    "sources": [
+      "https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools (checked 2026-11-07)",
+      "https://code.claude.com/docs/en/mcp (checked 2026-11-07)"
+    ],
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "id": "d2-025",
+    "domain": "d2",
+    "difficulty": "hard",
+    "type": "single",
+    "scenario": "A team wants its coding agent to work with Jira, which has a widely used existing MCP server, and with an internal deployment-approval system that only this company uses. An engineer proposes writing custom MCP servers for both, to keep full control.",
+    "question": "What is the best approach?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Write custom servers for both, since owning the code gives the team full control."
+      },
+      {
+        "key": "B",
+        "text": "Use an existing server for Jira; build a custom one for approvals."
+      },
+      {
+        "key": "C",
+        "text": "Look for existing servers for both systems and skip custom development entirely."
+      },
+      {
+        "key": "D",
+        "text": "Skip MCP and have the agent call both APIs with curl through the Bash tool."
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "correct": "Existing servers cover standard integrations and are already maintained. Custom servers are worth building for team-specific systems that nothing else supports. Splitting the work this way minimizes what the team has to build and maintain.",
+      "distractors": {
+        "A": "Full control is a real benefit, but rebuilding a standard Jira integration costs time and ongoing maintenance for little gain.",
+        "C": "An internal approval system will not have an existing server, so it needs custom work.",
+        "D": "Raw curl calls give up typed tools, clear descriptions, and structured errors, and spread credentials across shell commands."
+      }
+    },
+    "concepts": [
+      "build-vs-reuse",
+      "mcp-integration"
+    ],
+    "source": "original",
+    "sources": [
+      "https://code.claude.com/docs/en/mcp (checked 2026-11-07)"
+    ],
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "id": "d2-026",
+    "domain": "d2",
+    "difficulty": "easy",
+    "type": "single",
+    "scenario": "A developer asks Claude Code to find every place in a large repository that calls the function calculateTax, before changing its signature.",
+    "question": "Which kind of search fits this task?",
+    "options": [
+      {
+        "key": "A",
+        "text": "A file-name pattern search for **/*tax*, then a review of the files it finds."
+      },
+      {
+        "key": "B",
+        "text": "Reading every source file in the repository one by one, looking for the calls."
+      },
+      {
+        "key": "C",
+        "text": "A content search for calculateTax across the files of the repository."
+      },
+      {
+        "key": "D",
+        "text": "Asking the developer to list the files that use the function before starting."
+      }
+    ],
+    "answer": [
+      "C"
+    ],
+    "explanation": {
+      "correct": "Finding callers means searching inside files for the function name, which is a content search (Grep, or grep through Bash, which Claude Code uses by default on macOS and Linux). A name-pattern search finds files by their names, not by what they contain.",
+      "distractors": {
+        "A": "Callers can live in files whose names have nothing to do with tax, so a name pattern misses them.",
+        "B": "Reading every file wastes context and time when a content search finds the lines directly.",
+        "D": "Claude can find the callers itself; asking the developer pushes back work the tools already do."
+      }
+    },
+    "concepts": [
+      "content-search",
+      "built-in-tools"
+    ],
+    "source": "original",
+    "sources": [
+      "https://code.claude.com/docs/en/tools-reference (checked 2026-11-07)"
+    ],
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "id": "d2-027",
+    "domain": "d2",
+    "difficulty": "easy",
+    "type": "single",
+    "scenario": "Before a test-framework migration, a developer asks Claude Code for a list of every test file in a repository. The files follow the naming convention *.spec.ts and are spread across many directories.",
+    "question": "Which kind of search fits this task?",
+    "options": [
+      {
+        "key": "A",
+        "text": "A content search for the word describe( across all files in the repository."
+      },
+      {
+        "key": "B",
+        "text": "Reading the src directory and checking each file name it contains by hand."
+      },
+      {
+        "key": "C",
+        "text": "Listing only the top-level directory to see which test files are there."
+      },
+      {
+        "key": "D",
+        "text": "A file-name pattern search such as **/*.spec.ts across the repository."
+      }
+    ],
+    "answer": [
+      "D"
+    ],
+    "explanation": {
+      "correct": "Finding files by name is a name-pattern search (Glob, or find through Bash by default on macOS and Linux). A pattern like **/*.spec.ts matches at any depth.",
+      "distractors": {
+        "A": "describe( also appears in non-test code and misses spec files that do not use it, so it answers a different question.",
+        "B": "Reading directories by hand is slow and misses files outside src.",
+        "C": "A top-level listing misses the test files in nested directories."
+      }
+    },
+    "concepts": [
+      "file-name-search",
+      "built-in-tools"
+    ],
+    "source": "original",
+    "sources": [
+      "https://code.claude.com/docs/en/tools-reference (checked 2026-11-07)"
+    ],
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "id": "d2-028",
+    "domain": "d2",
+    "difficulty": "medium",
+    "type": "single",
+    "scenario": "Claude Code tries to change a line return null; inside one function of a file. The Edit call fails because the text return null; appears three times in that file, and only one occurrence should change.",
+    "question": "What is the right next step?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Add lines from that function to old_string so it matches only once."
+      },
+      {
+        "key": "B",
+        "text": "Rewrite the whole file with Write, reconstructing its contents from memory."
+      },
+      {
+        "key": "C",
+        "text": "Set replace_all so that every occurrence of the text is changed at once."
+      },
+      {
+        "key": "D",
+        "text": "Run a sed regular expression through Bash to change just the first match."
+      }
+    ],
+    "answer": [
+      "A"
+    ],
+    "explanation": {
+      "correct": "Edit does exact string replacement and needs old_string to match exactly once. Adding enough surrounding context from the target function makes the match unique, so only that occurrence changes.",
+      "distractors": {
+        "B": "Rewriting a file from memory risks dropping or altering unrelated code. A full rewrite should start from a fresh Read, and it is unnecessary here.",
+        "C": "replace_all changes all three occurrences, including the two that must stay.",
+        "D": "The first match may not be the right one, and a shell substitution skips the exact-match check that makes Edit safe."
+      }
+    },
+    "concepts": [
+      "edit-tool",
+      "unique-matching"
+    ],
+    "source": "original",
+    "sources": [
+      "https://code.claude.com/docs/en/tools-reference (checked 2026-11-07)"
+    ],
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "id": "d2-029",
+    "domain": "d2",
+    "difficulty": "medium",
+    "type": "single",
+    "scenario": "A new engineer asks Claude Code how checkout works in a 2,000-file repository. Claude starts reading every file under src/ in order, and its context fills with unrelated code before it reaches the checkout logic.",
+    "question": "What approach should Claude take instead?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Keep reading every file, since full coverage guarantees nothing important is missed."
+      },
+      {
+        "key": "B",
+        "text": "Search for the checkout entry points, then read files by following their imports."
+      },
+      {
+        "key": "C",
+        "text": "Read only the 20 largest files, since the core logic usually lives there."
+      },
+      {
+        "key": "D",
+        "text": "List every file name with a pattern search, then read them in alphabetical order."
+      }
+    ],
+    "answer": [
+      "B"
+    ],
+    "explanation": {
+      "correct": "Understanding builds best incrementally: a content search finds the entry points (routes, handlers, or a checkout function), then reading follows imports and calls outward. Context goes to the code that matters.",
+      "distractors": {
+        "A": "Reading everything uses up context on unrelated code, so the explanation suffers.",
+        "C": "File size says little about relevance; checkout logic may live in small files.",
+        "D": "Alphabetical order is as unrelated to checkout as the original approach."
+      }
+    },
+    "concepts": [
+      "incremental-exploration",
+      "built-in-tools"
+    ],
+    "source": "original",
+    "sources": [
+      "https://code.claude.com/docs/en/tools-reference (checked 2026-11-07)"
+    ],
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  {
+    "id": "d2-030",
+    "domain": "d2",
+    "difficulty": "hard",
+    "type": "single",
+    "scenario": "Before removing a function called send, a developer asks Claude Code to find all of its callers. A content search for \"send(\" finds four. But the module utils/index.ts re-exports the function under other names, export { send as notifyUser, send as pushAlert }, and many modules import those names instead.",
+    "question": "How should Claude find every caller?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Broaden the search to the bare word send, without the parenthesis, across the repository."
+      },
+      {
+        "key": "B",
+        "text": "Read every file that imports anything at all from the utils module."
+      },
+      {
+        "key": "C",
+        "text": "List every name utils/index.ts exports for the function, then search for each name."
+      },
+      {
+        "key": "D",
+        "text": "Search for files with notify in their names, since those are likely callers."
+      }
+    ],
+    "answer": [
+      "C"
+    ],
+    "explanation": {
+      "correct": "Aliased re-exports hide callers from a search for the original name. Collecting every exported name for the function from the wrapper (send, notifyUser, pushAlert) and searching for each one finds all the call sites.",
+      "distractors": {
+        "A": "The bare word send matches countless unrelated uses and still misses calls through notifyUser and pushAlert.",
+        "B": "Reading every importer of utils works eventually, but it is slow and context-heavy compared with targeted searches.",
+        "D": "File names are unrelated to which functions a file calls, so this misses most callers."
+      }
+    },
+    "concepts": [
+      "wrapper-tracing",
+      "content-search"
+    ],
+    "source": "original",
+    "sources": [
+      "https://code.claude.com/docs/en/tools-reference (checked 2026-11-07)"
+    ],
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+  }
+]

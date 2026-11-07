@@ -12,8 +12,8 @@
     "name": "Tool Design & MCP Integration",
     "weight": 18,
     "description": "Task statements: 2.1 Design effective tool interfaces with clear descriptions and boundaries; 2.2 Implement structured error responses for MCP tools; 2.3 Distribute tools appropriately across agents and configure tool choice; 2.4 Integrate MCP servers into Claude Code and agent workflows; 2.5 Select and apply built-in tools (Read, Write, Edit, Bash, Grep, Glob) effectively.",
-    "walkthroughId": null,
-    "labId": null
+    "walkthroughId": "d2",
+    "labId": "d2-tool-errors"
   },
   {
     "id": "d3",

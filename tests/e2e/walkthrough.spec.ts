@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test'
 test('browse to the d1 walkthrough and on to its lab', async ({ page }) => {
   await page.goto('/')
   await page.getByRole('link', { name: 'Walkthroughs' }).click()
-  await expect(page.getByText('Tool Design & MCP Integration (coming soon)')).toBeVisible()
+  await expect(page.getByText('Claude Code Configuration & Workflows (coming soon)')).toBeVisible()
 
   await page.getByRole('link', { name: 'Agentic Architecture & Orchestration' }).click()
   await expect(page).toHaveURL(/#walkthrough-d1$/)
