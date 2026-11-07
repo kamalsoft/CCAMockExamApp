@@ -43,9 +43,9 @@
     "sources": [
       "https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d2-002",
@@ -92,9 +92,9 @@
     "sources": [
       "https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d2-003",
@@ -140,9 +140,9 @@
     "sources": [
       "https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d2-004",
@@ -188,9 +188,9 @@
     "sources": [
       "https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d2-005",
@@ -236,9 +236,9 @@
     "sources": [
       "https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d2-006",
@@ -284,9 +284,9 @@
     "sources": [
       "https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d2-007",
@@ -332,9 +332,9 @@
     "sources": [
       "https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d2-008",
@@ -380,9 +380,9 @@
     "sources": [
       "https://modelcontextprotocol.io/specification/2025-06-18/server/tools (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d2-009",
@@ -429,9 +429,9 @@
     "sources": [
       "https://modelcontextprotocol.io/specification/2025-06-18/server/tools (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d2-010",
@@ -477,9 +477,9 @@
     "sources": [
       "https://modelcontextprotocol.io/specification/2025-06-18/server/tools (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d2-011",
@@ -525,9 +525,9 @@
     "sources": [
       "https://modelcontextprotocol.io/specification/2025-06-18/server/tools (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d2-012",
@@ -573,9 +573,9 @@
     "sources": [
       "https://modelcontextprotocol.io/specification/2025-06-18/server/tools (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d2-013",
@@ -626,9 +626,9 @@
     "sources": [
       "https://modelcontextprotocol.io/specification/2025-06-18/server/tools (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d2-014",
@@ -674,9 +674,9 @@
     "sources": [
       "https://code.claude.com/docs/en/agent-sdk/subagents (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d2-015",
@@ -722,9 +722,9 @@
     "sources": [
       "https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d2-016",
@@ -770,9 +770,9 @@
     "sources": [
       "https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d2-017",
@@ -819,9 +819,9 @@
     "sources": [
       "https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d2-018",
@@ -867,9 +867,9 @@
     "sources": [
       "https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d2-019",
@@ -915,9 +915,9 @@
     "sources": [
       "https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d2-020",
@@ -963,9 +963,9 @@
     "sources": [
       "https://code.claude.com/docs/en/mcp (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d2-021",
@@ -1011,9 +1011,9 @@
     "sources": [
       "https://code.claude.com/docs/en/mcp (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d2-022",
@@ -1059,9 +1059,9 @@
     "sources": [
       "https://code.claude.com/docs/en/mcp (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d2-023",
@@ -1107,9 +1107,9 @@
     "sources": [
       "https://code.claude.com/docs/en/mcp (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d2-024",
@@ -1156,9 +1156,9 @@
       "https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools (checked 2026-11-07)",
       "https://code.claude.com/docs/en/mcp (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d2-025",
@@ -1204,9 +1204,9 @@
     "sources": [
       "https://code.claude.com/docs/en/mcp (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d2-026",
@@ -1252,9 +1252,9 @@
     "sources": [
       "https://code.claude.com/docs/en/tools-reference (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d2-027",
@@ -1300,9 +1300,9 @@
     "sources": [
       "https://code.claude.com/docs/en/tools-reference (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d2-028",
@@ -1348,9 +1348,9 @@
     "sources": [
       "https://code.claude.com/docs/en/tools-reference (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d2-029",
@@ -1396,9 +1396,9 @@
     "sources": [
       "https://code.claude.com/docs/en/tools-reference (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   },
   {
     "id": "d2-030",
@@ -1444,8 +1444,8 @@
     "sources": [
       "https://code.claude.com/docs/en/tools-reference (checked 2026-11-07)"
     ],
-    "review_status": "draft",
-    "reviewed_by": null,
-    "reviewed_at": null
+    "review_status": "reviewed",
+    "reviewed_by": "kamalsoft",
+    "reviewed_at": "2026-11-07"
   }
 ]
