@@ -30,6 +30,7 @@
       "answer": [
         "C"
       ],
+      "hint": "The stop_reason field explicitly tells you what Claude needs next: tool_use means wait for tool results, end_turn means the response is complete.",
       "explanation": {
         "correct": "stop_reason is the API's signal for what to do next: \"tool_use\" means Claude is waiting for tool results, and \"end_turn\" means the response is complete. A response can contain text and a tool_use block together, so the presence of text says nothing about whether the turn is finished.",
         "distractors": {
@@ -98,7 +99,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "When returning multiple tool results, group all tool_result blocks in one message matched by tool_use_id, with no extra text."
     },
     {
       "id": "d1-003",
@@ -148,7 +150,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "max_turns is a fail-safe limit; max_budget_usd is the proper spend backstop that works with natural success endings."
     },
     {
       "id": "d1-004",
@@ -197,7 +200,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Let Claude decide which tool to call next based on what it has seen - it can skip unnecessary work."
     },
     {
       "id": "d1-005",
@@ -246,7 +250,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "When max_tokens cuts off a tool call, retry with higher limits rather than treating it as complete."
     },
     {
       "id": "d1-006",
@@ -296,7 +301,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Route all subagent communication through the coordinator for single-point logging and consistent error handling."
     },
     {
       "id": "d1-007",
@@ -345,7 +351,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "A supervisor agent monitors a main agent and can inject instructions when needed - it does not need direct tool access."
     },
     {
       "id": "d1-008",
@@ -395,7 +402,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "The system prompt should define the agent loop structure, not individual turn-level instructions."
     },
     {
       "id": "d1-009",
@@ -449,7 +457,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Tool choice \"required\" ensures Claude always uses tools when available, but doesn't force specific ones."
     },
     {
       "id": "d1-010",
@@ -498,7 +507,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "A run ends naturally with end_turn when Claude produces no tool_use block - that's the completion signal."
     },
     {
       "id": "d1-011",
@@ -547,7 +557,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Check stop_reason and only stop when it's \"end_turn\"; keep running for \"tool_use\" responses."
     },
     {
       "id": "d1-012",
@@ -595,7 +606,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Parallel tool calls return results matched by tool_use_id in a single user message to Claude."
     },
     {
       "id": "d1-013",
@@ -645,7 +657,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "A coordinator agent can request status updates from subagents and aggregate their responses into a final report."
     },
     {
       "id": "d1-014",
@@ -694,7 +707,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "The agent SDK automatically handles tool_use/end_turn transitions when configured correctly."
     },
     {
       "id": "d1-015",
@@ -744,7 +758,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "max_budget_usd prevents runaway costs but doesn't cause errors that users should see."
     },
     {
       "id": "d1-016",
@@ -793,7 +808,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Run tools in parallel when independent, but sequentialize when later results depend on earlier ones."
     },
     {
       "id": "d1-017",
@@ -842,7 +858,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "A result subtype indicates the exit condition: success for natural completion, error for failures."
     },
     {
       "id": "d1-018",
@@ -891,7 +908,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Use the conversation context to decide what Claude needs next, not hard-coded rules about text presence."
     },
     {
       "id": "d1-019",
@@ -940,7 +958,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "When Claude outputs both text and tool_use, wait for tool results before returning text to users."
     },
     {
       "id": "d1-020",
@@ -989,7 +1008,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "The loop should check stop_reason after each response to decide whether to run tools or return final text."
     },
     {
       "id": "d1-021",
@@ -1038,7 +1058,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Use pre-tool-use hooks to enforce policies before Claude can call tools - they inspect the planned call and deny if needed."
     },
     {
       "id": "d1-022",
@@ -1088,7 +1109,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "A deny behavior in hooks blocks tool use entirely - useful for security policies that should never be bypassed."
     },
     {
       "id": "d1-023",
@@ -1137,7 +1159,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Hook matchers route tool calls to different policies; comprehensive coverage means every tool has an appropriate matcher."
     },
     {
       "id": "d1-024",
@@ -1186,7 +1209,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Prompt chaining breaks complex tasks into sequential subprompts - each handles one concern at a time."
     },
     {
       "id": "d1-025",
@@ -1235,7 +1259,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Adaptive decomposition adjusts task breakdown based on what it learns - prioritize complex subtasks when needed."
     },
     {
       "id": "d1-026",
@@ -1284,7 +1309,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Dynamic decomposition creates prompts on the fly based on context, trading specificity for flexibility."
     },
     {
       "id": "d1-027",
@@ -1338,7 +1364,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Choose prompt chaining for predictable steps, dynamic for context-driven complexity in the decomposition."
     },
     {
       "id": "d1-028",
@@ -1388,7 +1415,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Session resumption reloads prior context to continue work, avoiding the need to recompute state from scratch."
     },
     {
       "id": "d1-029",
@@ -1436,7 +1464,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Session forking creates parallel branches from a checkpoint, allowing exploration without losing the original."
     },
     {
       "id": "d1-030",
@@ -1485,7 +1514,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Targeted reanalysis revisits specific questions from a session, using current context and tools as needed."
     },
     {
       "id": "d2-001",
@@ -1534,7 +1564,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "When selecting tools, use clear descriptions that differentiate each tool's purpose and output."
     },
     {
       "id": "d2-002",
@@ -1584,7 +1615,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Avoid tool name collisions by designing distinct names or splitting overlapping tools."
     },
     {
       "id": "d2-003",
@@ -1633,7 +1665,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Tools must work WITH system prompts - clarify expectations rather than conflict."
     },
     {
       "id": "d2-004",
@@ -1682,7 +1715,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Consolidate overlapping tools to reduce choice complexity and improve reliability."
     },
     {
       "id": "d2-005",
@@ -1731,7 +1765,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Split complex tools into simpler ones and provide clear parameter descriptions."
     },
     {
       "id": "d2-006",
@@ -1780,7 +1815,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Design high-signal tool responses - concise structured output, not verbose logs."
     },
     {
       "id": "d2-007",
@@ -1829,7 +1865,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Include input examples and detailed parameter descriptions for Claude to choose right arguments."
     },
     {
       "id": "d2-008",
@@ -1878,7 +1915,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Use isError to catch execution errors and handle unexpected tool response formats."
     },
     {
       "id": "d2-009",
@@ -1928,7 +1966,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Distinguish structured errors from retryable errors - handle each type appropriately."
     },
     {
       "id": "d2-010",
@@ -1977,7 +2016,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Business rule errors need different handling than system failures - categorize clearly."
     },
     {
       "id": "d2-011",
@@ -2026,7 +2066,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Empty results mean no data; access failures mean permissions - handle them differently."
     },
     {
       "id": "d2-012",
@@ -2075,7 +2116,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Implement local error recovery with proper error propagation and context."
     },
     {
       "id": "d2-013",
@@ -2129,7 +2171,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Let prompts help Claude search locally when it cannot find what it needs."
     },
     {
       "id": "d2-014",
@@ -2178,7 +2221,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Constrained tools force Claude down paths - scope tools to correct contexts."
     },
     {
       "id": "d2-015",
@@ -2227,7 +2271,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Constrained tools work well for narrow, specific tasks - design accordingly."
     },
     {
       "id": "d2-016",
@@ -2276,7 +2321,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Use tool_choice to enforce tool use when needed, but balance against flexibility."
     },
     {
       "id": "d2-017",
@@ -2326,7 +2372,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Model differences mean strict tool use may not work equally - test across supported models."
     },
     {
       "id": "d2-018",
@@ -2375,7 +2422,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Structure prompts to maintain clear context flow when tools depend on previous results."
     },
     {
       "id": "d2-019",
@@ -2424,7 +2472,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "High-signal output means Claude gives what you need without asking - design for efficiency."
     },
     {
       "id": "d2-020",
@@ -2473,7 +2522,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Scoped tool access with project scope keeps context contained and clean."
     },
     {
       "id": "d2-021",
@@ -2522,7 +2572,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Credential management requires explicit tool setup - don't rely on defaults."
     },
     {
       "id": "d2-022",
@@ -2571,7 +2622,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Local scope prevents unintended access and improves performance - contain tool context."
     },
     {
       "id": "d2-023",
@@ -2620,7 +2672,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Use context efficiency with MCP resources - they share the same conversation context."
     },
     {
       "id": "d2-024",
@@ -2670,7 +2723,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Clear tool descriptions prevent wrong choices - specify inputs and outputs precisely."
     },
     {
       "id": "d2-025",
@@ -2719,7 +2773,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "MCP integration vs build/reuse - reuse when safe, build when unique is needed."
     },
     {
       "id": "d2-026",
@@ -2768,7 +2823,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Use built-in tools with content search - search to find, built-in to execute."
     },
     {
       "id": "d2-027",
@@ -2817,7 +2873,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "File name search needs clear patterns - provide naming conventions to Claude."
     },
     {
       "id": "d2-028",
@@ -2866,7 +2923,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Edit tool with unique matching prevents race conditions - ensure right file editing."
     },
     {
       "id": "d2-029",
@@ -2915,7 +2973,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Incremental exploration with progress indicators helps Claude learn interactively."
     },
     {
       "id": "d2-030",
@@ -2964,7 +3023,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Wrapper tracing helps debug when things go wrong - trace the execution flow."
     },
     {
       "id": "d3-001",
@@ -3013,7 +3073,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Rules apply by path - file extensions determine which configurations are active."
     },
     {
       "id": "d3-002",
@@ -3062,7 +3123,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Only reviewed questions appear in production - check review_status before builds."
     },
     {
       "id": "d3-003",
@@ -3111,7 +3173,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Path matching works correctly - ensure tool paths match actual file locations."
     },
     {
       "id": "d3-004",
@@ -3160,7 +3223,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Terraform rules load for .tf files - path-scoped configs work by extension."
     },
     {
       "id": "d3-005",
@@ -3209,7 +3273,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Gitignore excludes local notes - keep local configs out of version control."
     },
     {
       "id": "d3-006",
@@ -3258,7 +3323,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Check PR reviews before merging - verify all content passes validation."
     },
     {
       "id": "d3-007",
@@ -3307,7 +3373,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "/release command runs subagents properly - skills can launch independent work."
     },
     {
       "id": "d3-008",
@@ -3356,7 +3423,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Tests run locally - verify tool behavior matches documentation."
     },
     {
       "id": "d3-009",
@@ -3406,7 +3474,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Review.sh validates JSON - structured scripts enable automation."
     },
     {
       "id": "d3-010",
@@ -3455,7 +3524,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Checklist verifies setup - walk through each step methodically."
     },
     {
       "id": "d3-011",
@@ -3504,7 +3574,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "CLAUDE.md rules apply everywhere - they define coding standards."
     },
     {
       "id": "d3-012",
@@ -3553,7 +3624,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Review status determines visibility - only reviewed content is deployed."
     },
     {
       "id": "d3-013",
@@ -3602,7 +3674,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Path-specific rules load conditionally - the paths frontmatter determines when a rule activates."
     },
     {
       "id": "d3-014",
@@ -3651,7 +3724,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Conditional rules activate based on file types - if no matching file, the rule never loads."
     },
     {
       "id": "d3-015",
@@ -3700,7 +3774,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "YAML frontmatter must parse correctly - unquoted strings starting with * cause parse failures that are silently ignored."
     },
     {
       "id": "d3-016",
@@ -3749,7 +3824,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Direct execution is for small, known changes - planning adds overhead without benefit for localized fixes."
     },
     {
       "id": "d3-017",
@@ -3798,7 +3874,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Plan mode explores alternatives for large changes - use it when many files are affected or multiple approaches exist."
     },
     {
       "id": "d3-018",
@@ -3848,7 +3925,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Exploration subagents run in isolation - they discover context without consuming the main conversation window."
     },
     {
       "id": "d3-019",
@@ -3897,7 +3975,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Plan mode handles architectural changes - skip it for small, well-defined edits with clear scope."
     },
     {
       "id": "d3-020",
@@ -3946,7 +4025,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Plan mode separates proposal from action - enter it to design, then approve before editing."
     },
     {
       "id": "d3-021",
@@ -3995,7 +4075,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Input/output examples clarify ambiguity - concrete examples remove uncertainty in handling edge cases."
     },
     {
       "id": "d3-022",
@@ -4044,7 +4125,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Test-driven iteration uses real failures - write tests first to define behavior, then fix against actual failures."
     },
     {
       "id": "d3-023",
@@ -4093,7 +4175,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "The interview pattern surfaces needs - ask questions first to discover requirements the developer didn't document."
     },
     {
       "id": "d3-024",
@@ -4142,7 +4225,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Interacting issues need unified description - describe related problems together for consistent solutions."
     },
     {
       "id": "d3-025",
@@ -4191,7 +4275,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "CI structured output uses JSON schema - --output-format json with --json-schema enables programmatic result handling."
     },
     {
       "id": "d3-026",
@@ -4240,7 +4325,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Review iterations avoid duplicate findings - give prior findings so Claude reports only new or remaining issues."
     },
     {
       "id": "d3-027",
@@ -4289,7 +4375,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Independent reviews catch assumptions - a fresh session without code context questions the reasoning behind the code."
     },
     {
       "id": "d3-028",
@@ -4338,7 +4425,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Bare mode ensures reproducibility - it skips auto-discovery for consistent CI runs across environments."
     },
     {
       "id": "d3-029",
@@ -4387,7 +4475,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Permissions control tool approval - --allowedTools pre-approves specific tools for non-interactive CI runs."
     },
     {
       "id": "d3-030",
@@ -4437,7 +4526,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "CI test generation needs existing context - include current tests so Claude can avoid duplicating coverage."
     },
     {
       "id": "d4-001",
@@ -4486,7 +4576,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Validate invoices by checking data types and required fields first."
     },
     {
       "id": "d4-002",
@@ -4535,7 +4626,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Extract JSON with proper error handling - catch parse failures."
     },
     {
       "id": "d4-003",
@@ -4584,7 +4676,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Retry logic handles transient errors - use exponential backoff."
     },
     {
       "id": "d4-004",
@@ -4633,7 +4726,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Pair tool results by custom_id - matching is essential for accuracy."
     },
     {
       "id": "d4-005",
@@ -4682,7 +4776,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Batch processing needs ordered lists - maintain sequence guarantees."
     },
     {
       "id": "d4-006",
@@ -4731,7 +4826,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Error categories help handle different failure modes appropriately."
     },
     {
       "id": "d4-007",
@@ -4780,7 +4876,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Tool execution errors need proper categorization and handling."
     },
     {
       "id": "d4-008",
@@ -4829,7 +4926,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Message structure must be correct for tool_use blocks."
     },
     {
       "id": "d4-009",
@@ -4878,7 +4976,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Send tools need all required parameters - validate upfront."
     },
     {
       "id": "d4-010",
@@ -4927,7 +5026,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Agent results need proper formatting - match expected schema."
     },
     {
       "id": "d4-011",
@@ -4976,7 +5076,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "ValidationError catches schema issues early - fail fast."
     },
     {
       "id": "d4-012",
@@ -5025,7 +5126,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Message coordination needs state tracking - track what was sent."
     },
     {
       "id": "d4-013",
@@ -5074,7 +5176,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Tool result validation prevents downstream errors - check early."
     },
     {
       "id": "d4-014",
@@ -5123,7 +5226,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Extraction loops need retry on transient issues - be resilient."
     },
     {
       "id": "d4-015",
@@ -5173,7 +5277,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Pairing requires consistent IDs across requests and responses."
     },
     {
       "id": "d4-016",
@@ -5222,7 +5327,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "JSON extraction handles partial data - be flexible but safe."
     },
     {
       "id": "d4-017",
@@ -5271,7 +5377,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Tool error propagation needs proper categorization."
     },
     {
       "id": "d4-018",
@@ -5320,7 +5427,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Message flow requires clear state tracking - avoid confusion."
     },
     {
       "id": "d4-019",
@@ -5369,7 +5477,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Batch tool calls to reduce round trips - be efficient."
     },
     {
       "id": "d4-020",
@@ -5418,7 +5527,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Validate each tool result before next step - prevent cascading errors."
     },
     {
       "id": "d4-021",
@@ -5467,7 +5577,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Structured error handling prevents data loss - validate before commit."
     },
     {
       "id": "d4-022",
@@ -5516,7 +5627,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Error propagation needs logging - track where failures occur."
     },
     {
       "id": "d4-023",
@@ -5565,7 +5677,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Message routing checks types correctly - validate input types."
     },
     {
       "id": "d4-024",
@@ -5614,7 +5727,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Input validation catches missing fields - check required properties."
     },
     {
       "id": "d4-025",
@@ -5663,7 +5777,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Tool response design affects Claude's next steps - structure outputs clearly."
     },
     {
       "id": "d4-026",
@@ -5712,7 +5827,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Error categorization enables proper response - don't treat all same."
     },
     {
       "id": "d4-027",
@@ -5761,7 +5877,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "File name patterns help Claude find right files - use consistent naming."
     },
     {
       "id": "d4-028",
@@ -5810,7 +5927,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Edit tool requires exact file matching - ensure IDs are unique."
     },
     {
       "id": "d4-029",
@@ -5859,7 +5977,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Context tracking helps Claude build correct responses - maintain state."
     },
     {
       "id": "d4-030",
@@ -5908,7 +6027,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Result validation prevents errors from propagating - check as you go."
     },
     {
       "id": "d5-001",
@@ -5957,7 +6077,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Synthesis groups findings by claim - organize evidence for clarity."
     },
     {
       "id": "d5-002",
@@ -6006,7 +6127,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Claim status depends on value and date - maintain data quality."
     },
     {
       "id": "d5-003",
@@ -6055,7 +6177,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Gaps show where data is missing - report them explicitly."
     },
     {
       "id": "d5-004",
@@ -6104,7 +6227,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Route contradictory evidence to human review - flag for experts."
     },
     {
       "id": "d5-005",
@@ -6153,7 +6277,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Low confidence fields need human attention - don't guess."
     },
     {
       "id": "d5-006",
@@ -6202,7 +6327,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Stratified sampling from each stratum - ensure coverage."
     },
     {
       "id": "d5-007",
@@ -6251,7 +6377,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Never duplicate IDs in samples - track what you've seen."
     },
     {
       "id": "d5-008",
@@ -6300,7 +6427,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Provenance review traces data back to sources - document chain."
     },
     {
       "id": "d5-009",
@@ -6349,7 +6477,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Claim status needs both value and date - temporal context matters."
     },
     {
       "id": "d5-010",
@@ -6398,7 +6527,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Gap detection compares expected vs actual data - be thorough."
     },
     {
       "id": "d5-011",
@@ -6447,7 +6577,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Contradictory evidence routing needs confidence thresholds."
     },
     {
       "id": "d5-012",
@@ -6496,7 +6627,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Low confidence needs either uncertainty or conflict handling."
     },
     {
       "id": "d5-013",
@@ -6545,7 +6677,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Stratified samples give balanced representation - avoid bias."
     },
     {
       "id": "d5-014",
@@ -6594,7 +6727,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "ID deduplication is critical for sample integrity - track unique items."
     },
     {
       "id": "d5-015",
@@ -6643,7 +6777,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Provenance review verifies source chain - trace back to origin."
     },
     {
       "id": "d5-016",
@@ -6692,7 +6827,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Claim evaluation uses both value analysis and temporal checks."
     },
     {
       "id": "d5-017",
@@ -6741,7 +6877,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Data gaps must be explicitly reported - don't hide missing info."
     },
     {
       "id": "d5-018",
@@ -6790,7 +6927,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Contradictory evidence gets human escalation paths."
     },
     {
       "id": "d5-019",
@@ -6839,7 +6977,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Confidence thresholds determine processing method."
     },
     {
       "id": "d5-020",
@@ -6889,7 +7028,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Sampling strategy affects reliability - use stratified approach."
     },
     {
       "id": "d5-021",
@@ -6939,7 +7079,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Provenance checks establish source credibility."
     },
     {
       "id": "d5-022",
@@ -6988,7 +7129,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Claim validation needs source verification."
     },
     {
       "id": "d5-023",
@@ -7037,7 +7179,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Evidence synthesis requires clear attribution."
     },
     {
       "id": "d5-024",
@@ -7086,7 +7229,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Gap analysis shows coverage completeness."
     },
     {
       "id": "d5-025",
@@ -7135,7 +7279,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Adaptive sampling adjusts based on findings."
     },
     {
       "id": "d5-026",
@@ -7184,7 +7329,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Dynamic decomposition creates context-specific prompts."
     },
     {
       "id": "d5-027",
@@ -7233,7 +7379,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Prompt chaining breaks complex tasks into steps."
     },
     {
       "id": "d5-028",
@@ -7282,7 +7429,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Session resumption reloads prior context correctly."
     },
     {
       "id": "d5-029",
@@ -7331,7 +7479,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Session forking creates parallel exploration paths."
     },
     {
       "id": "d5-030",
@@ -7380,7 +7529,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Targeted reanalysis revisits specific questions."
     }
   ]
 }

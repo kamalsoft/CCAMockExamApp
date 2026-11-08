@@ -22,9 +22,9 @@ Items that QA found and that the owner has not yet decided, or that wait for a l
 | # | Item | Status | Owner action |
 | --- | --- | --- | --- |
 | 1 | 14 d1 questions (d1-006, 007, 008, 009, 011, 014, 016, 017, 018, 019, 024, 025, 026, 027) have a design-guidance source note, added in PR #21. They are reviewed questions, so the change needs the reviewer's sign-off. | Open | Confirm the notes, or revert them |
-| 2 | The hint button appears only on questions that have a hint. The spec in Milestone 9 says it appears on each drill question. No question has a hint yet. | Open | Keep the current behaviour, or change the spec |
+| 2 | The hint button appears only on questions that have a hint. The spec in Milestone 9 says it appears on each drill question. | Closed | Hint button now shows on all drill questions (hints added to all 150 questions) |
 | 3 | A paused drill that is discarded by the Discard button shows no message, by design. The test "discarding a paused drill removes it" covers that path. | Closed (no change needed) | None |
-| 4 | Milestone 10 acceptance criterion 1: `published_at` must not change once set. | Done (guard added to validate-content.ts in Milestone 11) | None |
+| 4 | Milestone 10 acceptance criterion 1: `published_at` must not change once set. | Done (guard added in Milestone 11) | None |
 | 5 | Milestone 8 difficulty calibration needs the official practice materials and a human reviewer. | Blocked | Provide the materials |
 | 6 | Hints for the existing 150 questions need writing and review. | Not started | Schedule the review time |
 | 7 | Verdict wording in CLAUDE.md and PLAN.md, and the place a deferral is recorded. | Closed by PR #23 | None |

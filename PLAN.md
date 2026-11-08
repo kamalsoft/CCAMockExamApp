@@ -174,19 +174,19 @@ Each milestone ends with a working build and a short changelog entry.
 | 6 | Replicate across domains | Repeat the content work for the remaining domains. | Done: walkthroughs and labs for all five domains; all 150 questions reviewed (d3–d5 by kamalsoft, 2026-11-07) |
 | 7 | Progress and readiness | Progress tracking and readiness indicator. | Done |
 | 8 | Polish and calibration | Accessibility pass, mobile layout, and difficulty review against the official practice materials. | In progress: accessibility and mobile layout done; difficulty calibration needs the official practice materials and a human reviewer |
-| 9 | Drill pause and resume, and hints | Pause and resume a drill; optional hint on each question, drill mode only. | Done (no hint content yet) |
+| 9 | Drill pause and resume, and hints | Pause and resume a drill; optional hint on each question, drill mode only. | Done (hints added to all 150 questions) |
 | 10 | Question bank with publish dates | One question bank with a version and publish dates; the app serves reviewed questions from it. | Done (the publish-date guard lands with Milestone 11) |
 | 11 | Scheduled refresh and configuration screen | Scheduled bank refresh, configuration screen, and the `published_at` guard. | Done |
 | 12 | Labs in the browser | Guided, browser-based steps for each lab; no code runs in the browser. | In progress: guided READMEs created for all 5 labs |
 
 ## 9. Acceptance criteria
 
-- [ ] `npm run validate` passes with zero errors.
-- [ ] `npm test` and `npm run e2e` pass.
-- [ ] A full mock exam can be taken start to finish, timed, and scored.
-- [ ] Every question shown has explanations for all options.
-- [ ] Every lab's check script runs and returns a clear result on a fresh clone.
-- [ ] No draft content is reachable in the production build.
+- [x] `npm run validate` passes with zero errors.
+- [x] `npm test` and `npm run e2e` pass.
+- [x] A full mock exam can be taken start to finish, timed, and scored.
+- [x] Every question shown has explanations for all options.
+- [x] Every lab's check script runs and returns a clear result on a fresh clone.
+- [x] No draft content is reachable in the production build.
 
 ## 10. Risks and mitigations
 
