@@ -90,7 +90,9 @@ export function Drill({ domains, questions, saved, onSave, onComplete }: Props &
       responses={responses}
       restartLabel="New drill"
       onRestart={() => setSet(null)}
-    />
+    >
+      <a href="#home" className="text-sm text-gray-600 hover:text-blue-700">← Home</a>
+    </Results>
   )
 }
 
@@ -114,7 +116,10 @@ function Setup({ domains, questions, settings, onChange, saved, notice, onResume
 
   return (
     <section aria-labelledby="setup-heading">
-      <h2 id="setup-heading" className="text-xl font-semibold">Domain drill</h2>
+      <div className="flex items-center justify-between">
+        <h2 id="setup-heading" className="text-xl font-semibold">Domain drill</h2>
+        <a href="#home" className="text-sm text-gray-600 hover:text-blue-700">← Home</a>
+      </div>
       <fieldset className="mt-4">
         <legend className="font-medium">Domains</legend>
         {domains.map((d) => {

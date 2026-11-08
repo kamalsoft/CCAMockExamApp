@@ -36,7 +36,10 @@ export default function SettingsPage({ settings, bank, onChange }: {
 
   return (
     <section aria-labelledby="settings-heading">
-      <h2 id="settings-heading" className="text-xl font-semibold">Bank refresh settings</h2>
+      <div className="flex items-center justify-between">
+        <h2 id="settings-heading" className="text-xl font-semibold">Bank refresh settings</h2>
+        <a href="#home" className="text-sm text-gray-600 hover:text-blue-700">← Home</a>
+      </div>
       <p className="mt-2 text-sm text-gray-600">
         The question bank is version {bank.version}, published {bank.published_at}. The app keeps the
         current bank until a redeploy brings a newer one; no code runs in the browser and no API key

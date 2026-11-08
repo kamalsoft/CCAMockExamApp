@@ -1,7 +1,7 @@
 import { expect, test, type Page } from '@playwright/test'
 
 async function startHardD1Drill(page: Page, explainImmediately: boolean) {
-  await page.goto('/')
+  await page.goto('#drill')
   await page.getByLabel(/Agentic Architecture & Orchestration/).check()
   await page.getByLabel('Difficulty').selectOption('hard')
   const explain = page.getByLabel(/Show the explanation right after each answer/)
@@ -45,7 +45,7 @@ test('drill with explanations at the end', async ({ page }) => {
 })
 
 test('start is disabled until a domain is chosen', async ({ page }) => {
-  await page.goto('/')
+  await page.goto('#drill')
   await expect(page.getByText('0 questions match')).toBeVisible()
   await expect(page.getByRole('button', { name: 'Start drill' })).toBeDisabled()
 })
@@ -62,7 +62,7 @@ test('focus moves to each new question in a drill', async ({ page }) => {
 })
 
 test('pause a drill, reload, and resume where it left off', async ({ page }) => {
-  await page.goto('/')
+  await page.goto('#drill')
   await page.getByLabel(/Agentic Architecture & Orchestration/).check()
   await page.getByLabel(/Show the explanation right after each answer/).uncheck()
   await page.getByRole('button', { name: 'Start drill' }).click()
@@ -79,7 +79,7 @@ test('pause a drill, reload, and resume where it left off', async ({ page }) => 
 })
 
 test('discarding a paused drill removes it', async ({ page }) => {
-  await page.goto('/')
+  await page.goto('#drill')
   await page.getByLabel(/Agentic Architecture & Orchestration/).check()
   await page.getByRole('button', { name: 'Start drill' }).click()
   await page.getByRole('button', { name: 'Pause drill' }).click()
@@ -96,7 +96,7 @@ test('a paused drill with a question no longer in the bank says so', async ({ pa
       drill: { questionIds: ['d1-999'], responses: {}, startedAt: 1, explainImmediately: true },
     }))
   })
-  await page.goto('/')
+  await page.goto('#drill')
   await page.getByRole('button', { name: 'Resume drill' }).click()
   await expect(page.getByText(/no longer in the bank, so it was discarded/)).toBeVisible()
 })

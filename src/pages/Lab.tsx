@@ -180,6 +180,10 @@ export function Lab({ labs, domains, domainId, completed, onCompletedChange }: {
 
   return (
     <article>
+      <div className="flex items-center justify-between">
+        <h2 className="text-xl font-semibold">Lab: {domains.find((d) => d.id === lab.domainId)?.name}</h2>
+        <a href="#home" className="text-sm text-gray-600 hover:text-blue-700">← Home</a>
+      </div>
       {/* HTML rendered at build time from the repository's own Markdown (scripts/build-index.ts). */}
       <div className="doc" dangerouslySetInnerHTML={{ __html: lab.html }} />
 

@@ -5,6 +5,7 @@ import { localStorageSettingsRepository } from './lib/settings.ts'
 import { parseRoute } from './lib/route.ts'
 import { Drill } from './pages/Drill.tsx'
 import { Exam } from './pages/Exam.tsx'
+import { Home } from './pages/Home.tsx'
 import { Lab } from './pages/Lab.tsx'
 import { Progress } from './pages/Progress.tsx'
 import SettingsPage from './pages/Settings.tsx'
@@ -45,6 +46,17 @@ function App() {
     (domainId: string, done: boolean) => setProgress((p) => ({ ...p, labsCompleted: { ...p.labsCompleted, [domainId]: done } })),
     [],
   )
+
+  // Home page shown when on home route (empty hash or #home)
+  if (route.page === 'home') {
+    return (
+      <main className="mx-auto max-w-2xl p-4 sm:p-6">
+        <h1 className="text-2xl font-bold">CCA Mock Exam</h1>
+        <Home domains={content.domains} />
+      </main>
+    )
+  }
+
   return (
     <main className="mx-auto max-w-2xl p-4 sm:p-6">
       <h1 className="text-2xl font-bold">CCA Mock Exam</h1>

@@ -23,7 +23,7 @@ test('browse to the d1 walkthrough and on to its lab', async ({ page }) => {
 })
 
 test('a concept link in an explanation opens its walkthrough section, and back returns to the drill', async ({ page }) => {
-  await page.goto('/')
+  await page.goto('#drill')
   await page.getByLabel(/Agentic Architecture & Orchestration/).check()
   await page.getByRole('button', { name: 'Start drill' }).click()
   await page.locator('fieldset:visible input').first().check()

@@ -1,10 +1,12 @@
 export type Route =
+  | { page: 'home' }
   | { page: 'drill' | 'exam' | 'progress' | 'settings' }
   | { page: 'walkthrough' | 'lab'; domainId?: string; anchor?: string }
 
-// Hash routes: #drill, #exam, #progress, #settings, #walkthrough-d1, #wt-d1-<section>, #lab-d1. Anything else is the drill.
+// Hash routes: #home, #drill, #exam, #progress, #settings, #walkthrough-d1, #wt-d1-<section>, #lab-d1. Empty hash is home.
 export function parseRoute(hash: string): Route {
   const h = hash.replace(/^#/, '')
+  if (h === '' || h === 'home') return { page: 'home' }
   if (h === 'exam' || h === 'progress' || h === 'settings') return { page: h }
   if (h === 'walkthrough' || h === 'lab') return { page: h }
   let m = h.match(/^(walkthrough|lab)-(d\d+)$/)

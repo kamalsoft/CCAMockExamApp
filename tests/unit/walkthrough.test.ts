@@ -42,7 +42,8 @@ describe('parseWalkthrough', () => {
 
 describe('parseRoute', () => {
   it.each([
-    ['', { page: 'drill' }],
+    ['', { page: 'home' }],
+    ['#home', { page: 'home' }],
     ['#drill', { page: 'drill' }],
     ['#exam', { page: 'exam' }],
     ['#progress', { page: 'progress' }],

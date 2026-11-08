@@ -21,7 +21,11 @@ export function Progress({ progress, domains, questions, bank, onReset }: {
 
   return (
     <div className="space-y-8">
-      <p className="text-sm text-gray-600">
+      <div className="flex items-center justify-between">
+        <h2 className="text-xl font-semibold">Progress</h2>
+        <a href="#home" className="text-sm text-gray-600 hover:text-blue-700">← Home</a>
+      </div>
+      <p className="mt-2 text-sm text-gray-600">
         Question bank version {bank.version}, published {bank.published_at}, {questions.length} questions.
       </p>
       <section aria-labelledby="readiness-heading">
