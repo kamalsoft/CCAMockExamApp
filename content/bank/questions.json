@@ -30,6 +30,7 @@
       "answer": [
         "C"
       ],
+      "hint": "The stop_reason field explicitly tells you what Claude needs next: tool_use means wait for tool results, end_turn means the response is complete.",
       "explanation": {
         "correct": "stop_reason is the API's signal for what to do next: \"tool_use\" means Claude is waiting for tool results, and \"end_turn\" means the response is complete. A response can contain text and a tool_use block together, so the presence of text says nothing about whether the turn is finished.",
         "distractors": {
