@@ -9,10 +9,13 @@ const memoryStorage = (initial?: string) => {
 describe('localStorageSettingsRepository', () => {
   it('round-trips settings', () => {
     const repo = localStorageSettingsRepository(memoryStorage())
-    repo.save({ refreshPeriod: 'monthly', scheduleTime: '21:30', lastRefreshAt: '2026-11-08T09:00:00.000Z' })
+    repo.save({ refreshPeriod: 'monthly', scheduleTime: '21:30', dayOfWeek: 'friday', dayOfMonth: '15', weekOfMonth: '2nd', lastRefreshAt: '2026-11-08T09:00:00.000Z' })
     expect(repo.load()).toEqual({
       refreshPeriod: 'monthly',
       scheduleTime: '21:30',
+      dayOfWeek: 'friday',
+      dayOfMonth: '15',
+      weekOfMonth: '2nd',
       lastRefreshAt: '2026-11-08T09:00:00.000Z',
     })
   })
