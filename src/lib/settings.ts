@@ -2,17 +2,34 @@ import { z } from 'zod'
 
 export type RefreshPeriod = 'weekly' | 'monthly'
 
-const SettingsSchema = z.object({
+const DayOfWeekEnum = z.enum(['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'])
+const DayOfMonthEnum = z.enum([
+  '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15',
+  '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31'
+])
+const WeekEnum = z.enum(['1st', '2nd', '3rd', '4th', 'last'])
+
+export const SettingsSchema = z.object({
   refreshPeriod: z.enum(['weekly', 'monthly']),
   scheduleTime: z.string().regex(/^\d{2}:\d{2}$/),
+  dayOfWeek: DayOfWeekEnum,        // For weekly: which day to run
+  dayOfMonth: DayOfMonthEnum,      // For monthly: which day to run
+  weekOfMonth: WeekEnum,           // For monthly: which occurrence (1st, 2nd, last)
   lastRefreshAt: z.string().nullable(),
 })
+
+export type DayOfWeek = z.infer<typeof DayOfWeekEnum>
+export type DayOfMonth = z.infer<typeof DayOfMonthEnum>
+export type Week = z.infer<typeof WeekEnum>
 
 export type Settings = z.infer<typeof SettingsSchema>
 
 export const emptySettings = (): Settings => ({
   refreshPeriod: 'weekly',
   scheduleTime: '09:00',
+  dayOfWeek: 'monday',
+  dayOfMonth: '1',
+  weekOfMonth: '1st',
   lastRefreshAt: null,
 })
 
