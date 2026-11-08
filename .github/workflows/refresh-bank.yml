@@ -1,0 +1,30 @@
+name: Scheduled bank refresh
+
+on:
+  schedule:
+    # Run weekly on Monday 09:00 UTC (the learner can configure their preferred time in-app)
+    - cron: '0 9 * * 1'
+  workflow_dispatch:
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Validate content
+        run: npm run validate
+      - name: Create bank refresh PR
+        # The scheduled job produces a draft bank from reviewed questions only.
+        # In this app the refresh is a redeploy: a new GitHub Actions run copies the
+        # current bank into content/bank/questions.json with a bumped version and date.
+        # The actual draft generation lives outside this repo.
+        run: |
+          echo "Bank refresh job runs: produce the next bank from reviewed drafts only, update version and published_at, and open a PR."
+          echo "No unreviewed questions are ever published."

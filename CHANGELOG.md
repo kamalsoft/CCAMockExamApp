@@ -1,5 +1,15 @@
 # Changelog
 
+## Milestone 11: Scheduled bank refresh and configuration screen (2026-11-08)
+
+- Add Settings page with refresh period (weekly/monthly), schedule time, and "Refresh now" action
+- Settings persist in localStorage via new `src/lib/settings.ts` repository
+- Bank version and publish date shown on Settings page alongside the Progress page
+- Add "published_at never changes" guard to `scripts/validate-content.ts` (Milestone 10 AC1 now enforced)
+- Add workflow stub `.github/workflows/refresh-bank.yml` for scheduled bank refresh (GitHub Actions cron)
+- Wire Settings into navigation; add route parsing for `#settings`
+- Add unit tests for settings repository and e2e tests for settings page; mobile check extended to `#settings`
+
 ## Follow-ups from the milestone review (2026-11-07)
 
 - PLAN.md and BACKLOG.md match the code: milestone rows 9–12 added, status lines updated, and Milestone 10 notes its deferred publish-date guard.
@@ -13,7 +23,7 @@
 - The build serves reviewed questions from the bank and exposes its version and date. The Progress page shows them.
 - The validator checks the bank: it needs a version and a date, each reviewed question needs `published_at`, and every domain must exist in `domains.json`.
 - The 150 questions are unchanged apart from `published_at`, which is their review date.
-- Not yet: `published_at` is not guarded against changes. That check belongs with the refresh step in Milestone 11.
+- The `published_at` never changes guard is now enforced by the validator.
 
 ## Milestone 9: Drill pause, resume, and hints (2026-11-07)
 
