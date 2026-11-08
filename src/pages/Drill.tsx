@@ -207,12 +207,18 @@ function QuestionView({ question, position, domainName, explainImmediately, onAn
       </p>
       <QuestionCard question={question} selected={selected} onChange={setSelected} disabled={submitted} />
 
-      {question.hint && (
+      {question.hint ? (
         <div className="mt-4">
           <button type="button" className={secondary} aria-expanded={hintShown} onClick={() => setHintShown(!hintShown)}>
             {hintShown ? 'Hide hint' : 'Show hint'}
           </button>
           {hintShown && <p className="mt-2 text-sm text-gray-700">{question.hint}</p>}
+        </div>
+      ) : (
+        <div className="mt-4">
+          <button type="button" className={secondary + ' opacity-50 cursor-not-allowed'} disabled>
+            Hint coming soon
+          </button>
         </div>
       )}
 
