@@ -3674,7 +3674,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Path-specific rules load conditionally - the paths frontmatter determines when a rule activates."
     },
     {
       "id": "d3-014",
@@ -3723,7 +3724,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Conditional rules activate based on file types - if no matching file, the rule never loads."
     },
     {
       "id": "d3-015",
@@ -3772,7 +3774,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "YAML frontmatter must parse correctly - unquoted strings starting with * cause parse failures that are silently ignored."
     },
     {
       "id": "d3-016",
@@ -3821,7 +3824,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Direct execution is for small, known changes - planning adds overhead without benefit for localized fixes."
     },
     {
       "id": "d3-017",
@@ -3870,7 +3874,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Plan mode explores alternatives for large changes - use it when many files are affected or multiple approaches exist."
     },
     {
       "id": "d3-018",
@@ -3920,7 +3925,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Exploration subagents run in isolation - they discover context without consuming the main conversation window."
     },
     {
       "id": "d3-019",
@@ -3969,7 +3975,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Plan mode handles architectural changes - skip it for small, well-defined edits with clear scope."
     },
     {
       "id": "d3-020",
@@ -4018,7 +4025,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Plan mode separates proposal from action - enter it to design, then approve before editing."
     },
     {
       "id": "d3-021",
@@ -4067,7 +4075,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Input/output examples clarify ambiguity - concrete examples remove uncertainty in handling edge cases."
     },
     {
       "id": "d3-022",
@@ -4116,7 +4125,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Test-driven iteration uses real failures - write tests first to define behavior, then fix against actual failures."
     },
     {
       "id": "d3-023",
@@ -4165,7 +4175,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "The interview pattern surfaces needs - ask questions first to discover requirements the developer didn't document."
     },
     {
       "id": "d3-024",
@@ -4214,7 +4225,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Interacting issues need unified description - describe related problems together for consistent solutions."
     },
     {
       "id": "d3-025",
@@ -4263,7 +4275,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "CI structured output uses JSON schema - --output-format json with --json-schema enables programmatic result handling."
     },
     {
       "id": "d3-026",
@@ -4312,7 +4325,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Review iterations avoid duplicate findings - give prior findings so Claude reports only new or remaining issues."
     },
     {
       "id": "d3-027",
@@ -4361,7 +4375,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Independent reviews catch assumptions - a fresh session without code context questions the reasoning behind the code."
     },
     {
       "id": "d3-028",
@@ -4410,7 +4425,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Bare mode ensures reproducibility - it skips auto-discovery for consistent CI runs across environments."
     },
     {
       "id": "d3-029",
@@ -4459,7 +4475,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Permissions control tool approval - --allowedTools pre-approves specific tools for non-interactive CI runs."
     },
     {
       "id": "d3-030",
@@ -4509,7 +4526,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "CI test generation needs existing context - include current tests so Claude can avoid duplicating coverage."
     },
     {
       "id": "d4-001",
@@ -6793,7 +6811,7 @@
       "explanation": {
         "correct": "Retries at several layers multiply. Handling transient errors in one bounded place, close to where they happen, with the layers above propagating the structured error instead of retrying, keeps recovery without the storm.",
         "distractors": {
-          "A": "Backoff spreads the attempts out over time, but 3 \u00d7 3 \u00d7 3 is still 27 attempts.",
+          "A": "Backoff spreads the attempts out over time, but 3 × 3 × 3 is still 27 attempts.",
           "C": "Dropping retries entirely turns every brief blip into a human escalation.",
           "D": "More coordinator retries multiply the storm further."
         }
