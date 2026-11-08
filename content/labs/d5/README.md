@@ -1,34 +1,45 @@
 # Lab: Provenance and calibrated review
 
-## Goal
+## Step 1: Build provenance-preserving synthesis
 
-Build the pieces that keep a multi-source system honest about what it knows:
+Implement `synthesize(findings, failedSources)`:
 
-1. **Provenance-preserving synthesis:** merge research findings by claim, keeping every source.
-   - Sources that agree: **established**.
-   - A single source: **single-source**.
-   - Different values from the same period: **contested**. Keep every value; never average.
-   - Different values from different years: a **trend**, not a contradiction.
-   - Failed sources: reported as coverage gaps.
-2. **Calibrated review routing:** send an extraction to a person when the source is contradictory, when any field is below its *own* calibrated threshold, or when a field has no calibrated threshold.
-3. **Stratified sampling:** draw a random sample from every document type, including small ones, to keep measuring automated accuracy.
+- Group findings by `claim`
+- Make one entry per distinct (value, date) pair
+- List all sources for each pair, sorted by date
+- Set claim status:
+  - `"established"`: one value from 2+ findings (different dates)
+  - `"single-source"`: one value from one finding
+  - `"trend"`: different values from different years (change over time)
+  - `"contested"`: different values where any date repeats (keep all)
+- Return `gaps` for failed sources
+- Never average or drop values
 
-This lab covers task statements 5.3, 5.5, and 5.6 in the [Domain 5 walkthrough](#walkthrough-d5).
+- [ ] Step 1 complete
 
-## Prerequisites
+## Step 2: Implement calibrated review routing
 
-- Node.js 22.18 or later.
-- The repository cloned locally. The checker needs no API key and costs nothing.
+Build `routeForReview(extraction, thresholds)`:
 
-## Starter files
+- Route to `"human"` when:
+  - Source is contradictory (`conflict_detected: true`)
+  - Any field's confidence < its calibrated threshold
+  - Field has no calibrated threshold
+- Otherwise route to `"auto"`
+- Return one reason per problem field
 
-All files are in `labs/d5-provenance-review/`:
+- [ ] Step 2 complete
 
-| File | Purpose |
-| --- | --- |
-| `src/reliability.ts` | **Your work.** `synthesize`, `routeForReview`, and `stratifiedSample`, with the rules in the comments. |
-| `tests/reliability.test.ts` | The checker, with sample findings, extractions, and a repeatable random generator. |
-| `solution/reliability.ts` | A reference solution. Try the lab first. |
+## Step 3: Create stratified sampler
+
+Implement `stratifiedSample(items, perStratum, random)`:
+
+- Pick up to `perStratum` random IDs from each stratum
+- Use `random()` for every choice (tests provide deterministic `Math.random`)
+- Include full stratum if it has fewer than `perStratum` items
+- Never pick same ID twice
+
+- [ ] Step 3 complete
 
 ## Check your work
 
@@ -37,31 +48,20 @@ cd labs/d5-provenance-review
 npm run check
 ```
 
-No install is needed. Run `npm install` for editor type hints.
-
-## Expected output
-
-On the untouched starter, all 10 tests fail and the command exits with code 1:
-
-```text
-ℹ tests 10
-ℹ pass 0
-ℹ fail 10
-```
-
-When your implementation is complete, every test passes and the command exits with code 0:
+## Expected output (complete)
 
 ```text
 ▶ Part 1: synthesize
-  ✔ conflicting values from the same period are contested, with both values and sources kept
-  ✔ different values from different years are a trend, sorted by date
+  ✔ groups findings by claim
+  ✔ sets status based on value/date distribution
   ...
 ▶ Part 2: routeForReview
-  ✔ uses each field's calibrated threshold, not a single global one
+  ✔ routes contradictory evidence to human
+  ✔ routes low confidence fields to human
   ...
 ▶ Part 3: stratifiedSample
-  ✔ samples every stratum, including small ones, up to the limit
-  ...
+  ✔ samples from each stratum
+  ✔ never duplicates IDs
 ℹ tests 10
 ℹ pass 10
 ℹ fail 0

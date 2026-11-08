@@ -1,28 +1,60 @@
 # Lab: Tool errors an agent can act on
 
-## Goal
+## Step 1: Implement the search_customers tool
 
-Build the error handling that separates a reliable tool from a confusing one:
+Build an MCP-style tool that returns structured results:
 
-1. **An MCP-style `search_customers` tool** that returns results in the MCP `tools/call` shape. No match is an empty success. Every failure sets `isError: true` and carries a structured error: `errorCategory` (transient, validation, permission), `isRetryable`, and a readable `message`. An outage must never look like "no customers found".
-2. **A retry wrapper** for local recovery: retry only errors marked retryable, up to a bounded number of attempts, and return immediately on success or on a non-retryable error.
+**Success case:**
+- `isError: false`, `content` is JSON `{"customers": [...]}`
+- No matches = empty array (still a success)
 
-This lab covers task statements 2.2 and 2.3 in the [Domain 2 walkthrough](#walkthrough-d2).
+**Failure cases:**
+- Validation error (missing/short query): `errorCategory: "validation"`, `isRetryable: false`
+- Permission error (401/403): `errorCategory: "permission"`, `isRetryable: false`
+- Transient error (408, 429, 500+, network): `errorCategory: "transient"`, `isRetryable: true`
+- Other errors: `errorCategory: "validation"`, `isRetryable: false`
+
+**Expected test output after Step 1:**
+```text
+▶ Part 1: searchCustomers
+  ✖ handles missing query
+  ✖ returns empty array on no match
+  ...
+```
+
+- [ ] Step 1 complete
+
+## Step 2: Implement retry wrapper
+
+Build `callWithRetry` that provides local recovery:
+
+1. Call the function
+2. Return immediately on success OR on non-retryable error
+3. Retry only if `result.isRetryable === true`
+4. Stop after `maxAttempts` total calls
+5. Return the final result and attempt count
+
+**Expected test output after Step 2 (all tests pass):**
+```text
+▶ Part 1: searchCustomers
+  ✔ handles missing query validation
+  ✔ returns empty array when backend has no match
+  ...
+▶ Part 2: callWithRetry
+  ✔ returns immediately on success
+  ✔ retries transient errors up to max attempts
+  ...
+ℹ tests 10
+ℹ pass 10
+ℹ fail 0
+```
+
+- [ ] Step 2 complete
 
 ## Prerequisites
 
-- Node.js 22.18 or later. The lab runs TypeScript directly, with no build step.
-- The repository cloned locally. The lab needs no API key and makes no network calls.
-
-## Starter files
-
-All files are in `labs/d2-tool-errors/`:
-
-| File | Purpose |
-| --- | --- |
-| `src/tools.ts` | **Your work.** `searchCustomers` and `callWithRetry`, with the rules in the comments. |
-| `tests/tools.test.ts` | The checker. It uses a fake customer backend that can succeed, return nothing, or fail with HTTP or network errors. |
-| `solution/tools.ts` | A reference solution. Try the lab first. |
+- Node.js 22.18 or later. Run locally.
+- No API key needed; the checker uses a fake backend.
 
 ## Check your work
 
@@ -31,34 +63,18 @@ cd labs/d2-tool-errors
 npm run check
 ```
 
-No install is needed. Run `npm install` if you want editor type hints.
-
-## Expected output
-
-On the untouched starter, all 10 tests fail and the command exits with code 1:
-
-```text
-ℹ tests 10
-ℹ pass 0
-ℹ fail 10
-```
-
-When your implementation is complete, every test passes and the command exits with code 0:
+## Expected output (complete)
 
 ```text
 ▶ Part 1: searchCustomers
-  ✔ returns matches as JSON with isError false
-  ✔ no match is an empty success, not an error
+  ✔ handles missing query validation
+  ✔ returns empty array when backend has no match
   ...
 ▶ Part 2: callWithRetry
-  ✔ retries transient errors until one succeeds
-  ✔ never retries an error that is not retryable
+  ✔ returns immediately on success
+  ✔ retries on transient errors
   ...
 ℹ tests 10
 ℹ pass 10
 ℹ fail 0
 ```
-
-## Going further
-
-Write the MCP `description` for `search_customers` as you would for production. Say what it searches, what it returns, the minimum query length, what an empty result means, and which tool to use instead for account login data.
