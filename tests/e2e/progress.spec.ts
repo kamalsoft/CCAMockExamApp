@@ -4,7 +4,7 @@ const visibleOption = (page: Page) => page.locator('fieldset:visible input').fir
 const condition = (page: Page, label: RegExp) => page.getByRole('listitem').filter({ hasText: label })
 
 async function finishD1Drill(page: Page) {
-  await page.goto('/')
+  await page.goto('#drill')
   await page.getByLabel(/Agentic Architecture & Orchestration/).check()
   await page.getByLabel(/Show the explanation right after each answer/).uncheck()
   await page.getByRole('button', { name: 'Start drill' }).click()

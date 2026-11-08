@@ -23,7 +23,10 @@ export function Walkthrough({ walkthroughs, domains, domainId, anchor, onSeen }:
   if (!page) return <DocIndex kind="walkthrough" label="Walkthroughs" pages={walkthroughs} domains={domains} />
   return (
     <article>
-      <h2 className="text-xl font-semibold">{page.title}</h2>
+      <div className="flex items-center justify-between">
+        <h2 className="text-xl font-semibold">{page.title}</h2>
+        <a href="#home" className="text-sm text-gray-600 hover:text-blue-700">← Home</a>
+      </div>
       {/* HTML rendered at build time from the repository's own Markdown (scripts/build-index.ts). */}
       <div className="doc" dangerouslySetInnerHTML={{ __html: page.introHtml }} />
       {page.sections.map((s) => (

@@ -44,10 +44,13 @@ export function Exam({ domains, questions, onComplete }: Props & { onComplete: (
         restartLabel="Back to exam start"
         onRestart={() => setRun(null)}
       >
-        <p className="mt-1 text-sm text-gray-600">
-          {finished === 'timeout' ? 'Time ran out, so the exam was submitted automatically. ' : ''}
-          {unanswered} unanswered (counted as incorrect).
-        </p>
+        <div className="mt-4 flex justify-between items-start">
+          <p className="text-sm text-gray-600">
+            {finished === 'timeout' ? 'Time ran out, so the exam was submitted automatically. ' : ''}
+            {unanswered} unanswered (counted as incorrect).
+          </p>
+          <a href="#home" className="text-sm text-gray-600 hover:text-blue-700">← Home</a>
+        </div>
       </Results>
     )
   }
@@ -74,7 +77,10 @@ function Intro({ domains, preview, onStart }: {
   const items = preview.questions.length
   return (
     <section aria-labelledby="exam-heading">
-      <h2 id="exam-heading" className="text-xl font-semibold">Mock exam</h2>
+      <div className="flex items-center justify-between">
+        <h2 id="exam-heading" className="text-xl font-semibold">Mock exam</h2>
+        <a href="#home" className="text-sm text-gray-600 hover:text-blue-700">← Home</a>
+      </div>
       <p className="mt-2">
         {items} questions · {EXAM_MINUTES} minutes. The timer starts when you begin, and the exam is submitted
         automatically when it reaches zero. Explanations appear only after you submit.
