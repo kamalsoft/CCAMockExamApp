@@ -108,4 +108,4 @@ Items that QA found and that the owner has not yet decided, or that wait for a l
 | 9 | Drill pause and resume, and hints | Done (hints added to all 150 questions) |
 | 10 | Question bank with publish dates | Done (guard added in Milestone 11) |
 | 11 | Scheduled refresh and configuration screen | Done |
-| 12 | Labs in the browser | Interactive terminal simulation with guided steps | Done |
+| 12 | Labs in the browser | Guided walkthrough pages complete; needs owner decision on hint button behavior (QA item #2) and d1 design-guidance notes (QA item #1) | In progress: guided READMEs created for all 5 labs |
