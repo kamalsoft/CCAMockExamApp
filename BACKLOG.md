@@ -18,6 +18,20 @@ Three requests conflict with PLAN.md or CLAUDE.md. Each needs a decision from yo
 
 3. **Hints in mock exams (Milestone 9).** A hint that points at the answer undermines a timed exam. *Recommendation:* hints in drill mode only. The mock exam shows none until submission, as PLAN.md section 7 already requires.
 
+## Open items from the QA review (2026-11-07)
+
+Items that QA found and that the owner has not yet decided, or that wait for a later milestone. Closed items are listed too, so the reasoning stays on record.
+
+| # | Item | Status | Owner action |
+| --- | --- | --- | --- |
+| 1 | 14 d1 questions (d1-006, 007, 008, 009, 011, 014, 016, 017, 018, 019, 024, 025, 026, 027) have a design-guidance source note, added in PR #21. They are reviewed questions, so the change needs the reviewer's sign-off. | Open | Confirm the notes, or revert them |
+| 2 | The hint button appears only on questions that have a hint. The spec in Milestone 9 says it appears on each drill question. No question has a hint yet. | Open | Keep the current behaviour, or change the spec |
+| 3 | A paused drill that is discarded by the Discard button shows no message, by design. The test "discarding a paused drill removes it" covers that path. | Closed (no change needed) | None |
+| 4 | Milestone 10 acceptance criterion 1: `published_at` must not change once set. | Deferred to Milestone 11 | Built with the refresh step |
+| 5 | Milestone 8 difficulty calibration needs the official practice materials and a human reviewer. | Blocked | Provide the materials |
+| 6 | Hints for the existing 150 questions need writing and review. | Not started | Schedule the review time |
+| 7 | Verdict wording in CLAUDE.md and PLAN.md, and the place a deferral is recorded. | Closed by PR #23 | None |
+
 ## Milestone 9: Drill pause and resume, and hints
 
 **Goal:** Learners can pause a drill and come back to it later, and get a hint on any drill question.
