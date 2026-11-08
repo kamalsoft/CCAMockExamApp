@@ -26,7 +26,7 @@ Items that QA found and that the owner has not yet decided, or that wait for a l
 | 3 | A paused drill that is discarded by the Discard button shows no message, by design. The test "discarding a paused drill removes it" covers that path. | Closed (no change needed) | None |
 | 4 | Milestone 10 acceptance criterion 1: `published_at` must not change once set. | Done (guard added in Milestone 11) | None |
 | 5 | Milestone 8 difficulty calibration needs the official practice materials and a human reviewer. | Blocked | Provide the materials |
-| 6 | Hints for the existing 150 questions need writing and review. | In progress | 1 sample hint added (d1-001); remaining 149 to write and review |
+| 6 | Hints for the existing 150 questions need writing and review. | In progress | 30 hints added (d1); 120 remaining (d2-d5), need reviewer sign-off |
 | 7 | Verdict wording in CLAUDE.md and PLAN.md, and the place a deferral is recorded. | Closed by PR #23 | None |
 
 ## Milestone 9: Drill pause and resume, and hints
