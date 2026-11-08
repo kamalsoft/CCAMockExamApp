@@ -3,20 +3,17 @@
 | | |
 | --- | --- |
 | **Created** | 2026-11-07 |
-| **Status** | Milestones 9 and 10 done; Milestones 11 and 12 approved, not started |
+| **Status** | Milestones 9 and 10 done; Milestone 11 in progress; Milestones 12 approved, not started |
 | **Related** | [PLAN.md](PLAN.md) · [CLAUDE.md](CLAUDE.md) · [CHANGELOG.md](CHANGELOG.md) |
 
 Features that come after the v1 milestones. Per PLAN.md section 10, new features go here, not into the current milestone. Each milestone starts only after its plan is approved.
 
-## Decisions needed before work starts
+## Decisions confirmed
 
-Three requests conflict with PLAN.md or CLAUDE.md. Each needs a decision from you.
-
-1. **Labs in the browser (Milestone 12).** PLAN.md section 7 says: "The app does not run learner code in the browser," and labs use the learner's own API key from their environment. Running lab code in the browser would reverse both rules. Entering an API key in the browser would also break "keep API keys out of the app bundle". *Recommendation:* keep labs local, and add an in-browser guided walkthrough (step-by-step, checks shown as expected output) that needs no key. Change PLAN.md if you want real in-browser execution.
-
-2. **Periodic question generation (Milestone 11).** PLAN.md puts "Live model generation of questions at runtime" out of scope, and the app has no server. Every question also needs human review before it's served (PLAN.md section 6). *Recommendation:* a scheduled job, run outside the app, produces a batch of draft questions that go through the same review gate. The app only serves reviewed questions, and it records each one's publish date. The configuration screen then controls which bank refresh is shown. Automatic, unreviewed generation would break the content rules.
-
-3. **Hints in mock exams (Milestone 9).** A hint that points at the answer undermines a timed exam. *Recommendation:* hints in drill mode only. The mock exam shows none until submission, as PLAN.md section 7 already requires.
+All three pre-work decisions from the original list have been accepted:
+1.  Labs in the browser: guided walkthrough approach for Milestone 12 (no in-browser execution, no API key needed)
+2.  Periodic question generation: scheduled job approach for Milestone 11 (GitHub Actions cron, human review gate)
+3.  Hints in mock exams: drill mode only, mock exam never shows hints (already reflected in Milestone 9)
 
 ## Open items from the QA review (2026-11-07)
 
@@ -27,7 +24,7 @@ Items that QA found and that the owner has not yet decided, or that wait for a l
 | 1 | 14 d1 questions (d1-006, 007, 008, 009, 011, 014, 016, 017, 018, 019, 024, 025, 026, 027) have a design-guidance source note, added in PR #21. They are reviewed questions, so the change needs the reviewer's sign-off. | Open | Confirm the notes, or revert them |
 | 2 | The hint button appears only on questions that have a hint. The spec in Milestone 9 says it appears on each drill question. No question has a hint yet. | Open | Keep the current behaviour, or change the spec |
 | 3 | A paused drill that is discarded by the Discard button shows no message, by design. The test "discarding a paused drill removes it" covers that path. | Closed (no change needed) | None |
-| 4 | Milestone 10 acceptance criterion 1: `published_at` must not change once set. | Deferred to Milestone 11 | Built with the refresh step |
+| 4 | Milestone 10 acceptance criterion 1: `published_at` must not change once set. | Done (guard added to validate-content.ts in Milestone 11) | None |
 | 5 | Milestone 8 difficulty calibration needs the official practice materials and a human reviewer. | Blocked | Provide the materials |
 | 6 | Hints for the existing 150 questions need writing and review. | Not started | Schedule the review time |
 | 7 | Verdict wording in CLAUDE.md and PLAN.md, and the place a deferral is recorded. | Closed by PR #23 | None |
