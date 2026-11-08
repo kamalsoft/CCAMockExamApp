@@ -47,6 +47,7 @@ describe('parseRoute', () => {
     ['#drill', { page: 'drill' }],
     ['#exam', { page: 'exam' }],
     ['#progress', { page: 'progress' }],
+    ['#bank', { page: 'bank' }],
     ['#walkthrough', { page: 'walkthrough' }],
     ['#walkthrough-d1', { page: 'walkthrough', domainId: 'd1' }],
     ['#wt-d1-agentic-loops', { page: 'walkthrough', domainId: 'd1', anchor: 'wt-d1-agentic-loops' }],

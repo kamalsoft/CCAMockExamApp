@@ -3,6 +3,7 @@ import { content } from './content.ts'
 import { emptyProgress, localStorageRepository, recordAttempt, type Attempt, type DrillSnapshot } from './lib/progress.ts'
 import { localStorageSettingsRepository } from './lib/settings.ts'
 import { parseRoute } from './lib/route.ts'
+import { Bank } from './pages/Bank.tsx'
 import { Drill } from './pages/Drill.tsx'
 import { Exam } from './pages/Exam.tsx'
 import { Home } from './pages/Home.tsx'
@@ -17,6 +18,7 @@ const pages = [
   { id: 'walkthrough', label: 'Walkthroughs' },
   { id: 'lab', label: 'Labs' },
   { id: 'progress', label: 'Progress' },
+  { id: 'bank', label: 'Question Bank' },
   { id: 'settings', label: 'Settings' },
 ] as const
 
@@ -52,7 +54,7 @@ function App() {
     return (
       <main className="mx-auto max-w-2xl p-4 sm:p-6">
         <h1 className="text-2xl font-bold">CCA Mock Exam</h1>
-        <Home domains={content.domains} />
+        <Home domains={content.domains} bank={content.bank} />
       </main>
     )
   }
@@ -117,6 +119,15 @@ function App() {
             bank={content.bank}
             questions={content.questions}
             onReset={() => setProgress(emptyProgress())}
+          />
+        </div>
+      )}
+      {route.page === 'bank' && (
+        <div className="mt-6">
+          <Bank
+            domains={content.domains}
+            questions={content.questions}
+            bank={content.bank}
           />
         </div>
       )}
