@@ -2,6 +2,7 @@ import { useCallback, useState } from 'react'
 import { button } from '../components/QuestionCard.tsx'
 import type { Settings, Week } from '../lib/settings.ts'
 import { localStorageSettingsRepository } from '../lib/settings.ts'
+import { useTheme } from '../contexts/ThemeContext.tsx'
 
 const secondary = 'rounded border border-gray-400 px-4 py-2 font-medium hover:bg-gray-100'
 
@@ -42,6 +43,8 @@ export default function SettingsPage({ settings, bank, onChange }: {
   const loadNewer = () => {
     window.location.reload()
   }
+
+  const { theme, toggleTheme } = useTheme()
 
   // Get the next scheduled run time for display
   const getNextRunInfo = () => {
@@ -167,6 +170,20 @@ export default function SettingsPage({ settings, bank, onChange }: {
           Reload to load it; your progress is kept.
         </p>
       )}
+
+      <fieldset className="mt-6">
+        <legend className="font-semibold">Appearance</legend>
+        <div className="mt-3 flex items-center gap-2">
+          <button
+            type="button"
+            className={secondary}
+            onClick={toggleTheme}
+          >
+            Switch to {theme === 'light' ? 'dark' : 'light'} mode
+          </button>
+          <span className="text-sm text-gray-600">({theme === 'light' ? '☀️' : '🌙'})</span>
+        </div>
+      </fieldset>
 
       <p className="mt-4 text-sm text-gray-600">
         Next scheduled run: {getNextRunInfo()}
