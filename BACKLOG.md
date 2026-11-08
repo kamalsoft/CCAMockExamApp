@@ -3,7 +3,7 @@
 | | |
 | --- | --- |
 | **Created** | 2026-11-07 |
-| **Status** | Milestones 9 and 10 done; Milestone 11 done; Milestone 12 done |
+| **Status** | Milestones 9 and 10 done; Milestone 11 done; Milestone 12 in progress |
 | **Related** | [PLAN.md](PLAN.md) · [CLAUDE.md](CLAUDE.md) · [CHANGELOG.md](CHANGELOG.md) |
 
 Features that come after the v1 milestones. Per PLAN.md section 10, new features go here, not into the current milestone. Each milestone starts only after its plan is approved.
@@ -26,7 +26,7 @@ Items that QA found and that the owner has not yet decided, or that wait for a l
 | 3 | A paused drill that is discarded by the Discard button shows no message, by design. The test "discarding a paused drill removes it" covers that path. | Closed (no change needed) | None |
 | 4 | Milestone 10 acceptance criterion 1: `published_at` must not change once set. | Done (guard added in Milestone 11) | None |
 | 5 | Milestone 8 difficulty calibration needs the official practice materials and a human reviewer. | Blocked | Provide the materials |
-| 6 | Hints for the existing 150 questions need writing and review. | Done | 150 hints added (d1-d5 complete); owner sign-off needed
+| 6 | Hints for the existing 150 questions need writing and review. | Not started | Schedule the review time |
 | 7 | Verdict wording in CLAUDE.md and PLAN.md, and the place a deferral is recorded. | Closed by PR #23 | None |
 
 ## Milestone 9: Drill pause and resume, and hints
@@ -105,7 +105,7 @@ Items that QA found and that the owner has not yet decided, or that wait for a l
 
 | # | Milestone | Status |
 | --- | --- | --- |
-| 9 | Drill pause and resume, and hints | Done (hints added to all 150 questions) |
+| 9 | Drill pause and resume, and hints | Done (see CHANGELOG); no hint content yet |
 | 10 | Question bank with publish dates | Done (guard added in Milestone 11) |
 | 11 | Scheduled refresh and configuration screen | Done |
-| 12 | Labs in the browser | Interactive terminal simulation with guided steps | Done |
+| 12 | Labs in the browser | Guided walkthrough pages complete; needs owner decision on hint button behavior (QA item #2) and d1 design-guidance notes (QA item #1) | In progress: guided READMEs created for all 5 labs |
