@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test'
 
 // Phone width: no page should scroll sideways.
-const routes = ['#drill', '#exam', '#walkthrough-d1', '#lab-d1', '#progress']
+const routes = ['#drill', '#exam', '#walkthrough-d1', '#lab-d1', '#progress', '#settings']
 
 for (const route of routes) {
   test(`no horizontal scroll at 360px wide: ${route}`, async ({ page }) => {

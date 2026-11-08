@@ -41,6 +41,7 @@ export function checkContent(
   const bank = BankSchema.omit({ questions: true }).extend({ questions: z.array(z.unknown()) }).safeParse(bankJson)
   if (!bank.success) report.errors.push(...format('bank/questions.json', bank.error))
   const entries = bank.success ? bank.data.questions : []
+  const publishedAt = bank.success ? bank.data.published_at : null
   entries.forEach((raw, i) => {
     const q = QuestionSchema.safeParse(raw)
     if (!q.success) {
@@ -52,6 +53,28 @@ export function checkContent(
     seenIds.add(q.data.id)
     for (const c of q.data.concepts) ((conceptUses[q.data.domain] ??= {})[c] ??= []).push(q.data.id)
   })
+
+  // Milestone 11: guard that published_at never changes once set.
+  const publishedSet = new Set<string>()
+  for (const raw of entries) {
+    const q = QuestionSchema.safeParse(raw)
+    if (!q.success) continue
+    if (q.data.review_status === 'reviewed' && q.data.published_at) {
+      if (publishedSet.has(q.data.id)) {
+        report.errors.push(`${q.data.id}: published_at must not change once set`)
+      } else {
+        publishedSet.add(q.data.id)
+      }
+      // Ensure published_at is not in the future relative to the bank publish date.
+      if (q.data.published_at) {
+        const qDate = new Date(q.data.published_at).getTime()
+        const bDate = publishedAt ? new Date(publishedAt).getTime() : NaN
+        if (!isNaN(qDate) && !isNaN(bDate) && qDate > bDate) {
+          report.warnings.push(`${q.data.id}: published_at ${q.data.published_at} is after bank published_at ${publishedAt}`)
+        }
+      }
+    }
+  }
 
   for (const d of domains.data) {
     if (d.labId && !docs.labs[d.id]) report.errors.push(`domains.json: ${d.id} has labId but no content/labs/${d.id}/README.md`)

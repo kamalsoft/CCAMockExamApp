@@ -1,11 +1,13 @@
 import { useCallback, useEffect, useState, useSyncExternalStore } from 'react'
 import { content } from './content.ts'
 import { emptyProgress, localStorageRepository, recordAttempt, type Attempt, type DrillSnapshot } from './lib/progress.ts'
+import { localStorageSettingsRepository } from './lib/settings.ts'
 import { parseRoute } from './lib/route.ts'
 import { Drill } from './pages/Drill.tsx'
 import { Exam } from './pages/Exam.tsx'
 import { Lab } from './pages/Lab.tsx'
 import { Progress } from './pages/Progress.tsx'
+import SettingsPage from './pages/Settings.tsx'
 import { Walkthrough } from './pages/Walkthrough.tsx'
 
 const pages = [
@@ -14,9 +16,11 @@ const pages = [
   { id: 'walkthrough', label: 'Walkthroughs' },
   { id: 'lab', label: 'Labs' },
   { id: 'progress', label: 'Progress' },
+  { id: 'settings', label: 'Settings' },
 ] as const
 
 const repository = localStorageRepository()
+const settingsRepository = localStorageSettingsRepository()
 
 const subscribe = (onChange: () => void) => {
   window.addEventListener('hashchange', onChange)
@@ -26,7 +30,9 @@ const subscribe = (onChange: () => void) => {
 function App() {
   const route = parseRoute(useSyncExternalStore(subscribe, () => window.location.hash))
   const [progress, setProgress] = useState(() => repository.load())
+  const [settings, setSettings] = useState(() => settingsRepository.load())
   useEffect(() => repository.save(progress), [progress])
+  useEffect(() => settingsRepository.save(settings), [settings])
 
   // Stable callbacks, so pages can list them as effect dependencies without re-running.
   const onComplete = useCallback((attempt: Attempt) => setProgress((p) => recordAttempt(p, attempt)), [])
@@ -99,6 +105,15 @@ function App() {
             bank={content.bank}
             questions={content.questions}
             onReset={() => setProgress(emptyProgress())}
+          />
+        </div>
+      )}
+      {route.page === 'settings' && (
+        <div className="mt-6">
+          <SettingsPage
+            settings={settings}
+            bank={content.bank}
+            onChange={(next) => setSettings(next)}
           />
         </div>
       )}
