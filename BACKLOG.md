@@ -3,7 +3,7 @@
 | | |
 | --- | --- |
 | **Created** | 2026-11-07 |
-| **Status** | Milestones 9 and 10 done; Milestone 11 in progress; Milestones 12 approved, not started |
+| **Status** | Milestones 9 and 10 done; Milestone 11 done; Milestone 12 in progress |
 | **Related** | [PLAN.md](PLAN.md) · [CLAUDE.md](CLAUDE.md) · [CHANGELOG.md](CHANGELOG.md) |
 
 Features that come after the v1 milestones. Per PLAN.md section 10, new features go here, not into the current milestone. Each milestone starts only after its plan is approved.
@@ -25,20 +25,6 @@ Items that QA found and that the owner has not yet decided, or that wait for a l
 | 2 | The hint button appears only on questions that have a hint. The spec in Milestone 9 says it appears on each drill question. No question has a hint yet. | Open | Keep the current behaviour, or change the spec |
 | 3 | A paused drill that is discarded by the Discard button shows no message, by design. The test "discarding a paused drill removes it" covers that path. | Closed (no change needed) | None |
 | 4 | Milestone 10 acceptance criterion 1: `published_at` must not change once set. | Done (guard added to validate-content.ts in Milestone 11) | None |
-| 5 | Milestone 8 difficulty calibration needs the official practice materials and a human reviewer. | Blocked | Provide the materials |
-| 6 | Hints for the existing 150 questions need writing and review. | Not started | Schedule the review time |
-| 7 | Verdict wording in CLAUDE.md and PLAN.md, and the place a deferral is recorded. | Closed by PR #23 | None |
-
-## Open items from the QA review (2026-11-07)
-
-Items that QA found and that the owner has not yet decided, or that wait for a later milestone. Closed items are listed too, so the reasoning stays on record.
-
-| # | Item | Status | Owner action |
-| --- | --- | --- | --- |
-| 1 | 14 d1 questions (d1-006, 007, 008, 009, 011, 014, 016, 017, 018, 019, 024, 025, 026, 027) have a design-guidance source note, added in PR #21. They are reviewed questions, so the change needs the reviewer's sign-off. | Open | Confirm the notes, or revert them |
-| 2 | The hint button appears only on questions that have a hint. The spec in Milestone 9 says it appears on each drill question. No question has a hint yet. | Open | Keep the current behaviour, or change the spec |
-| 3 | A paused drill that is discarded by the Discard button shows no message, by design. The test "discarding a paused drill removes it" covers that path. | Closed (no change needed) | None |
-| 4 | Milestone 10 acceptance criterion 1: `published_at` must not change once set. | Deferred to Milestone 11 | Built with the refresh step |
 | 5 | Milestone 8 difficulty calibration needs the official practice materials and a human reviewer. | Blocked | Provide the materials |
 | 6 | Hints for the existing 150 questions need writing and review. | Not started | Schedule the review time |
 | 7 | Verdict wording in CLAUDE.md and PLAN.md, and the place a deferral is recorded. | Closed by PR #23 | None |
@@ -120,6 +106,6 @@ Items that QA found and that the owner has not yet decided, or that wait for a l
 | # | Milestone | Status |
 | --- | --- | --- |
 | 9 | Drill pause and resume, and hints | Done (see CHANGELOG); no hint content yet |
-| 10 | Question bank with publish dates | Done, except acceptance criterion 1 (the `published_at` guard), which is deferred to Milestone 11 |
-| 11 | Scheduled refresh and configuration screen | Planned, approved; decision 2 accepted |
-| 12 | Labs in the browser | Planned, approved; decision 1 accepted |
+| 10 | Question bank with publish dates | Done (guard added in Milestone 11) |
+| 11 | Scheduled refresh and configuration screen | Done |
+| 12 | Labs in the browser | Guided walkthrough pages complete; needs owner decision on hint button behavior (QA item #2) and d1 design-guidance notes (QA item #1) | In progress: guided READMEs created for all 5 labs |

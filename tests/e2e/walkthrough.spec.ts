@@ -16,8 +16,10 @@ test('browse to the d1 walkthrough and on to its lab', async ({ page }) => {
   await page.getByRole('link', { name: 'Open the Domain 1 lab' }).click()
   await expect(page).toHaveURL(/#lab-d1$/)
   await expect(page.getByRole('heading', { name: 'Lab: Build an agent loop with a prerequisite gate' })).toBeVisible()
-  await expect(page.getByText('labs/d1-agent-loop/', { exact: true })).toBeVisible()
-  await expect(page.locator('pre').filter({ hasText: 'npm run check' }).first()).toBeVisible()
+  // Lab page shows numbered steps with implementation guidance
+  await expect(page.getByRole('heading', { name: 'Step 1: Set up the agent loop' })).toBeVisible()
+  // Completion checkbox is present for self-reporting (the one from Lab.tsx, not the step checkboxes)
+  await expect(page.getByRole('checkbox', { name: /I ran npm run check/ })).toBeVisible()
 })
 
 test('a concept link in an explanation opens its walkthrough section, and back returns to the drill', async ({ page }) => {

@@ -1,5 +1,12 @@
 # Changelog
 
+## Milestone 12: Labs in the browser (2026-11-08)
+
+- Add guided browser walkthrough pages for each lab in `content/labs/`
+- Each lab page shows numbered steps with expected output, and a checkbox to mark lab complete
+- Lab page renders README.md at build time; no code runs in the browser, no API key needed
+- Lab completion state saves to localStorage progress via the existing Labs page integration
+
 ## Milestone 11: Scheduled bank refresh and configuration screen (2026-11-08)
 
 - Add Settings page with refresh period (weekly/monthly), schedule time, and "Refresh now" action
