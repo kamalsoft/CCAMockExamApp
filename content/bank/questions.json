@@ -99,7 +99,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "When returning multiple tool results, group all tool_result blocks in one message matched by tool_use_id, with no extra text."
     },
     {
       "id": "d1-003",
@@ -149,7 +150,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "max_turns is a fail-safe limit; max_budget_usd is the proper spend backstop that works with natural success endings."
     },
     {
       "id": "d1-004",
@@ -198,7 +200,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Let Claude decide which tool to call next based on what it has seen - it can skip unnecessary work."
     },
     {
       "id": "d1-005",
@@ -247,7 +250,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "When max_tokens cuts off a tool call, retry with higher limits rather than treating it as complete."
     },
     {
       "id": "d1-006",
@@ -297,7 +301,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Route all subagent communication through the coordinator for single-point logging and consistent error handling."
     },
     {
       "id": "d1-007",
@@ -346,7 +351,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "A supervisor agent monitors a main agent and can inject instructions when needed - it does not need direct tool access."
     },
     {
       "id": "d1-008",
@@ -396,7 +402,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "The system prompt should define the agent loop structure, not individual turn-level instructions."
     },
     {
       "id": "d1-009",
@@ -450,7 +457,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Tool choice \"required\" ensures Claude always uses tools when available, but doesn't force specific ones."
     },
     {
       "id": "d1-010",
@@ -499,7 +507,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "A run ends naturally with end_turn when Claude produces no tool_use block - that's the completion signal."
     },
     {
       "id": "d1-011",
@@ -548,7 +557,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Check stop_reason and only stop when it's \"end_turn\"; keep running for \"tool_use\" responses."
     },
     {
       "id": "d1-012",
@@ -596,7 +606,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Parallel tool calls return results matched by tool_use_id in a single user message to Claude."
     },
     {
       "id": "d1-013",
@@ -646,7 +657,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "A coordinator agent can request status updates from subagents and aggregate their responses into a final report."
     },
     {
       "id": "d1-014",
@@ -695,7 +707,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "The agent SDK automatically handles tool_use/end_turn transitions when configured correctly."
     },
     {
       "id": "d1-015",
@@ -745,7 +758,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "max_budget_usd prevents runaway costs but doesn't cause errors that users should see."
     },
     {
       "id": "d1-016",
@@ -794,7 +808,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Run tools in parallel when independent, but sequentialize when later results depend on earlier ones."
     },
     {
       "id": "d1-017",
@@ -843,7 +858,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "A result subtype indicates the exit condition: success for natural completion, error for failures."
     },
     {
       "id": "d1-018",
@@ -892,7 +908,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Use the conversation context to decide what Claude needs next, not hard-coded rules about text presence."
     },
     {
       "id": "d1-019",
@@ -941,7 +958,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "When Claude outputs both text and tool_use, wait for tool results before returning text to users."
     },
     {
       "id": "d1-020",
@@ -990,7 +1008,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "The loop should check stop_reason after each response to decide whether to run tools or return final text."
     },
     {
       "id": "d1-021",
@@ -1039,7 +1058,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Use pre-tool-use hooks to enforce policies before Claude can call tools - they inspect the planned call and deny if needed."
     },
     {
       "id": "d1-022",
@@ -1089,7 +1109,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "A deny behavior in hooks blocks tool use entirely - useful for security policies that should never be bypassed."
     },
     {
       "id": "d1-023",
@@ -1138,7 +1159,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Hook matchers route tool calls to different policies; comprehensive coverage means every tool has an appropriate matcher."
     },
     {
       "id": "d1-024",
@@ -1187,7 +1209,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Prompt chaining breaks complex tasks into sequential subprompts - each handles one concern at a time."
     },
     {
       "id": "d1-025",
@@ -1236,7 +1259,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Adaptive decomposition adjusts task breakdown based on what it learns - prioritize complex subtasks when needed."
     },
     {
       "id": "d1-026",
@@ -1285,7 +1309,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Dynamic decomposition creates prompts on the fly based on context, trading specificity for flexibility."
     },
     {
       "id": "d1-027",
@@ -1339,7 +1364,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Choose prompt chaining for predictable steps, dynamic for context-driven complexity in the decomposition."
     },
     {
       "id": "d1-028",
@@ -1389,7 +1415,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Session resumption reloads prior context to continue work, avoiding the need to recompute state from scratch."
     },
     {
       "id": "d1-029",
@@ -1437,7 +1464,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Session forking creates parallel branches from a checkpoint, allowing exploration without losing the original."
     },
     {
       "id": "d1-030",
@@ -1486,7 +1514,8 @@
       "review_status": "reviewed",
       "reviewed_by": "kamalsoft",
       "reviewed_at": "2026-11-07",
-      "published_at": "2026-11-07"
+      "published_at": "2026-11-07",
+      "hint": "Targeted reanalysis revisits specific questions from a session, using current context and tools as needed."
     },
     {
       "id": "d2-001",
@@ -6677,7 +6706,7 @@
       "explanation": {
         "correct": "Retries at several layers multiply. Handling transient errors in one bounded place, close to where they happen, with the layers above propagating the structured error instead of retrying, keeps recovery without the storm.",
         "distractors": {
-          "A": "Backoff spreads the attempts out over time, but 3 × 3 × 3 is still 27 attempts.",
+          "A": "Backoff spreads the attempts out over time, but 3 \u00d7 3 \u00d7 3 is still 27 attempts.",
           "C": "Dropping retries entirely turns every brief blip into a human escalation.",
           "D": "More coordinator retries multiply the storm further."
         }
