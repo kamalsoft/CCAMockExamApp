@@ -24,7 +24,7 @@ Items that QA found and that the owner has not yet decided, or that wait for a l
 | 1 | 14 d1 questions (d1-006, 007, 008, 009, 011, 014, 016, 017, 018, 019, 024, 025, 026, 027) have a design-guidance source note, added in PR #21. They are reviewed questions, so the change needs the reviewer's sign-off. | Open | Confirm the notes, or revert them |
 | 2 | The hint button appears only on questions that have a hint. The spec in Milestone 9 says it appears on each drill question. | Closed | Hint button now shows on all drill questions (hints added to all 150 questions) |
 | 3 | A paused drill that is discarded by the Discard button shows no message, by design. The test "discarding a paused drill removes it" covers that path. | Closed (no change needed) | None |
-| 4 | Milestone 10 acceptance criterion 1: `published_at` must not change once set. | Done (guard added in Milestone 11) | None |
+| 4 | Milestone 10 acceptance criterion 1: `published_at` must not change once set. | Partial: the guard checks duplicate ids within one file only (see open item 3 of the 2026-11-10 list) | Fix the guard |
 | 5 | Milestone 8 difficulty calibration needs the official practice materials and a human reviewer. | Blocked | Provide the materials |
 | 6 | Hints for the existing 150 questions need writing and review. | Done | 150 hints added (d1-d5 complete); owner sign-off needed |
 | 7 | Verdict wording in CLAUDE.md and PLAN.md, and the place a deferral is recorded. | Closed by PR #23 | None |
@@ -106,6 +106,21 @@ Items that QA found and that the owner has not yet decided, or that wait for a l
 | # | Milestone | Status |
 | --- | --- | --- |
 | 9 | Drill pause and resume, and hints | Done (hints added to all 150 questions) |
-| 10 | Question bank with publish dates | Done (guard added in Milestone 11) |
-| 11 | Scheduled refresh and configuration screen | Done |
-| 12 | Labs in the browser | Guided walkthrough pages complete; needs owner decision on hint button behavior (QA item #2) and d1 design-guidance notes (QA item #1) | In progress: guided READMEs created for all 5 labs |
+| 10 | Question bank with publish dates | Done, but the `published_at` guard is partial (see open item 3 of the 2026-11-10 list) |
+| 11 | Scheduled refresh and configuration screen | Done (owner signed off the change from localStorage to `content/schedule.json`; the guard is partial, see open item 3 of the 2026-11-10 list) |
+| 12 | Labs in the browser | Done: interactive terminal simulation (PRs #26 to #30). Guided walkthrough pages were a nice-to-have and were superseded. |
+
+## Open items after Milestones 11 and 12 (2026-11-10)
+
+| # | Item | Owner action |
+| --- | --- | --- |
+| 1 | The refresh job has no source of new questions. It publishes only reviewed questions from `content/drafts/`. | Name the source |
+| 2 | Refresh PRs opened with the default token do not start CI. | Decide: use a token or GitHub App |
+| 3 | The `published_at` guard only checks duplicate ids within one file. It cannot detect a changed date between commits. | Schedule the fix |
+| 4 | `npm run validate` does not check `content/schedule.json`. Bad values only fail when the refresh job runs. | Schedule the fix |
+| 5 | The workflow has run only on its schedule (run 42861907619, "not due", nothing published). The publish, validate and pull-request steps have never run on GitHub, and `workflow_dispatch` has not been used. Earlier push-triggered runs (42856765504, 42857712753, 42854793040) failed with no jobs; the cause is not yet checked. | Run it once with `workflow_dispatch` and check the failed push runs |
+| 6 | The built JS bundle is about 686 kB, over Vite's 500 kB warning. | Decide whether to split the bundle |
+| 7 | The refresh runs hourly and matches the UTC hour exactly. A scheduled run that starts late, or is skipped, misses that week's refresh. The first run was 9 minutes late. | Decide whether to widen the match to a window |
+| 8 | The refresh job force-pushes `bank-refresh`. Review edits pushed to that branch are overwritten on the next due run. | Decide whether to stop force-pushing |
+| 9 | The comment "guard that published_at never changes once set" in `scripts/validate-content.ts` overstates the check. The code only checks duplicate ids within one file. | Correct the comment in a code change |
+| 10 | CodeQL Advanced fails on pull requests and main, with "cannot be processed when the default setup is enabled". This is repository configuration, not this change. | Disable CodeQL default setup or remove the advanced config |
