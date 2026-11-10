@@ -2,152 +2,50 @@ name: Scheduled bank refresh
 
 on:
   schedule:
-    # Runs based on the configured refresh period in the app settings
-    # Weekly: Every Monday at 09:00 UTC (default)
-    # Monthly: On the 1st day of the month at 09:00 UTC (default)
-    # Users can configure their preferred day/time in the app's Settings page
-    - cron: '0 9 * * 1'   # Weekly: Monday 09:00 UTC
-    - cron: '0 9 1 * *'   # Monthly: 1st day of month at 09:00 UTC
+    # Hourly, in UTC. The script publishes only in the hour set in content/schedule.json.
+    - cron: '0 * * * *'
   workflow_dispatch:
     inputs:
-      reason:
-        description: 'Reason for manual refresh'
-        required: false
-        default: 'manual refresh'
+      force:
+        description: 'Check now, even outside the scheduled hour'
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+  pull-requests: write
 
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
       - uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
       - run: npm ci
+      - name: Publish reviewed questions if due
+        id: refresh
+        env:
+          FORCE: ${{ inputs.force == true }}
+        run: node scripts/refresh-bank.ts
       - name: Validate content
+        if: steps.refresh.outputs.changed == 'true'
         run: npm run validate
-      - name: Refresh question bank
-        id: bank-refresh
+      - name: Open pull request for review
+        if: steps.refresh.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SUMMARY: ${{ steps.refresh.outputs.summary }}
         run: |
-          echo "=== Bank Refresh Started at $(date -u) ==="
-          echo "Running manually: ${{ github.event_name == 'workflow_dispatch' }}"
-          echo "Inputs: ${{ toJson(github.event.inputs) }}"
-
-          # Get current version and published_at
-          CURRENT_VERSION=$(node -e "console.log(require('./content/bank/questions.json').version)")
-          CURRENT_PUBLISHED=$(node -e "console.log(require('./content/bank/questions.json').published_at)")
-
-          echo "Current bank version: $CURRENT_VERSION"
-          echo "Current published_at: $CURRENT_PUBLISHED"
-
-          # In a real implementation, this would:
-          # 1. Fetch reviewed questions from an external source
-          # 2. Merge with existing reviewed questions
-          # 3. Validate the new bank
-          # 4. Bump version and update published_at
-
-          # For now, simulate a check
-          NEW_VERSION=$((CURRENT_VERSION + 1))
-          NEW_PUBLISHED=$(date -u +"%Y-%m-%d")
-
-          echo "Would update to version: $NEW_VERSION"
-          echo "Would set published_at to: $NEW_PUBLISHED"
-
-          echo "new_version=$NEW_VERSION" >> $GITHUB_OUTPUT
-          echo "new_published_at=$NEW_PUBLISHED" >> $GITHUB_OUTPUT
-
-      - name: Create or update bank PR
-        if: ${{ github.event_name == 'schedule' }}
-        id: create-pr
-        run: |
-          echo "=== Creating bank refresh PR ==="
-
-          # Create a new branch for the bank update
-          BRANCH="bank-refresh-${{ steps.bank-refresh.outputs.new_version }}"
-          git checkout -b "$BRANCH"
-
-          # Update the bank version and published_at
-          node -e "
-            const fs = require('fs');
-            const bank = JSON.parse(fs.readFileSync('./content/bank/questions.json', 'utf8'));
-            bank.version = ${{ steps.bank-refresh.outputs.new_version }};
-            bank.published_at = '${{ steps.bank-refresh.outputs.new_published_at }}';
-            fs.writeFileSync('./content/bank/questions.json', JSON.stringify(bank, null, 2));
-          "
-
-          # Commit and push
           git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add content/bank/questions.json
-          git commit -m "chore: bump question bank to v${{ steps.bank-refresh.outputs.new_version }}
-
-Published at: ${{ steps.bank-refresh.outputs.new_published_at }}
-
-Co-Authored-By: Claude Code <noreply@anthropic.com>"
-          git push origin "$BRANCH"
-
-          # Create PR
-          PR_URL=$(gh pr create \
-            --title "Bank refresh to v${{ steps.bank-refresh.outputs.new_version }}" \
-            --body "Scheduled question bank refresh.
-
-Version: ${{ steps.bank-refresh.outputs.new_version }}
-Published: ${{ steps.bank-refresh.outputs.new_published_at }}
-
-## What changed
-- Bank version bumped from ${{ steps.bank-refresh.outputs.new_version }} to ${{ steps.bank-refresh.outputs.new_version }}
-- Update published_at to ${{ steps.bank-refresh.outputs.new_published_at }}
-
-## Instructions
-This is a draft PR. Reviewers should:
-1. Verify all questions have been reviewed
-2. Check that no unreviewed questions are included
-3. Approve and merge to deploy the new bank
-
----
-🤖 Generated with [Claude Code](https://claude.com/claude-code)" \
-            --base main \
-            --draft \
-            --label "bank-refresh" \
-            --body "Scheduled question bank refresh.
-
-Version: ${{ steps.bank-refresh.outputs.new_version }}
-Published: ${{ steps.bank-refresh.outputs.new_published_at }}
-
-## What changed
-- Bank version bumped from ${{ steps.bank-refresh.outputs.new_version }} to ${{ steps.bank-refresh.outputs.new_version }}
-- Update published_at to ${{ steps.bank-refresh.outputs.new_published_at }}
-
-## Instructions
-This is a draft PR. Reviewers should:
-1. Verify all questions have been reviewed
-2. Check that no unreviewed questions are included
-3. Approve and merge to deploy the new bank
-
----
-🤖 Generated with [Claude Code](https://claude.com/claude-code)" \
-            --base main \
-            --draft \
-            --label "bank-refresh" \
-            --json url -q '.url')
-
-          echo "pr_url=$PR_URL" >> $GITHUB_OUTPUT
-          echo "Created PR: $PR_URL"
-      - name: Manual refresh complete
-        if: ${{ github.event_name == 'workflow_dispatch' }}
-        run: |
-          echo "=== Manual Refresh Complete ==="
-          echo "Reason: ${{ github.event.inputs.reason }}"
-          echo "This was a manual refresh. The app has been notified to check for updates."
-
-      - name: Action completed
-        run: |
-          echo "=== Action Summary ==="
-          echo "Event: ${{ github.event_name }}"
-          echo "Time: $(date -u)"
-          echo "Status: completed"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -C bank-refresh
+          git add content
+          git commit -m "chore: refresh question bank ($SUMMARY)"
+          git push --force origin bank-refresh
+          gh pr view bank-refresh >/dev/null 2>&1 || gh pr create \
+            --base main --head bank-refresh \
+            --title "Question bank refresh" \
+            --body "Reviewed questions added to the bank: $SUMMARY. Merging publishes them on the next deploy. Run log: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
