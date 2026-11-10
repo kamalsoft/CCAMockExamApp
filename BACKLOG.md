@@ -118,5 +118,9 @@ Items that QA found and that the owner has not yet decided, or that wait for a l
 | 2 | Refresh PRs opened with the default token do not start CI. | Decide: use a token or GitHub App |
 | 3 | The `published_at` guard only checks duplicate ids within one file. It cannot detect a changed date between commits. | Schedule the fix |
 | 4 | `npm run validate` does not check `content/schedule.json`. Bad values only fail when the refresh job runs. | Schedule the fix |
-| 5 | The workflow has not yet run on GitHub. | Run it once with `workflow_dispatch` |
-| 6 | The built JS bundle is about 687 kB, over Vite's 500 kB warning. | Decide whether to split the bundle |
+| 5 | The workflow has run only on its schedule (run 42861907619, "not due", nothing published). The publish, validate and pull-request steps have never run on GitHub, and `workflow_dispatch` has not been used. Earlier push-triggered runs (42856765504, 42857712753, 42854793040) failed with no jobs; the cause is not yet checked. | Run it once with `workflow_dispatch` and check the failed push runs |
+| 6 | The built JS bundle is about 686 kB, over Vite's 500 kB warning. | Decide whether to split the bundle |
+| 7 | The refresh runs hourly and matches the UTC hour exactly. A scheduled run that starts late, or is skipped, misses that week's refresh. The first run was 9 minutes late. | Decide whether to widen the match to a window |
+| 8 | The refresh job force-pushes `bank-refresh`. Review edits pushed to that branch are overwritten on the next due run. | Decide whether to stop force-pushing |
+| 9 | The comment "guard that published_at never changes once set" in `scripts/validate-content.ts` overstates the check. The code only checks duplicate ids within one file. | Correct the comment in a code change |
+| 10 | CodeQL Advanced fails on pull requests and main, with "cannot be processed when the default setup is enabled". This is repository configuration, not this change. | Disable CodeQL default setup or remove the advanced config |
