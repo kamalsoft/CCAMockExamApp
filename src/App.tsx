@@ -82,6 +82,7 @@ function App() {
           domains={content.domains}
           questions={content.questions}
           saved={progress.drill}
+          domainId={route.page === 'drill' ? route.domainId : undefined}
           onSave={onSaveDrill}
           onComplete={onComplete}
         />

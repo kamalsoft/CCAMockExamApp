@@ -96,6 +96,17 @@ test('mock exam page loads from home', async ({ page }) => {
   await expect(page.getByRole('heading', { level: 2, name: 'Mock exam' })).toBeVisible()
 })
 
+test('a domain card opens the drill with that domain selected', async ({ page }) => {
+  const domains = JSON.parse(readFileSync(new URL('../../content/domains.json', import.meta.url), 'utf8'))
+  const name = (id: string) => domains.find((d: { id: string }) => d.id === id).name
+  await withName(page)
+  await page.goto('/')
+  await page.click('a[href="#drill?domain=d2"]')
+  await expect(page.getByRole('heading', { name: 'Domain drill' })).toBeVisible()
+  await expect(page.getByLabel(name('d2'), { exact: false })).toBeChecked()
+  await expect(page.getByLabel(name('d1'), { exact: false })).not.toBeChecked()
+})
+
 test('drill page loads from home', async ({ page }) => {
   await page.goto('#drill')
   await expect(page.getByRole('heading', { name: 'Domain drill' })).toBeVisible()
