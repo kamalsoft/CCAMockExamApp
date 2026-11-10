@@ -26,7 +26,7 @@ export function Bank({ domains, questions, bank }: Props) {
 
       <div className="mt-4">
         <p className="text-sm text-gray-600">
-          Bank version {bank.version}, published {new Date(bank.published_at).toLocaleDateString()}.
+          Bank version {bank.version}, published {bank.published_at}.
         </p>
         <p className="mt-2 text-sm text-gray-600">
           {questions.length} total questions covering {domains.length} domains.

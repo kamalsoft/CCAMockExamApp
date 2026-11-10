@@ -1,4 +1,5 @@
 import { expect, test, type Page } from '@playwright/test'
+import { withName } from './session.ts'
 
 const visibleOption = (page: Page) => page.locator('fieldset:visible input').first()
 
@@ -9,6 +10,7 @@ async function startExam(page: Page) {
 }
 
 test('intro offers a full 60-question exam now that every domain is filled', async ({ page }) => {
+  await withName(page)
   await page.goto('/')
   await page.getByRole('link', { name: 'Mock exam' }).click()
   await expect(page.getByText(/60 questions · 120 minutes/)).toBeVisible()
@@ -16,6 +18,7 @@ test('intro offers a full 60-question exam now that every domain is filled', asy
 })
 
 test('take an exam: answer, flag, navigate, switch modes, and submit', async ({ page }) => {
+  await withName(page)
   await page.goto('/')
   const total = await startExam(page)
   await expect(page.getByRole('timer')).toHaveText(/^(2:00:00|1:59:\d\d)$/)
@@ -49,6 +52,7 @@ test('take an exam: answer, flag, navigate, switch modes, and submit', async ({ 
 
 test('exam submits itself when time runs out', async ({ page }) => {
   await page.clock.install()
+  await withName(page)
   await page.goto('/')
   await startExam(page)
   await visibleOption(page).check()
@@ -60,6 +64,7 @@ test('exam submits itself when time runs out', async ({ page }) => {
 })
 
 test('focus moves into the exam on start and to "Keep working" when the submit dialog opens', async ({ page }) => {
+  await withName(page)
   await page.goto('/')
   await startExam(page)
   await expect(page.locator(':focus')).toHaveAttribute('tabindex', '-1')

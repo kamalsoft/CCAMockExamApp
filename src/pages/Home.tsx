@@ -1,185 +1,127 @@
-import { useState } from 'react'
+import { useState, type FormEvent } from 'react'
+import { button } from '../components/QuestionCard.tsx'
 import type { Domain } from '../lib/schema.ts'
 
-const USER_KEY = 'cca-user-v1'
+const NAME_KEY = 'cca-user-v1'
 
-export function Home({ domains, bank }: { domains: Domain[]; bank: { version: number; published_at: string } }) {
-  const [userName, setUserName] = useState(() => {
+// Session storage: the name lasts for this browser tab, and logout clears it.
+const readName = () => {
+  try {
+    return sessionStorage.getItem(NAME_KEY) ?? ''
+  } catch {
+    return ''
+  }
+}
+
+const cardClass = 'rounded-lg border border-gray-200 bg-white p-4 shadow-sm hover:shadow-md transition-shadow'
+
+export function Home({ domains, bank, questionCount }: {
+  domains: Domain[]
+  bank: { version: number; published_at: string }
+  questionCount: number
+}) {
+  const [name, setName] = useState(readName)
+  const [draft, setDraft] = useState('')
+
+  const save = (e: FormEvent) => {
+    e.preventDefault()
+    const trimmed = draft.trim()
+    if (!trimmed) return
     try {
-      return localStorage.getItem(USER_KEY) ?? undefined
+      sessionStorage.setItem(NAME_KEY, trimmed)
     } catch {
-      return undefined
+      // Storage blocked: the name lasts until the page reloads.
     }
-  })
+    setName(trimmed)
+  }
 
   const logout = () => {
     try {
-      localStorage.removeItem(USER_KEY)
-      setUserName(undefined)
+      sessionStorage.removeItem(NAME_KEY)
     } catch {
-      // Storage might be blocked
+      // Nothing stored, nothing to clear.
     }
+    setName('')
+    setDraft('')
   }
 
-  const saveName = (name: string) => {
-    try {
-      localStorage.setItem(USER_KEY, name)
-      setUserName(name)
-    } catch {
-      // Storage might be blocked
-    }
+  if (!name) {
+    return (
+      <div className="space-y-4">
+        <h2 className="text-lg font-semibold text-gray-700">Welcome to CCA Mock Exam</h2>
+        <form onSubmit={save} className="max-w-sm space-y-3 rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
+          <label htmlFor="name" className="block font-medium">What should we call you?</label>
+          <input
+            id="name"
+            type="text"
+            value={draft}
+            onChange={(e) => setDraft(e.target.value)}
+            className="w-full rounded border border-gray-400 px-3 py-2"
+            autoFocus
+          />
+          <button type="submit" className={button} disabled={!draft.trim()}>
+            Continue
+          </button>
+        </form>
+      </div>
+    )
   }
-
-  // Simple inline name input
-  const [editingName, setEditingName] = useState(false)
-  const [tempName, setTempName] = useState(userName ?? '')
 
   return (
     <div className="space-y-6">
-      {/* User welcome section */}
       <div className="flex items-center justify-between">
-        {userName ? (
-          <h2 className="text-lg font-semibold text-gray-700">
-            Welcome back, {userName}!
-          </h2>
-        ) : (
-          <h2 className="text-lg font-semibold text-gray-700">Welcome to CCA Mock Exam</h2>
-        )}
-        {userName && (
-          <button
-            onClick={logout}
-            className="text-sm text-gray-500 hover:text-red-600"
-          >
-            Logout
-          </button>
-        )}
-        {!userName && (
-          <button
-            onClick={() => setEditingName(true)}
-            className="text-sm text-gray-500 hover:text-blue-600"
-          >
-            Set your name
-          </button>
-        )}
+        <h2 className="text-lg font-semibold text-gray-700">Welcome back, {name}!</h2>
+        <button type="button" onClick={logout} className="text-sm text-gray-500 hover:text-red-600">
+          Log out
+        </button>
       </div>
-
-      {/* Name input modal */}
-      {editingName && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-full max-w-sm mx-4">
-            <h3 className="text-lg font-semibold mb-4">What should we call you?</h3>
-            <input
-              type="text"
-              value={tempName}
-              onChange={(e) => setTempName(e.target.value)}
-              className="w-full rounded border border-gray-300 px-3 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="Enter your name"
-              autoFocus
-            />
-            <div className="flex gap-2 justify-end">
-              <button
-                onClick={() => {
-                  setEditingName(false)
-                }}
-                className="px-4 py-2 text-gray-500 hover:text-gray-700"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={() => {
-                  saveName(tempName.trim())
-                  setEditingName(false)
-                }}
-                disabled={!tempName.trim()}
-                className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                Save
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
 
       <h2 className="text-lg font-semibold text-gray-700">Get started with a mode</h2>
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {/* Mock Exam Card */}
-        <a
-          href="#exam"
-          className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm hover:shadow-md transition-shadow"
-        >
+        <a href="#exam" className={cardClass}>
           <h3 className="text-lg font-semibold text-gray-900">Mock Exam</h3>
           <p className="mt-1 text-sm text-gray-600">
             Take a timed 60-question practice exam. Simulates the real exam conditions.
           </p>
         </a>
 
-        {/* Question Bank Card */}
-        <a
-          href="#bank"
-          className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm hover:shadow-md transition-shadow"
-        >
+        <a href="#bank" className={cardClass}>
           <h3 className="text-lg font-semibold text-gray-900">Question Bank</h3>
           <p className="mt-1 text-sm text-gray-600">
-            {bank.version} questions available (published {new Date(bank.published_at).toLocaleDateString()}).
+            {questionCount} questions · version {bank.version}, <span className="whitespace-nowrap">published {bank.published_at}.</span>
           </p>
-          <div className="mt-2 text-xs text-gray-500">
-            <div className="flex justify-between">
-              <span>Update schedule:</span>
-              <span>weekly</span>
-            </div>
-          </div>
         </a>
 
-        {/* Domain Drill Card */}
-        <a
-          href="#drill"
-          className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm hover:shadow-md transition-shadow"
-        >
+        <a href="#drill" className={cardClass}>
           <h3 className="text-lg font-semibold text-gray-900">Domain Drill</h3>
           <p className="mt-1 text-sm text-gray-600">
             Practice questions from specific domains. Focus on areas you need to improve.
           </p>
         </a>
 
-        {/* Walkthroughs Card */}
-        <a
-          href="#walkthrough"
-          className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm hover:shadow-md transition-shadow"
-        >
+        <a href="#walkthrough" className={cardClass}>
           <h3 className="text-lg font-semibold text-gray-900">Walkthroughs</h3>
           <p className="mt-1 text-sm text-gray-600">
             Study guides for each domain. Review key concepts and common pitfalls.
           </p>
         </a>
 
-        {/* Labs Card */}
-        <a
-          href="#lab"
-          className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm hover:shadow-md transition-shadow"
-        >
+        <a href="#lab" className={cardClass}>
           <h3 className="text-lg font-semibold text-gray-900">Labs</h3>
           <p className="mt-1 text-sm text-gray-600">
             Hands-on exercises using the Claude Agent SDK and Claude Code.
           </p>
         </a>
 
-        {/* Progress Card */}
-        <a
-          href="#progress"
-          className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm hover:shadow-md transition-shadow"
-        >
+        <a href="#progress" className={cardClass}>
           <h3 className="text-lg font-semibold text-gray-900">Progress</h3>
           <p className="mt-1 text-sm text-gray-600">
             View your practice history, results, and readiness for the exam.
           </p>
         </a>
 
-        {/* Settings Card */}
-        <a
-          href="#settings"
-          className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm hover:shadow-md transition-shadow"
-        >
+        <a href="#settings" className={cardClass}>
           <h3 className="text-lg font-semibold text-gray-900">Settings</h3>
           <p className="mt-1 text-sm text-gray-600">
             Configure exam settings and question bank refresh preferences.
@@ -187,8 +129,8 @@ export function Home({ domains, bank }: { domains: Domain[]; bank: { version: nu
         </a>
       </div>
 
-      {/* Quick domain access - only show on larger screens */}
-      <section className="hidden sm:block">
+      {/* Quick domain access */}
+      <section>
         <h2 className="text-lg font-semibold text-gray-700 mb-3">By Domain</h2>
         <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
           {domains.map((d) => (
