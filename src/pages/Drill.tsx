@@ -11,12 +11,19 @@ type Settings = { domainIds: string[]; difficulty: Difficulty; explainImmediatel
 
 const secondary = 'rounded border border-gray-400 px-4 py-2 font-medium hover:bg-gray-100'
 
-export function Drill({ domains, questions, saved, onSave, onComplete }: Props & {
+export function Drill({ domains, questions, saved, domainId, onSave, onComplete }: Props & {
   saved: DrillSnapshot | null
+  domainId?: string
   onSave: (drill: DrillSnapshot | null) => void
   onComplete: (attempt: Attempt) => void
 }) {
   const [settings, setSettings] = useState<Settings>({ domainIds: [], difficulty: 'any', explainImmediately: true })
+  // A domain link (#drill?domain=dN) selects that domain in the setup screen.
+  const [appliedDomain, setAppliedDomain] = useState<string | undefined>(undefined)
+  if (domainId !== appliedDomain) {
+    setAppliedDomain(domainId)
+    if (domainId) setSettings((s) => ({ ...s, domainIds: [domainId] }))
+  }
   const [set, setSet] = useState<Question[] | null>(null)
   const [responses, setResponses] = useState<Responses>({})
   const [startedAt, setStartedAt] = useState(0)

@@ -45,6 +45,7 @@ describe('parseRoute', () => {
     ['', { page: 'home' }],
     ['#home', { page: 'home' }],
     ['#drill', { page: 'drill' }],
+    ['#drill?domain=d2', { page: 'drill', domainId: 'd2' }],
     ['#exam', { page: 'exam' }],
     ['#progress', { page: 'progress' }],
     ['#bank', { page: 'bank' }],

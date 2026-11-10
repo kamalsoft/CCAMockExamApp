@@ -1,6 +1,8 @@
 import { expect, test } from '@playwright/test'
+import { withName } from './session.ts'
 
 test('browse to the d1 walkthrough and on to its lab', async ({ page }) => {
+  await withName(page)
   await page.goto('/')
   await page.getByRole('link', { name: 'Walkthroughs' }).click()
   // Every domain has a walkthrough now, so the index lists five links and nothing "coming soon".

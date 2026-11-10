@@ -50,7 +50,7 @@ function App() {
     return (
       <main className="mx-auto max-w-2xl p-4 sm:p-6">
         <h1 className="text-2xl font-bold">CCA Mock Exam</h1>
-        <Home domains={content.domains} bank={content.bank} />
+        <Home domains={content.domains} bank={content.bank} questionCount={content.questions.length} />
       </main>
     )
   }
@@ -78,6 +78,7 @@ function App() {
           domains={content.domains}
           questions={content.questions}
           saved={progress.drill}
+          domainId={route.page === 'drill' ? route.domainId : undefined}
           onSave={onSaveDrill}
           onComplete={onComplete}
         />

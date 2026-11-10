@@ -27,3 +27,4 @@ dist-ssr
 test-results
 playwright-report
 /.claude/settings.local.json
+/.claude/settings.local.json.test

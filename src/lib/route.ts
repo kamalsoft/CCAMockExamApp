@@ -1,6 +1,7 @@
 export type Route =
   | { page: 'home' }
-  | { page: 'drill' | 'exam' | 'progress' | 'settings' | 'bank' }
+  | { page: 'drill'; domainId?: string }
+  | { page: 'exam' | 'progress' | 'settings' | 'bank' }
   | { page: 'walkthrough' | 'lab'; domainId?: string; anchor?: string }
 
 // Hash routes: #home, #drill, #exam, #progress, #settings, #bank, #walkthrough-d1, #wt-d1-<section>, #lab-d1. Empty hash is home.
@@ -13,5 +14,7 @@ export function parseRoute(hash: string): Route {
   if (m) return { page: m[1] as 'walkthrough' | 'lab', domainId: m[2] }
   m = h.match(/^wt-(d\d+)-.+$/)
   if (m) return { page: 'walkthrough', domainId: m[1], anchor: h }
+  m = h.match(/^drill\?domain=(d\d+)$/)
+  if (m) return { page: 'drill', domainId: m[1] }
   return { page: 'drill' }
 }
