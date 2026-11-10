@@ -107,8 +107,8 @@ Items that QA found and that the owner has not yet decided, or that wait for a l
 | --- | --- | --- |
 | 9 | Drill pause and resume, and hints | Done (hints added to all 150 questions) |
 | 10 | Question bank with publish dates | Done (guard added in Milestone 11) |
-| 11 | Scheduled refresh and configuration screen | Done (owner sign-off pending on the change from localStorage to `content/schedule.json`) |
-| 12 | Labs in the browser | Done: interactive terminal simulation (PRs #26 to #30). Owner to confirm wording against the guided-walkthrough entry in CHANGELOG. |
+| 11 | Scheduled refresh and configuration screen | Done (owner signed off the change from localStorage to `content/schedule.json`) |
+| 12 | Labs in the browser | Done: interactive terminal simulation (PRs #26 to #30). Guided walkthrough pages were a nice-to-have and were superseded. |
 
 ## Open items after Milestones 11 and 12 (2026-11-10)
 
@@ -118,6 +118,5 @@ Items that QA found and that the owner has not yet decided, or that wait for a l
 | 2 | Refresh PRs opened with the default token do not start CI. | Decide: use a token or GitHub App |
 | 3 | The `published_at` guard only checks duplicate ids within one file. It cannot detect a changed date between commits. | Schedule the fix |
 | 4 | `npm run validate` does not check `content/schedule.json`. Bad values only fail when the refresh job runs. | Schedule the fix |
-| 5 | The Milestone 11 change from localStorage to a schedule file needs owner sign-off. | Sign off or ask for changes |
-| 6 | The workflow has not yet run on GitHub. | Run it once with `workflow_dispatch` |
-| 7 | The built JS bundle is about 687 kB, over Vite's 500 kB warning. | Decide whether to split the bundle |
+| 5 | The workflow has not yet run on GitHub. | Run it once with `workflow_dispatch` |
+| 6 | The built JS bundle is about 687 kB, over Vite's 500 kB warning. | Decide whether to split the bundle |

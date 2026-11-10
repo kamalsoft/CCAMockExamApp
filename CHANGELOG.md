@@ -12,8 +12,8 @@
 - Phone checks run at 360px, Google Pixel 7 and iPhone 14 widths.
 
 Corrections to the entries below:
-- Milestone 11: settings are no longer stored in localStorage, and "Refresh now" and "Load newer bank" are removed. The `published_at` guard only checks duplicate ids within one file. It does not yet stop a changed `published_at` between commits.
-- Milestone 12: the merged implementation is the interactive terminal simulation (PRs #26 to #30). The guided walkthrough description below does not match it. The owner needs to confirm the final wording.
+- Milestone 11: settings are no longer stored in localStorage, and "Refresh now" and "Load newer bank" are removed. The `published_at` guard only checks duplicate ids within one file. It does not yet stop a changed `published_at` between commits. The owner signed off the schedule-file change.
+- Milestone 12: the final approach is the interactive terminal simulation (PRs #26 to #30). The guided walkthrough pages described below were a nice-to-have and were superseded.
 
 ## Milestone 12: Labs in the browser (2026-11-08)
 
