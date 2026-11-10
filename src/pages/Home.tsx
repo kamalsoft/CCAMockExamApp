@@ -89,7 +89,7 @@ export function Home({ domains, bank, questionCount }: {
         <a href="#bank" className={cardClass}>
           <h3 className="text-lg font-semibold text-gray-900">Question Bank</h3>
           <p className="mt-1 text-sm text-gray-600">
-            {questionCount} questions · version {bank.version}, published {bank.published_at}.
+            {questionCount} questions · version {bank.version}, <span className="whitespace-nowrap">published {bank.published_at}.</span>
           </p>
         </a>
 
