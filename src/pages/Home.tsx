@@ -129,8 +129,8 @@ export function Home({ domains, bank, questionCount }: {
         </a>
       </div>
 
-      {/* Quick domain access - only show on larger screens */}
-      <section className="hidden sm:block">
+      {/* Quick domain access */}
+      <section>
         <h2 className="text-lg font-semibold text-gray-700 mb-3">By Domain</h2>
         <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
           {domains.map((d) => (
