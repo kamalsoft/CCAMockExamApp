@@ -1,5 +1,8 @@
+import { readFileSync } from 'node:fs'
 import { expect, test } from '@playwright/test'
 import { withName } from './session.ts'
+
+const bank = JSON.parse(readFileSync(new URL('../../content/bank/questions.json', import.meta.url), 'utf8'))
 
 test('home asks for a name before showing the navigation', async ({ page }) => {
   await page.goto('/')
@@ -7,13 +10,16 @@ test('home asks for a name before showing the navigation', async ({ page }) => {
   await expect(page.getByRole('link', { name: 'Mock Exam' })).toHaveCount(0)
 })
 
-test('entering a name shows the navigation, and logout asks again', async ({ page }) => {
+test('entering a name shows the navigation, and logout asks again after a reload', async ({ page }) => {
   await page.goto('/')
   await page.getByLabel('What should we call you?').fill('Tester')
   await page.getByRole('button', { name: 'Continue' }).click()
   await expect(page.getByRole('heading', { name: 'Welcome back, Tester!' })).toBeVisible()
   await expect(page.getByRole('link', { name: 'Mock Exam' })).toBeVisible()
   await page.getByRole('button', { name: 'Log out' }).click()
+  await expect(page.getByLabel('What should we call you?')).toBeVisible()
+  expect(await page.evaluate("sessionStorage.getItem('cca-user-v1')")).toBeNull()
+  await page.reload()
   await expect(page.getByLabel('What should we call you?')).toBeVisible()
 })
 
@@ -51,7 +57,9 @@ test('navigation cards and domain links point to each mode', async ({ page }) =>
   for (const [name, href] of Object.entries(hrefs)) {
     await expect(page.getByRole('link', { name: new RegExp(name) }).first()).toHaveAttribute('href', href)
   }
-  await expect(page.locator('a[href="#drill?domain=d1"]')).toBeVisible()
+  for (const d of ['d1', 'd2', 'd3', 'd4', 'd5']) {
+    await expect(page.locator(`a[href="#drill?domain=${d}"]`)).toHaveCount(1)
+  }
 })
 
 test('question bank card count matches the Question Bank page', async ({ page }) => {
@@ -59,16 +67,17 @@ test('question bank card count matches the Question Bank page', async ({ page })
   await page.goto('/')
   const card = await page.getByRole('link', { name: /Question Bank/ }).textContent()
   const homeCount = card!.match(/(\d+) questions/)![1]
+  expect(Number(homeCount)).toBe(bank.questions.length)
   await page.goto('/#bank')
-  await expect(page.getByText(`${homeCount} total questions`)).toBeVisible()
+  await expect(page.getByText(new RegExp(`^${homeCount} total questions`))).toBeVisible()
 })
 
 test('the publish date is shown as stored on Home and the Bank page', async ({ page }) => {
   await withName(page)
   await page.goto('/')
-  await expect(page.getByRole('link', { name: /Question Bank/ })).toContainText(/published \d{4}-\d{2}-\d{2}\./)
+  await expect(page.getByRole('link', { name: /Question Bank/ })).toContainText(`published ${bank.published_at}.`)
   await page.goto('/#bank')
-  await expect(page.getByText(/published \d{4}-\d{2}-\d{2}\./)).toBeVisible()
+  await expect(page.getByText(`published ${bank.published_at}.`)).toBeVisible()
 })
 
 test('the app stays light even when the system prefers dark', async ({ page }) => {
@@ -77,6 +86,7 @@ test('the app stays light even when the system prefers dark', async ({ page }) =
   await page.goto('/')
   await expect(page.getByRole('heading', { name: 'Get started with a mode' })).toBeVisible()
   expect(await page.evaluate("document.documentElement.className")).toBe('')
+  expect(await page.evaluate("getComputedStyle(document.querySelector('a[href=\"#exam\"]')).backgroundColor")).toBe('rgb(255, 255, 255)')
 })
 
 test('mock exam page loads from home', async ({ page }) => {
