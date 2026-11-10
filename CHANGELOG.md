@@ -1,5 +1,20 @@
 # Changelog
 
+## Milestones 11 and 12: close-out and landing page (2026-11-10)
+
+- Home: a name gate, then seven navigation cards. The name is kept in sessionStorage (`cca-user-v1`) and Log out clears it.
+- Domain cards on Home open the drill with that domain selected (`#drill?domain=dN`). The domain links show at every width.
+- The Question Bank card shows the question count, version and publish date. The Question Bank page (`#bank`) shows the same, with a domain breakdown.
+- Refresh schedule in `content/schedule.json`: weekly on a weekday, or monthly on a chosen week and weekday, at a UTC hour.
+- The hourly workflow `refresh-bank.yml` publishes reviewed questions from `content/drafts/` when the schedule is due, and opens a pull request. It also runs on demand with `workflow_dispatch`.
+- `content/refresh-status.json` records the last publish and its run log. Settings shows the schedule, the next check, and a link to run a refresh on GitHub.
+- Light mode only. The theme toggle and theme code are removed.
+- Phone checks run at 360px, Google Pixel 7 and iPhone 14 widths.
+
+Corrections to the entries below:
+- Milestone 11: settings are no longer stored in localStorage, and "Refresh now" and "Load newer bank" are removed. The `published_at` guard only checks duplicate ids within one file. It does not yet stop a changed `published_at` between commits.
+- Milestone 12: the merged implementation is the interactive terminal simulation (PRs #26 to #30). The guided walkthrough description below does not match it. The owner needs to confirm the final wording.
+
 ## Milestone 12: Labs in the browser (2026-11-08)
 
 - Add guided browser walkthrough pages for each lab in `content/labs/`

@@ -176,8 +176,8 @@ Each milestone ends with a working build and a short changelog entry.
 | 8 | Polish and calibration | Accessibility pass, mobile layout, and difficulty review against the official practice materials. | In progress: accessibility and mobile layout done; difficulty calibration needs the official practice materials and a human reviewer |
 | 9 | Drill pause and resume, and hints | Pause and resume a drill; optional hint on each question, drill mode only. | Done (hints added to all 150 questions) |
 | 10 | Question bank with publish dates | One question bank with a version and publish dates; the app serves reviewed questions from it. | Done (the publish-date guard lands with Milestone 11) |
-| 11 | Scheduled refresh and configuration screen | Scheduled bank refresh, configuration screen, and the `published_at` guard. | Done |
-| 12 | Labs in the browser | Interactive terminal simulation with guided steps | Done
+| 11 | Scheduled refresh and configuration screen | Scheduled bank refresh, configuration screen, and the `published_at` guard. | Done (schedule is in `content/schedule.json`, not localStorage; the guard is not yet enforced across commits; owner sign-off pending) |
+| 12 | Labs in the browser | Interactive terminal simulation with guided steps | Done (owner to confirm the wording in CHANGELOG) |
 
 ## 9. Acceptance criteria
 
