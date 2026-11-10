@@ -11,12 +11,17 @@ const content = fileURLToPath(new URL('../content/', import.meta.url))
 const readJson = (path: string) => JSON.parse(readFileSync(join(content, path), 'utf8'))
 const writeJson = (path: string, data: unknown) => writeFileSync(join(content, path), JSON.stringify(data, null, 2) + '\n')
 
+// Questions are validated with the schema but kept as written, so the bank diff only adds the new questions.
 function readDrafts(): Question[] {
   const dir = join(content, 'drafts')
   if (!existsSync(dir)) return []
   return readdirSync(dir)
     .filter((file) => file.endsWith('.json'))
-    .flatMap((file) => QuestionSchema.array().parse(JSON.parse(readFileSync(join(dir, file), 'utf8'))))
+    .flatMap((file) => {
+      const raw = JSON.parse(readFileSync(join(dir, file), 'utf8'))
+      QuestionSchema.array().parse(raw)
+      return raw as Question[]
+    })
 }
 
 function report(changed: boolean, summary: string) {
@@ -29,7 +34,8 @@ function main() {
   const schedule = ScheduleSchema.parse(readJson('schedule.json'))
   if (process.env.FORCE !== 'true' && !isRefreshDue(schedule, now)) return report(false, 'not due')
 
-  const bank = BankSchema.parse(readJson('bank/questions.json')) as Bank
+  const bank = readJson('bank/questions.json') as Bank
+  BankSchema.parse(bank)
   const result = mergeReviewed(bank, readDrafts(), now.toISOString().slice(0, 10))
   if (result.added.length === 0) return report(false, 'no new reviewed questions')
 
