@@ -24,7 +24,7 @@ Items that QA found and that the owner has not yet decided, or that wait for a l
 | 1 | 14 d1 questions (d1-006, 007, 008, 009, 011, 014, 016, 017, 018, 019, 024, 025, 026, 027) have a design-guidance source note, added in PR #21. They are reviewed questions, so the change needs the reviewer's sign-off. | Open | Confirm the notes, or revert them |
 | 2 | The hint button appears only on questions that have a hint. The spec in Milestone 9 says it appears on each drill question. | Closed | Hint button now shows on all drill questions (hints added to all 150 questions) |
 | 3 | A paused drill that is discarded by the Discard button shows no message, by design. The test "discarding a paused drill removes it" covers that path. | Closed (no change needed) | None |
-| 4 | Milestone 10 acceptance criterion 1: `published_at` must not change once set. | Done (guard added in Milestone 11) | None |
+| 4 | Milestone 10 acceptance criterion 1: `published_at` must not change once set. | Partial: the guard checks duplicate ids within one file only (see open item 3) | Fix the guard |
 | 5 | Milestone 8 difficulty calibration needs the official practice materials and a human reviewer. | Blocked | Provide the materials |
 | 6 | Hints for the existing 150 questions need writing and review. | Done | 150 hints added (d1-d5 complete); owner sign-off needed |
 | 7 | Verdict wording in CLAUDE.md and PLAN.md, and the place a deferral is recorded. | Closed by PR #23 | None |
@@ -106,7 +106,7 @@ Items that QA found and that the owner has not yet decided, or that wait for a l
 | # | Milestone | Status |
 | --- | --- | --- |
 | 9 | Drill pause and resume, and hints | Done (hints added to all 150 questions) |
-| 10 | Question bank with publish dates | Done (guard added in Milestone 11) |
+| 10 | Question bank with publish dates | Done, but the `published_at` guard is partial (see open item 3) |
 | 11 | Scheduled refresh and configuration screen | Done (owner signed off the change from localStorage to `content/schedule.json`) |
 | 12 | Labs in the browser | Done: interactive terminal simulation (PRs #26 to #30). Guided walkthrough pages were a nice-to-have and were superseded. |
 
