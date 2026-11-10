@@ -25,6 +25,8 @@ for (const phone of phones) {
     await page.setViewportSize({ width: phone.width, height: phone.height })
     await withName(page)
     await page.goto('/')
-    await expect(page.locator('a[href="#drill?domain=d1"]')).toBeVisible()
+    for (const d of ['d1', 'd2', 'd3', 'd4', 'd5']) {
+      await expect(page.locator(`a[href="#drill?domain=${d}"]`)).toBeVisible()
+    }
   })
 }

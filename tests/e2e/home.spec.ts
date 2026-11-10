@@ -6,7 +6,12 @@ const bank = JSON.parse(readFileSync(new URL('../../content/bank/questions.json'
 
 test('home asks for a name before showing the navigation', async ({ page }) => {
   await page.goto('/')
+  await expect(page.getByRole('heading', { name: 'Welcome to CCA Mock Exam' })).toBeVisible()
   await expect(page.getByLabel('What should we call you?')).toBeVisible()
+  const continueButton = page.getByRole('button', { name: 'Continue' })
+  await expect(continueButton).toBeDisabled()
+  await page.getByLabel('What should we call you?').fill('   ')
+  await expect(continueButton).toBeDisabled()
   await expect(page.getByRole('link', { name: 'Mock Exam' })).toHaveCount(0)
 })
 
@@ -107,7 +112,7 @@ test('a domain card opens the drill with that domain selected', async ({ page })
   await expect(page.getByLabel(name('d1'), { exact: false })).not.toBeChecked()
 })
 
-test('drill page loads from home', async ({ page }) => {
+test('drill page loads directly', async ({ page }) => {
   await page.goto('#drill')
   await expect(page.getByRole('heading', { name: 'Domain drill' })).toBeVisible()
 })
